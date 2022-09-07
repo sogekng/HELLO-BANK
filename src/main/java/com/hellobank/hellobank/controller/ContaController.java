@@ -21,7 +21,7 @@ public class ContaController {
 
     @PostMapping("/contas")
     //http://localhost:8080/contas
-    public  ResponseEntity<Conta> cadastrarCliente(@RequestBody Conta dados) {
+    public  ResponseEntity<Conta> criarNovo(@RequestBody Conta dados) {
 		Conta resultado = service.CriarConta(dados);
 		
 		if(resultado != null) {
@@ -29,6 +29,7 @@ public class ContaController {
 		}
 		return ResponseEntity.badRequest().build();
 	}
+
 
 
     @GetMapping("/contas")

@@ -5,12 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-// import javax.persistence.JoinColumn;
-// import javax.persistence.ManyToOne;
-//import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-// import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="conta")
@@ -33,10 +32,10 @@ public class Conta{
     @Column(name="saldo")
     private Double saldo;
 
-    // @ManyToOne()
-    // @JoinColumn(name="id_cliente")
-    // @JsonIgnoreProperties("listaEndereco")
-    // private Cliente cliente;
+    @ManyToOne
+    @JoinColumn(name="id_cliente")
+    @JsonIgnoreProperties("listaConta")
+    private Cliente cliente;
 
 
     public Integer getId() {
@@ -69,5 +68,10 @@ public class Conta{
     public void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
-
+    public Cliente getCliente() {
+        return cliente;
+    }
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 }
