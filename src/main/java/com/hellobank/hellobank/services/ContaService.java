@@ -22,12 +22,21 @@ public class ContaService implements IConta{
 
     @Override
     public Conta recuperarPorId(Integer id) {
-        return dao.findById(id).orElse(null);
+        if (id != null) {
+            return dao.findById(id).orElse(null);
+        }
+        return null;
+    }
+    
+
+    @Override
+    public Conta criarNovo(Conta dados) {
+        return dao.save(dados);
     }
 
     @Override
-    public Conta CriarConta(Conta dados) {
-        return dao.save(dados);
+    public ArrayList<Conta> buscarPorTipo(String palavraChave) {
+        return dao.findByTipoContaining(palavraChave);
     }
     
 }
