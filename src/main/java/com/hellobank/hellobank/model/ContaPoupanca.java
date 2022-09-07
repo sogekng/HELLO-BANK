@@ -8,19 +8,12 @@ import javax.persistence.Entity;
 public class ContaPoupanca extends Conta {
 
     private Double dinheiroGuardo;
-    private Double resgate;
 
     public Double getDinheiroGuardo() {
         return dinheiroGuardo;
     }
     public void setDinheiroGuardo(Double dinheiroGuardo) {
         this.dinheiroGuardo = dinheiroGuardo;
-    }
-    public Double getResgate() {
-        return resgate;
-    }
-    public void setResgate(Double resgate) {
-        this.resgate = resgate;
     }
 
 }

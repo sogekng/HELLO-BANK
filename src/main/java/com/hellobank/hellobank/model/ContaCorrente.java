@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("corrente")
-public class ContaCorrente {
+public class ContaCorrente extends Conta{
     
 	private Double saldo;
 

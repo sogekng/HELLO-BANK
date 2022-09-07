@@ -1,6 +1,8 @@
 package com.hellobank.hellobank.model;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "conta")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)  
+@DiscriminatorColumn(name="tipo", discriminatorType = DiscriminatorType.STRING)
 public class Conta{
 
     @Id
@@ -22,7 +25,7 @@ public class Conta{
     @Column(name="numero", nullable = false, columnDefinition = "TEXT", length =20, unique=true)
 	private String numero;
 
-    @Column(name="agencia", nullable = false)
+    @Column(name="agencia", nullable = false, columnDefinition = "TEXT", length =7)
 	private Integer agencia;
 
     //id_cliente
