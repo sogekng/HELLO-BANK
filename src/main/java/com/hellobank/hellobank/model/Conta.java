@@ -25,8 +25,6 @@ public class Conta{
     @Column(name="agencia", nullable = false)
 	private Integer agencia;
 
-    @Column(name="saldo", nullable = false)
-	private Double saldo;
     //id_cliente
 
     public Integer getId() {
@@ -53,12 +51,5 @@ public class Conta{
         this.agencia = agencia;
     }
 
-    public Double getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(Double saldo) {
-        this.saldo = saldo;
-    }
     
 }
