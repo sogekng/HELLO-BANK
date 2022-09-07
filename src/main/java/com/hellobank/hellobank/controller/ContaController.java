@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hellobank.hellobank.model.Conta;
@@ -20,7 +21,7 @@ public class ContaController {
 
     @PostMapping("/contas")
     //http://localhost:8080/contas
-    public  ResponseEntity<Conta> cadastrarCliente(Conta dados) {
+    public  ResponseEntity<Conta> cadastrarCliente(@RequestBody Conta dados) {
 		Conta resultado = service.CriarConta(dados);
 		
 		if(resultado != null) {
