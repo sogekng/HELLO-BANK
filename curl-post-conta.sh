@@ -1,0 +1,1 @@
+curl -d '{"agencia":"0001", "numero":"789475-9", "saldo":50.0, "tipo":"corrente"}' -H "Content-Type: application/json" -X POST http://localhost:8080/contas
