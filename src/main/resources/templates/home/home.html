@@ -1,23 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/home.css">
-    <title>Home</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
+    <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <link rel="stylesheet" href="home.css">
+    <title>Login</title>
 </head>
 <body>
     <main id="main">
-        <h1>home</h1>
-        <header id="header">
+        <script>
+            $("input[id*='cpf']").inputmask({
+                mask: ['999.999.999-99', '99.999.999/9999-99'],
+                keepStatic: true
+            });
 
-        </header>
-        <div id="content">
+            function trocar_tela(id1, id2){
+                document.getElementById(id1).style.display = 'none';
+                document.getElementById(id2).style.display = 'flex';
+            }
 
-        </div>
-        <footer id="footer">
-
+        </script>
+        <form action="../php-content/logon.php" id="form-content-logon" method="POST">
+            <div class="form-titulo">
+                <h1>Logon</h1>
+                <h1 onclick="trocar_tela('form-content-logon', 'form-content-register')">Register</h1>
+            </div>
+            <div class="form-content">
+                <div class="register-nome" style="background: transparent;">
+                    <label for="name" class="name"><span class="material-symbols-outlined" style="display: none;">person</span></label>
+                    <input type="text" name="name" id="name" placeholder="Nome completo" required autocomplete="off" style="display: none;">
+                </div>
+                <div class="login-cpf">
+                    <label for="cpf" class="cpf"><span class="material-symbols-outlined">person</span></label>
+                    <input type="text" name="cpf" id="cpf" placeholder="000.000.000-00" required onkeypress="$(this).mask('000.000.000-00');" autocomplete="off">
+                </div>
+                <div class="login-password">
+                    <label for="password" class="password"><span class="material-symbols-outlined">lock</span></label>
+                    <input type="password" name="password" id="password" placeholder="Password" required autocomplete="off">
+                </div>
+                <div class="login-button">
+                    <button type="submit">Logon</button>
+                </div>
+            </div>
+        </form>
+        <form action="../php-content/register.php" id="form-content-register" method="POST">
+            <div class="form-titulo">
+                <h1 onclick="trocar_tela('form-content-register', 'form-content-logon')">Logon</h1>
+                <h1>Register</h1>
+            </div>
+            <div class="form-content">
+                <div class="register-nome">
+                    <label for="name" class="name"><span class="material-symbols-outlined">person</span></label>
+                    <input type="text" name="name" id="name" placeholder="Nome completo" required autocomplete="off">
+                </div>
+                <div class="register-cpf">
+                    <label for="cpf" class="cpf"><span class="material-symbols-outlined">person</span></label>
+                    <input type="text" name="cpf" id="cpf" placeholder="000.000.000-00" required onkeypress="$(this).mask('000.000.000-00');" autocomplete="off">
+                </div>
+                <div class="register-password">
+                    <label for="password" class="password"><span class="material-symbols-outlined">lock</span></label>
+                    <input type="password" name="password" id="password" placeholder="Password" required autocomplete="off">
+                </div>
+                <div class="register-button">
+                    <button type="submit">Register</button>
+                </div>
+            </div>
+        </form>
+        <footer>
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>© 2022 - Todos os direitos reservados</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Termos de uso</a>
+                    <a href="#">Política de privacidade</a>
+                </div>
+            </div>
         </footer>
     </main>
 </body>
