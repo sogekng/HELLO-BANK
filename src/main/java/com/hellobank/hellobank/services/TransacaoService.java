@@ -34,4 +34,19 @@ public class TransacaoService implements ITransacaoService {
         return null;
     }
 
+    @Override
+    public Transacao efetuarSaque(String tipo) {
+        return null;
+    }
+
+    @Override
+    public Transacao efetuarDeposito(Double valor) {
+        return null;
+    }
+
+    @Override
+    public Transacao efetuarTransferencia(Double valor) {
+        return null;
+    }
+
 }

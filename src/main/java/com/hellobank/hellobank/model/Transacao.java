@@ -24,6 +24,19 @@ public class Transacao {
     @Column(name = "data", length = 20, nullable = false)
     private LocalDate data;
 
+    @Column(name = "tipo", length = 20, nullable = false)
+    private String tipo;
+
+    public Transacao() {}
+	public Transacao(Integer id_trasacao, Double valor, LocalDate data, String tipo) {
+        this.id_trasacao = id_trasacao;
+        this.valor = valor;
+        this.data = data;
+        this.tipo = tipo;
+    }
+
+    Conta conta = new Conta();
+
     public Integer getId_trasacao() {
         return id_trasacao;
     }
@@ -43,23 +56,18 @@ public class Transacao {
     public LocalDate getData() {
         return data;
     }
+    
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
+    public String getTipo() {
+        return tipo;
+    }
+    
     public void setData(LocalDate data) {
         this.data = data;
     }
 
-    public String efetuarSaque(Double valor) {
-        return "Saque efetuado com sucesso";
-    }
-
-    public String efetuarDeposito(Double valor) {
-        return "Deposito efetuado com sucesso";
-    }
-
-    public String efetuarTransferencia(Double valor) {
-        return "Transferencia efetuada com sucesso";
-    }
-
-    
     
 }
