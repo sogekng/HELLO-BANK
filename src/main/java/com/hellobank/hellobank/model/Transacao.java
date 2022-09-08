@@ -48,6 +48,17 @@ public class Transacao {
         this.data = data;
     }
 
+    public String efetuarSaque(Double valor) {
+        return "Saque efetuado com sucesso";
+    }
+
+    public String efetuarDeposito(Double valor) {
+        return "Deposito efetuado com sucesso";
+    }
+
+    public String efetuarTransferencia(Double valor) {
+        return "Transferencia efetuada com sucesso";
+    }
 
     
     
