@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script type="text/javascript" src="ajax/funcs.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
+    <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <link rel="stylesheet" href="static/css/login.css">
+    <title>Login</title>
+</head>
+<body>
+    <main>
+        <form action="" id="form-content">
+            <script>
+                $("input[id*='cpf']").inputmask({
+                    mask: ['999.999.999-99', '99.999.999/9999-99'],
+                    keepStatic: true
+                  });      
+            </script>
+            <div class="login-cpf">
+                <label for="cpf" class="cpf"><span class="material-symbols-outlined">person</span></label>
+                <input type="text" name="cpf" id="cpf" placeholder="000.000.000-00" required onkeypress="$(this).mask('000.000.000-00');" autocomplete="off">
+            </div>
+            <div class="login-password">
+                <label for="password" class="password"><span class="material-symbols-outlined">lock</span></label>
+                <input type="password" name="password" id="password" placeholder="Password" required autocomplete="off">
+            </div>
+            <div class="login-button">
+                <button type="submit">Entrar</button>
+            </div>
+        </form>
+        <footer>
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>© 2022 - Todos os direitos reservados</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Termos de uso</a>
+                    <a href="#">Política de privacidade</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+</body>
+</html>
