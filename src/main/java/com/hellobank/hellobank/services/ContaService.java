@@ -36,7 +36,10 @@ public class ContaService implements IConta{
 
     @Override
     public ArrayList<Conta> buscarPorTipo(String palavraChave) {
-        return dao.findByTipoContaining(palavraChave);
+        if (palavraChave != null) {
+            return dao.findByTipoContaining(palavraChave);
+        }
+        return null;
     }
     
 }
