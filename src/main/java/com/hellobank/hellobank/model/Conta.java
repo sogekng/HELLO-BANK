@@ -1,5 +1,7 @@
 package com.hellobank.hellobank.model;
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,8 +22,8 @@ public class Conta{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
-    private Integer id;
+    @Column(name="id_conta")
+    private Integer id_conta;
 
     @Column(name="numero", length =20, nullable = false)
     private String numero;
@@ -39,14 +41,6 @@ public class Conta{
     @JoinColumn(name="id_cliente")
     @JsonIgnoreProperties("listaContas")
     private Cliente cliente;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getNumero() {
         return numero;
@@ -93,6 +87,12 @@ public class Conta{
         this.cliente = cliente;
     }
 
-   
-    
+    public Integer getId_conta() {
+        return id_conta;
+    }
+
+    public void setId_conta(Integer id_conta) {
+        this.id_conta = id_conta;
+    }
+
 }

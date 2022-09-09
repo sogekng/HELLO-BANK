@@ -8,4 +8,5 @@ import com.hellobank.hellobank.model.Conta;
 
 public interface ContaDAO extends CrudRepository<Conta, Integer> {
     public ArrayList<Conta> findByTipoContaining(String palavraChave);
+    
 }
