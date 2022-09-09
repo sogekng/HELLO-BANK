@@ -8,7 +8,7 @@ public class Administrador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_administrador")
+    @Column(name = "id")
     private int id;
 
     @Column(name = "nome", length = 70, nullable = false)

@@ -34,16 +34,16 @@
                             <th>Senha</th>
                             <th>Ações</th>
                         </tr>
-                    </thead>
+                    </thead> 
                     <tbody>
-                        <tr th:each="administrador : ${administrador}">
-                            <td th:text="$administrador.id}"></td>
-                            <td th:text="$administrador.nome}"></td>
-                            <td th:text="$administrador.cpf}"></td>
-                            <td th:text="$administrador.senha}"></td>
+                        <tr th:each="administrador : ${administradores}">
+                            <td th:text="${administrador.id}"></td>
+                            <td th:text="${administrador.nome}"></td>
+                            <td th:text="${administrador.cpf}"></td>
+                            <td th:text="${administrador.senha}"></td>
                             <td>
-                                <a>Editar</a>
-                                <a>Excluir</a>
+                                <a href="#">Editar</a>
+                                <a href="#">Excluir</a>
                             </td>
                         </tr>
                     </tbody>
