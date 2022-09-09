@@ -12,6 +12,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import net.bytebuddy.utility.dispatcher.JavaDispatcher.IsConstructor;
+
 @Entity
 @Table(name = "conta")
 public class Conta{
@@ -52,6 +54,9 @@ public class Conta{
 
     public void setNumero(String numero) {
         this.numero = numero;
+        if(this.agencia==null || this.agencia.isEmpty()){
+            this.agencia =this.numero.substring(0,4);
+        }
     }
 
     public String getAgencia() {
@@ -68,6 +73,8 @@ public class Conta{
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+
+        
     }
 
     public Double getSaldo() {
