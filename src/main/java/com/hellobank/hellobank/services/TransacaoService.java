@@ -33,23 +33,5 @@ public class TransacaoService implements ITransacaoService {
         }
         return null;
     }
-
-    @Override
-    public Transacao efetuarSaque(String tipo) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Transacao efetuarDeposito(Double valor) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Transacao efetuarTransferencia(Double valor) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
+    
 }

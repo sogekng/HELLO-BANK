@@ -11,9 +11,5 @@ public interface ITransacaoService {
     public Transacao buscarPorId(Integer id);
     
     public Transacao criarNovo( Transacao novo);
-
-    public Transacao efetuarSaque(String tipo);
-    public Transacao efetuarDeposito(Double valor);
-    public Transacao efetuarTransferencia(Double valor);
     
 }
