@@ -9,4 +9,5 @@ public interface IConta {
     public ArrayList<Conta> recuperarTodos();
     public Conta recuperarPorId(Integer id);
     public ArrayList<Conta> buscarPorTipo(String palavraChave);
+    
 }
