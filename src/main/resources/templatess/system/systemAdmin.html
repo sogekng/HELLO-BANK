@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="systemAdmin.css">
+    <script src="systemAdmin.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <title>System Admin</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>System Admin</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12-new">
+                <form action="systemAdmin.html" class="search">
+                    <input type="text" id="search" name="search" placeholder="Search" autocomplete="off">
+                </form>
+                <!-- href="<?php echo base_url('php-content/systemAdmin/create'); ?>"-->
+                <a href="#" class="btn btn-new list_add"><span class="material-symbols-outlined">add</span></a>
+            </div>
+        </div>
+        <div class="row-table">
+            <div class="col-md-12">
+                <table id="table" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Tipo de conta</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-conta">
+                        
+                        <tr class="trow">
+                            <td id="id">
+                                <input type="text" id="rollno" 
+                                    name="id" value="" placeholder="ID" autocomplete="off"/>
+                            </td>
+                            <td id="name">
+                                <input type="text" id="name" class="long" 
+                                    name="name" value="" placeholder="Nome" autocomplete="off"/>
+                            </td>
+                            <td id="cpf">
+                                <input type="text" id="cpf class" 
+                                    name="cpf" value="" placeholder="CPF" autocomplete="off"/>
+                            </td>
+                            <td id="tipo">
+                                <input type="text" id="tipo fathname" 
+                                    name="tipo" value="" placeholder="Tipo De Conta" autocomplete="off"/>
+                            </td>
+                            <td>
+                                <a
+                                    title="Delete Row">
+                                    <i id="delete" href="#" class="list_cancel fas fa-times"></i>
+                                    <br>
+                                    <i id="save" class="fas fa-save" onclick="save('save', 'edit')"></i>
+                                    <i id="edit" class="fas fa-edit" onclick="save('edit', 'save')"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="trow">
+                            <td>
+                                <a href="">2</a>
+                            </td>
+                            <td><a href="">Marcos</a></td>
+                            <td><a href="">054512365</a></td>
+                            <td><a href="">Corrente</a></td>
+                            <td>
+                                <a
+                                    title="Delete Row">
+                                    <i id="delete" href="#" class="list_cancel fas fa-times"></i>
+                                    <br>
+                                    <i id="save" class="fas fa-save" onclick="save('save', 'edit')"></i>
+                                    <i id="edit" class="fas fa-edit" onclick="save('edit', 'save')"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="no_entries_row">
+                            <td colspan="7"></td>
+                        </tr>
+                    </tbody>
+                </table>
+          
+                <a href="#" class="list_add"></a>
+                <script>
+                    function addNewRow() {
+                        var template = $("tr.trow:first");
+                        var newRow = template.clone();
+                        var lastRow = $("tr.trow:last").after(newRow);
+              
+                        $(".list_cancel").on("click", function(event) {
+                            event.stopPropagation();
+                            event.stopImmediatePropagation();
+                            $(this).closest("tr").remove();
+                            console.log($(".list_cancel").length);
+                        });
+                        console.log($(".list_cancel").length);
+                        $("select.label").on("change", function(event) {
+                            event.stopPropagation();
+                            event.stopImmediatePropagation();
+                            $(this).css("background-color", $(this).val());
+                        });
+                    }
+
+                    function save(id1, id2){
+                        var id = document.querySelector('#id');
+                        var name = document.querySelector('#name');
+                        var cpf = document.querySelector('#cpf');
+                        var tipo = document.querySelector('#tipo');
+                        console.log(id.value, name.value, cpf.value, tipo.value);
+                        console.log("Salvado");
+                    }
+              
+                    $("a.list_add").on("click", addNewRow);
+
+
+                    $(document).ready(function() {
+                        $("#search").on("keyup", function() {
+                            var value = $(this).val().toLowerCase();
+                            $("#lista-conta tr").filter(function() {
+                                $(this).toggle($(this).text()
+                                .toLowerCase().indexOf(value) > -1)
+                            });
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
