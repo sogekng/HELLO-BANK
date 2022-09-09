@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
     <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="/css/home.css">
     <title>Login</title>
 </head>
 <body>
@@ -16,6 +16,21 @@
         <script>
             $("input[id*='cpf']").inputmask({
                 mask: ['999.999.999-99', '99.999.999/9999-99'],
+                keepStatic: true
+              });
+              
+            $("input[id*='telefone']").inputmask({
+                mask: ['(99) 9999-9999', '(99) 99999-9999'],
+                keepStatic: true
+            });
+
+            $("input[id*='cep']").inputmask({
+                mask: ['99999-999'],
+                keepStatic: true
+            });
+
+            $("input[id*='data']").inputmask({
+                mask: ['99/99/9999'],
                 keepStatic: true
             });
 
@@ -25,7 +40,7 @@
             }
 
         </script>
-        <form action="../php-content/logon.php" id="form-content-logon" method="POST">
+        <form action="/templatess/php-content/logon.php" id="form-content-logon" method="POST">
             <div class="form-titulo">
                 <h1>Logon</h1>
                 <h1 onclick="trocar_tela('form-content-logon', 'form-content-register')">Register</h1>
@@ -48,7 +63,7 @@
                 </div>
             </div>
         </form>
-        <form action="../php-content/register.php" id="form-content-register" method="POST">
+        <form action="/templatess/php-content/register.php" id="form-content-register" method="POST">
             <div class="form-titulo">
                 <h1 onclick="trocar_tela('form-content-register', 'form-content-logon')">Logon</h1>
                 <h1>Register</h1>

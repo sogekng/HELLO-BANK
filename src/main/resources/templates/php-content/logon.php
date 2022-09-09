@@ -1,6 +1,5 @@
 <?php
 
-// Verifica se houve POST e se o usuário ou a senha é(são) vazio(s)
 if (!empty($_POST) AND (empty($_POST['cpf']) OR empty($_POST['password']))) {
     echo "<script>alert('Usuário ou senha inválido(s)')</script>";
 }else{
