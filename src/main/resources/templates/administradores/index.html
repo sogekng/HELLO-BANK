@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/administradores.css">
+    <link rel="stylesheet" href="administradores.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>System Admin</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12-new">
+                <form action="systemAdmin.html" class="search">
+                    <input type="text" id="search" name="search" placeholder="Search" autocomplete="off">
+                </form>
+                <a href="#" class="btn btn-new list_add"><span class="material-symbols-outlined">add</span></a>
+            </div>
+        </div>
+        <div class="row-table">
+            <div class="col-md-12">
+                <table id="table" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Senha</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="administrador : ${administrador}">
+                            <td th:text="$administrador.id}"></td>
+                            <td th:text="$administrador.nome}"></td>
+                            <td th:text="$administrador.cpf}"></td>
+                            <td th:text="$administrador.senha}"></td>
+                            <td>
+                                <a>Editar</a>
+                                <a>Excluir</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
