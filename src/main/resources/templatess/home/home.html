@@ -9,6 +9,7 @@
     <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
     <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="home.css">
     <title>Login</title>
 </head>
 <body>
@@ -40,16 +41,12 @@
             }
 
         </script>
-        <form action="/templatess/php-content/logon.php" id="form-content-logon" method="POST">
+        <form action="/logon" id="form-content-logon" method="POST">
             <div class="form-titulo">
                 <h1>Logon</h1>
                 <h1 onclick="trocar_tela('form-content-logon', 'form-content-register')">Register</h1>
             </div>
             <div class="form-content">
-                <div class="register-nome" style="background: transparent;">
-                    <label for="name" class="name"><span class="material-symbols-outlined" style="display: none;">person</span></label>
-                    <input type="text" name="name" id="name" placeholder="Nome completo" required autocomplete="off" style="display: none;">
-                </div>
                 <div class="login-cpf">
                     <label for="cpf" class="cpf"><span class="material-symbols-outlined">person</span></label>
                     <input type="text" name="cpf" id="cpf" placeholder="000.000.000-00" required onkeypress="$(this).mask('000.000.000-00');" autocomplete="off">
@@ -58,12 +55,16 @@
                     <label for="password" class="password"><span class="material-symbols-outlined">lock</span></label>
                     <input type="password" name="password" id="password" placeholder="Password" required autocomplete="off">
                 </div>
+                <div class="checkbox-remember">
+                    <input type="checkbox" name="remember" id="remember" value="1">
+                    <label for="remember">Remember me</label>
+                </div>
                 <div class="login-button">
                     <button type="submit">Logon</button>
                 </div>
             </div>
         </form>
-        <form action="/templatess/php-content/register.php" id="form-content-register" method="POST">
+        <form action="php-content/register.php" id="form-content-register" method="POST">
             <div class="form-titulo">
                 <h1 onclick="trocar_tela('form-content-register', 'form-content-logon')">Logon</h1>
                 <h1>Register</h1>
@@ -72,6 +73,10 @@
                 <div class="register-nome">
                     <label for="name" class="name"><span class="material-symbols-outlined">person</span></label>
                     <input type="text" name="name" id="name" placeholder="Nome completo" required autocomplete="off">
+                </div>
+                <div class="register-nome">
+                    <label for="email" class="email"><span class="material-symbols-outlined">person</span></label>
+                    <input type="email" name="email" id="email" placeholder="Seu e-mail" required autocomplete="off">
                 </div>
                 <div class="register-cpf">
                     <label for="cpf" class="cpf"><span class="material-symbols-outlined">person</span></label>
