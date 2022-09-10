@@ -33,7 +33,7 @@ public class Transacao {
 
     @ManyToOne
     @JoinColumn(name="id_conta")
-    @JsonIgnoreProperties("listaTransacao")
+    @JsonIgnoreProperties("listaTransacoes")
     private Conta idConta;
 
     public Double getValor() {
