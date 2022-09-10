@@ -10,4 +10,7 @@ public interface IClienteService  {
     public Cliente criarNovo(Cliente novo);
     public Cliente atualizarDados(  Cliente dados);
     public void excluirCadastro(Integer id);
+    public boolean validarEmail(Cliente novo);
+       
+    
 }

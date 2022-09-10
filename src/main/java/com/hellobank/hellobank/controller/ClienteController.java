@@ -20,6 +20,7 @@ public class ClienteController {
     
     @Autowired
     private IClienteService service;
+    boolean validEmail;
 
     @GetMapping("/clientes")
     public ArrayList<Cliente> listarTodos() {
@@ -38,7 +39,10 @@ public class ClienteController {
     @PostMapping("/clientes")
     public ResponseEntity<Cliente> criarNovo(@RequestBody Cliente novo){
         Cliente res = service.criarNovo(novo);
-        if (res != null){
+        validEmail= service.validarEmail(novo);
+        
+
+        if (res != null && validEmail){
             return ResponseEntity.ok(novo);
         }
         return ResponseEntity.badRequest().build();
@@ -47,7 +51,7 @@ public class ClienteController {
     @PutMapping("/clientes")
     public ResponseEntity<Cliente> atualizarCadastro(@RequestBody Cliente dados){
         Cliente res = service.atualizarDados(dados);
-        if (res != null){
+        if (res != null && validEmail){
             return ResponseEntity.ok(dados);
         }
         return ResponseEntity.badRequest().build();

@@ -1,4 +1,5 @@
-package com.hellobank.hellobank;
+package com.hellobank.hellobank.models;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -21,6 +22,7 @@ class ClinetesTest {
 		cliente.setCpf("000.000.00-00");
 		//assertequal é uma função que faz uma validacao sobre um dado
 		;
+		
 		assertEquals("Pedro", cliente.getNome());
 		assertEquals("pedro@teste.com", cliente.getEmail());
 		assertEquals("1234aNt@", cliente.getSenha());

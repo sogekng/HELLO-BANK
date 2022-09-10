@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import net.bytebuddy.utility.dispatcher.JavaDispatcher.IsConstructor;
+
 
 @Entity
 @Table(name = "conta")

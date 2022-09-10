@@ -1,4 +1,6 @@
-package com.hellobank.hellobank;
+package com.hellobank.hellobank.models;
+
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -10,10 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.hellobank.hellobank.model.Transacao;
 
-
-
 @SpringBootTest
-class TransacaoTest {
+class TransacaoTest{
 	
 	@Test
 	void validarPorpiedadesTransacao() {
@@ -24,6 +24,7 @@ class TransacaoTest {
 		transacao.setValor(100.00);
 		//assertequal é uma função que faz uma validacao sobre um dado
 		;
+		
 		assertEquals(dt , transacao.getData());
 		assertEquals(100.00, transacao.getValor());
 		
