@@ -2,6 +2,9 @@ package com.hellobank.hellobank.model;
 
 
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,12 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import net.bytebuddy.utility.dispatcher.JavaDispatcher.IsConstructor;
 
 @Entity
 @Table(name = "conta")
@@ -42,15 +43,16 @@ public class Conta{
     @JsonIgnoreProperties("listaContas")
     private Cliente cliente;
 
+    @OneToMany(mappedBy="idConta", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("idConta")
+    private List<Transacao> listaTransacoes;
+
     public String getNumero() {
         return numero;
     }
 
     public void setNumero(String numero) {
         this.numero = numero;
-        if(this.agencia==null || this.agencia.isEmpty()){
-            this.agencia =this.numero.substring(0,4);
-        }
     }
 
     public String getAgencia() {
@@ -67,8 +69,6 @@ public class Conta{
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
-
-        
     }
 
     public Double getSaldo() {

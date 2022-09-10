@@ -22,26 +22,19 @@ public class Transacao {
     @Column(name = "id_transacao")
     private Integer id_transacao;
 
-
     @Column(name = "tipo")
     private String tipo;
-
 
     @Column(name = "valor", length = 70, nullable = false)
     private Double valor;
 
-    @Column(name = "data", length = 20, nullable = false)
-    private LocalDate data;
-
-    
+    @Column(name = "data_transacao", length = 20, nullable = false)
+    private LocalDate data_transacao;
 
     @ManyToOne
     @JoinColumn(name="id_conta")
-    @JsonIgnoreProperties("listaTransacao")
+    @JsonIgnoreProperties("listaTransacoes")
     private Conta idConta;
-
-    
-
 
     public Double getValor() {
         return valor;
@@ -49,14 +42,6 @@ public class Transacao {
 
     public void setValor(Double valor) {
         this.valor = valor;
-    }
-
-    public LocalDate getData() {
-        return data;
-    }
-
-    public void setData(LocalDate data) {
-        this.data = data;
     }
 
     public String getTipo() {
@@ -83,6 +68,14 @@ public class Transacao {
 
     public void setIdConta(Conta idConta) {
         this.idConta = idConta;
+    }
+
+    public LocalDate getData_transacao() {
+        return data_transacao;
+    }
+
+    public void setData_transacao(LocalDate data_transacao) {
+        this.data_transacao = data_transacao;
     }
 
     

@@ -14,9 +14,9 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "cliente")
+@Table(name="cliente")
 public class Cliente {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_cliente")
@@ -37,7 +37,7 @@ public class Cliente {
     @Column(name = "telefone", length = 20, nullable = false)
     private String telefone;
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="cliente", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("cliente")
     private List<Conta> listaContas;
 
@@ -50,15 +50,11 @@ public class Cliente {
     }
 
     public String getNome() {
-
         return nome;
     }
 
     public void setNome(String nome) {
-        if (nome.length()>=4) {
-            this.nome = nome;
-        }
-
+        this.nome = nome;
     }
 
     public String getCpf() {
@@ -99,6 +95,7 @@ public class Cliente {
 
     public void setListaContas(List<Conta> listaContas) {
         this.listaContas = listaContas;
-    }
+    }    
 
+    
 }
