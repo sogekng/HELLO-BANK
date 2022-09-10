@@ -12,4 +12,5 @@ public interface ContaDAO extends CrudRepository<Conta, Integer> {
     
     @Query("SELECT p FROM Conta p WHERE p.id_conta = ?1")
 	public Conta encontrarPorId(Integer id);
+
 }

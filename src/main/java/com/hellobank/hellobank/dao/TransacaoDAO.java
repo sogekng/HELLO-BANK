@@ -22,4 +22,7 @@ public interface TransacaoDAO extends CrudRepository<Transacao, Integer> {
     @Query(value = "SELECT id_transacao, tipo, valor, data_transacao FROM Transacao WHERE id_conta = ?1", nativeQuery = true)
     public ArrayList<String> findByConsulta(Integer id);
 
+
+
+
 }

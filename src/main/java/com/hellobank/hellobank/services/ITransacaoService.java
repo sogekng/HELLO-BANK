@@ -12,4 +12,5 @@ public interface ITransacaoService {
     public Transacao criarNovo(Transacao novo);
     public Transacao transferir(Transacao nova, Integer id);
     
+    
 }
