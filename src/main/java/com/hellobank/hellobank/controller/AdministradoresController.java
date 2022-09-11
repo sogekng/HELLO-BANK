@@ -39,25 +39,28 @@ public class AdministradoresController {
 
     @GetMapping("/administradores/{id}")
     public String search(@PathVariable Integer id, Model model){
-        Administrador admin = service.toSearch(id);
-        model.addAttribute("administrador", admin);
-
-        return "redirect:/administradores#edite";
-    }
-
-    @PostMapping("/administradores/{id}/update")
-    public String update(@PathVariable Integer id, Administrador administrador){
-        if(!service.Toexist(id)){
+        Optional<Administrador> admin = service.toSearch(id);
+        try{
+            model.addAttribute("administrador", admin.get());
+        }catch(Exception e){
             return "redirect:/administradores";
         }
 
-        return "redirect:/administradores#edite";
+        return "administradores/edit";
+    }
+
+    @PostMapping("/administradores/{id}/update")
+    public String update(@PathVariable Integer id, @RequestBody Administrador administrador){
+        if(service.toExist(id)){
+            service.toUpdate(administrador);
+        }
+        return null;
     }
     
 
     @GetMapping("/administradores/delete/{id}")
     public String delete(@PathVariable Integer id){
-        service.toDelete(id);
+            service.toDelete(id);
         return "redirect:/administradores";
     }
     

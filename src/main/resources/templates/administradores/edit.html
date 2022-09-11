@@ -11,8 +11,8 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
     <div id="wrapper">
@@ -124,8 +124,7 @@
                 <div class="container-fluid">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Administradores</h6>
-                            <button class="btn btn-primary">Novo</button>
+                            <h6 class="m-0 font-weight-bold text-primary">Administrador</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -136,37 +135,32 @@
                                             <th>NOME</th>
                                             <th>CPF</th>
                                             <th>SENHA</th>
-                                            <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr th:each="administrador : ${administradores}">
-                                            <td th:text="${administrador.id}"></td>
-                                            <td th:text="${administrador.nome}"></td>
-                                            <td th:text="${administrador.cpf}"></td>
-                                            <td th:text="${administrador.senha}"></td>
-                                            <td>
-                                                <button class="btn btn-primary"><a href="#edite" style="color:#fff;text-decoration:none;" th:href="@{'/administradores/' + ${administrador.id}}">Editar</a></button>
-                                                <a href="#" th:onclick="'if(confirm(\'Tem certeza?\')) {window.location.href = \'' + @{/administradores/delete/{id}(id=${administrador.id})} + '\' } '">Excluir</a>
-                                            </td>
+                                            <td th:value="${administrador.id}"></td>
+                                            <td th:value="${administrador.nome}"></td>
+                                            <td th:value="${administrador.cpf}"></td>
+                                            <td th:value="${administrador.senha}"></td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div id="creat" class="content-form" style="background-color: #fff;padding:20px;height:100%;width:100%;">
-                                    <form action="/administradores/create" method="POST" >
+                                <div id="edite" class="content-form" style="background-color: rgb(133, 72, 72);padding:20px;height:100%;width:100%;">
+                                    <form method="POST" th:action="@{'administradores/' +  ${administrador.id} + '/update'}">
                                         <div class="form-group">
                                             <label for="nome">Nome</label>
-                                            <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome" autocomplete="off" required>
+                                            <input type="text" name="nome" class="form-control" th:value="${administrador.nome}" id="nome" placeholder="Nome" autocomplete="off" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="cpf">CPF</label>
-                                            <input type="text" name="cpf" class="form-control" id="cpf" placeholder="000.000.000-00" required onkeypress="$(this).mask('000.000.000-00');" autocomplete="off">
+                                            <input type="text" name="cpf" class="form-control" th:value="${administrador.cpf}" id="cpf" placeholder="000.000.000-00" required onkeypress="$(this).mask('000.000.000-00');" autocomplete="off">
                                         </div>
                                         <div class="form-group">
                                             <label for="senha">Senha</label>
-                                            <input type="password" name="senha" class="form-control" id="senha" placeholder="Senha" autocomplete="off" required>
+                                            <input type="password" name="senha" class="form-control" th:value="${administrador.senha}" id="senha" placeholder="Senha" autocomplete="off" required>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                        <button type="submit" class="btn btn-primary">Salvar</button>
                                     </form>
                                 </div>
                             </div>

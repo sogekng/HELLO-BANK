@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
+import java.util.Optional;
+
 import com.hellobank.hellobank.dao.AdministradorDAO;
 import com.hellobank.hellobank.model.Administrador;
 
@@ -32,8 +34,8 @@ public class AdministradorService implements IAdministradorService {
     }
 
     @Override
-    public Administrador toSearch(Integer id) {
-        return dao.findById(id).orElse(null);
+    public Optional<Administrador> toSearch(Integer id) {
+        return dao.findById(id);
     }
 
     @Override
@@ -45,7 +47,7 @@ public class AdministradorService implements IAdministradorService {
     }
 
     @Override
-    public boolean Toexist(Integer id) {
+    public boolean toExist(Integer id) {
         return dao.existsById(id);
     }
 }
