@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -125,7 +125,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Administradores</h6>
-                            <button class="btn btn-primary">Novo</button>
+                            <button class="btn btn-primary"><a href="#create">Novo</a></button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -152,7 +152,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div id="creat" class="content-form" style="background-color: #fff;padding:20px;height:100%;width:100%;">
+                                <div id="create" class="content-form" style="background-color: #fff;padding:20px;height:100%;width:100%;">
                                     <form action="/administradores/create" method="POST" >
                                         <div class="form-group">
                                             <label for="nome">Nome</label>

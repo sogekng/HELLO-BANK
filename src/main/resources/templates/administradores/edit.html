@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    
     <title>Administradores</title>
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -147,7 +148,7 @@
                                     </tbody>
                                 </table>
                                 <div id="edite" class="content-form" style="background-color: rgb(133, 72, 72);padding:20px;height:100%;width:100%;">
-                                    <form method="POST" th:action="@{'administradores/' +  ${administrador.id} + '/update'}">
+                                    <form method="POST" th:action="@{'/administradores/' +  ${administrador.id} + '/update'}">
                                         <div class="form-group">
                                             <label for="nome">Nome</label>
                                             <input type="text" name="nome" class="form-control" th:value="${administrador.nome}" id="nome" placeholder="Nome" autocomplete="off" required>

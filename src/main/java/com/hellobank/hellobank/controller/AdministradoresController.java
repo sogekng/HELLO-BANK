@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import com.hellobank.hellobank.dao.AdministradorDAO;
 
 import com.hellobank.hellobank.model.Administrador;
 import com.hellobank.hellobank.services.IAdministradorService;
@@ -49,12 +50,22 @@ public class AdministradoresController {
         return "administradores/edit";
     }
 
+    @GetMapping("/administradores/viewer")
+    public String viewer(Model model){
+        model.addAttribute("administradores", service.listarTodos());
+
+        return "administradores/{id}";
+    }
+
     @PostMapping("/administradores/{id}/update")
-    public String update(@PathVariable Integer id, @RequestBody Administrador administrador){
-        if(service.toExist(id)){
-            service.toUpdate(administrador);
+    public String update(@PathVariable Integer id, Administrador administrador){
+        if(!service.toExist(id)){
+            return "redirect:/administradores";
         }
-        return null;
+
+        service.toUpdate(administrador);
+
+        return "redirect:/administradores";
     }
     
 
