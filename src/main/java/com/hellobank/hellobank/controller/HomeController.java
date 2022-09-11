@@ -14,18 +14,10 @@ public class HomeController {
 
     @Autowired
     private IAdministradorService adminService;
-    private IClienteService clienteService;
 
     @GetMapping("/")
     public String administrador(Model model){
         model.addAttribute("administradores", adminService.listarTodos());
-
-        return "home/home";
-    }
-
-    @GetMapping("/")
-    public String cliente(Model model){
-        model.addAttribute("cliente", clienteService.listarTodos());
 
         return "home/home";
     }

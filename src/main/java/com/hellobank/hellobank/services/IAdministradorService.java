@@ -1,8 +1,12 @@
 package com.hellobank.hellobank.services;
 
-import java.util.List;
+import java.util.ArrayList;
+
 import com.hellobank.hellobank.model.Administrador;
 
 public interface IAdministradorService {
-    public List<Administrador> listarTodos();
+    public ArrayList<Administrador> listarTodos();
+    public Administrador toCreate(Administrador administrador);
+    public void toDelete(int id);
+    public Administrador toSearch(int id);
 }
