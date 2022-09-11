@@ -35,15 +35,28 @@ public class AdministradoresController {
         return "redirect:/administradores";
     }
 
-    @GetMapping("/administradores/search/{id}")
-    public String search(@PathVariable int id, Model model){
+    @GetMapping("/administradores/{id}")
+    public String search(@PathVariable Integer id, Model model){
         Administrador admin = service.toSearch(id);
-        model.addAttribute("administrador", admin);
-        return "/administradores/edite";
+        try{
+            model.addAttribute("administrador", admin);
+        }catch(Exception err){return "redirect: /administradores";}
+
+        return "/administradores#edite";
     }
 
+    @PostMapping("/administradores/{id}")
+    public String update(@PathVariable Integer id, Administrador administrador){
+        if(!service.Toexist(id)){
+            return "redirect:/administradores";
+        }
+
+        return "/administradores#edite";
+    }
+    
+
     @GetMapping("/administradores/delete/{id}")
-    public String delete(@PathVariable int id){
+    public String delete(@PathVariable Integer id){
         service.toDelete(id);
         return "redirect:/administradores";
     }

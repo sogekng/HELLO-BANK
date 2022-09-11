@@ -9,7 +9,7 @@ public class Administrador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    public Integer id;
 
     @Column(name = "nome", length = 70, nullable = false)
     private String nome;
@@ -20,11 +20,12 @@ public class Administrador {
     @Column(name = "senha", length = 70, nullable = false)
     private String senha;
 
+    @OneToMany(mappedBy="administradores", cascade = CascadeType.ALL)
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

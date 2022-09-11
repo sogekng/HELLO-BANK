@@ -6,6 +6,169 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <style>
+        #carousel-content{
+            width: 100%;
+            height: 100%;
+        }
+
+        #container{
+            width: 100%;
+            height: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            position: relative;
+            transition: all 1s ease;
+        }
+        
+        .content-esq{
+            width: 70%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+        }
+        
+        .content-dir{
+            width: 30%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+        }
+        
+        
+        .content{
+            width: 50%;
+            height: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .content h1{
+            margin: 0;
+            padding: 0;
+            color: rgb(252, 223, 223);
+            font-size: 30vh;
+            cursor: pointer;
+        }
+        
+        .content p{
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            font-size: 3vh;
+        }
+        
+        .content button{
+            margin: 2vh;
+            padding: 3vh 5vh;
+            color: #fff;
+            font-size: 3vh;
+            background-color: #000;
+            border: none;
+            border-radius: 50px;
+            width: 100%;
+            cursor: pointer;
+        }
+        
+        .content button:hover{
+            background-color: rgb(27, 27, 27);
+            color: rgb(226, 225, 225);
+        }
+        
+        #carousel{
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .navigation-slide{
+            position: absolute;
+            bottom: 20px;
+            display: flex;
+            top: 0;
+        }
+        
+        .bar-slide{
+            height: 15px;
+            width: 15px;
+            border: 2px solid rgb(0, 0, 0);
+            margin: 6px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: .6s;
+            position: relative;
+        }
+        
+        .bar-slide:hover{
+            background: rgb(0, 0, 0);
+        }
+        
+        .slides{
+            display: flex;
+            width: 700%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .slide{
+            width: 14.28571428571429%;
+            transition: .6s;
+        }
+        
+        .slide img{
+            width: 100%;
+            height: 100%;
+        }
+
+        #slide1,
+        #slide2{
+            display: none;
+        }
+        
+        #slide1:checked ~ .s1{
+            margin-left: 0;
+        }
+        
+        #slide2:checked ~ .s1{
+            margin-left: -14.28571428571429%;
+        }
+        
+        #slide3:checked ~ .s1{
+            margin-left: -28.57142857142857%;
+        }
+        
+        #slide4:checked ~ .s1{
+        margin-left: -42.85714285714286%;
+        }
+        
+        .color{
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        #form-content{
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.911);
+            z-index: 4;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: all 1s ease;
+        }
+    </style>
     <title>Administradores</title>
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -125,7 +288,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Administradores</h6>
-                            <a href="#creat" onclick="open('creat')"><button class="btn btn-primary">Novo</button></a>
+                            <label for="slide1" class="btn btn-primary"><a href="#creat" style="color:#fff;text-decoration:none;">Novo</a></label>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -146,13 +309,22 @@
                                             <td th:text="${administrador.cpf}"></td>
                                             <td th:text="${administrador.senha}"></td>
                                             <td>
-                                                <a href="" onclick="open('edite')">Editar</a>
+                                                <label class="btn btn-primary" for="slide2" ><a href="#edite" style="color:#fff;text-decoration:none;" th:href="@{'/administradores/' + ${administrador.id}}">Editar</a></label>
                                                 <a href="#" th:onclick="'if(confirm(\'Tem certeza?\')) {window.location.href = \'' + @{/administradores/delete/{id}(id=${administrador.id})} + '\' } '">Excluir</a>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div id="creat" class="content-form" style="background-color: #fff;padding:20px;height:auto;width:100%;display:block;">
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="carousel" id="carousel">
+                        <div class="slides">
+                            <input type="radio" name="slide" id="slide1" checked>
+                            <input type="radio" name="slide" id="slide2">
+
+                            <div class="slide s1">
+                                <div id="creat" class="content-form" style="background-color: rgb(255, 208, 208);padding:20px;height:100%;width:100%;">
                                     <form action="/administradores/create" method="POST" >
                                         <div class="form-group">
                                             <label for="nome">Nome</label>
@@ -169,19 +341,21 @@
                                         <button type="submit" class="btn btn-primary">Cadastrar</button>
                                     </form>
                                 </div>
-                                <div id="edite" class="content-form" style="background-color: rgb(133, 72, 72);padding:20px;height:auto;width:100%;display:none;">
-                                    <form action="/administradores/edit" method="POST" >
+                            </div>
+                            <div class="slide">
+                                <div id="edite" class="content-form" style="background-color: rgb(133, 72, 72);padding:20px;height:100%;width:100%;">
+                                    <form method="POST" action="@{'/administradores/ + ${administrador.id} + '/'}">
                                         <div class="form-group">
                                             <label for="nome">Nome</label>
-                                            <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome" autocomplete="off" required>
+                                            <input type="text" name="nome" class="form-control" th:value="${administrador.nome}" id="nome" placeholder="Nome" autocomplete="off" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="cpf">CPF</label>
-                                            <input type="text" name="cpf" class="form-control" id="cpf" placeholder="000.000.000-00" required onkeypress="$(this).mask('000.000.000-00');" autocomplete="off">
+                                            <input type="text" name="cpf" class="form-control" th:value="${administrador.cpf}" id="cpf" placeholder="000.000.000-00" required onkeypress="$(this).mask('000.000.000-00');" autocomplete="off">
                                         </div>
                                         <div class="form-group">
                                             <label for="senha">Senha</label>
-                                            <input type="password" name="senha" class="form-control" id="senha" placeholder="Senha" autocomplete="off" required>
+                                            <input type="password" name="senha" class="form-control" th:value="${administrador.senha}" id="senha" placeholder="Senha" autocomplete="off" required>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Salvar</button>
                                     </form>
@@ -189,6 +363,13 @@
                             </div>
                         </div>
                     </div>
+                    <div id="container" >
+                        <div class="navigation-slide">
+                            <label class="bar-slide" id="bar-slide" for="slide1"></label>
+                            <label class="bar-slide" id="bar-slide" for="slide2"></label>
+                        </div>
+                    </div>
+                    <br>
                 </div>
             </div>
             <footer class="sticky-footer bg-white">

@@ -27,14 +27,25 @@ public class AdministradorService implements IAdministradorService {
     }
 
     @Override
-    public void toDelete(int id) {
+    public void toDelete(Integer id) {
         dao.deleteById(id);
     }
 
     @Override
-    public Administrador toSearch(int id) {
+    public Administrador toSearch(Integer id) {
         return dao.findById(id).orElse(null);
+    }
 
+    @Override
+    public Administrador toUpdate(Administrador dados) {
+        if (dados.getId() != null && dados != null) {
+            return dao.save(dados);
+        }
+        return null;
+    }
 
+    @Override
+    public boolean Toexist(Integer id) {
+        return dao.existsById(id);
     }
 }
