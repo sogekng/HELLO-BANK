@@ -15,6 +15,7 @@ public class AdministradorService implements IAdministradorService {
     @Override
     public ArrayList<Administrador> listarTodos() {
         return (ArrayList<Administrador>)dao.findAll();
+<<<<<<< HEAD
     }
 
     @Override
@@ -33,5 +34,7 @@ public class AdministradorService implements IAdministradorService {
     @Override
     public Administrador toSearch(int id) {
         return dao.findById(id).orElse(null);
+
+
     }
 }
