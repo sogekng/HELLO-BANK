@@ -1,5 +1,7 @@
 package com.hellobank.hellobank.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,20 +40,18 @@ public class AdministradoresController {
     @GetMapping("/administradores/{id}")
     public String search(@PathVariable Integer id, Model model){
         Administrador admin = service.toSearch(id);
-        try{
-            model.addAttribute("administrador", admin);
-        }catch(Exception err){return "redirect: /administradores";}
+        model.addAttribute("administrador", admin);
 
-        return "/administradores#edite";
+        return "redirect:/administradores#edite";
     }
 
-    @PostMapping("/administradores/{id}")
+    @PostMapping("/administradores/{id}/update")
     public String update(@PathVariable Integer id, Administrador administrador){
         if(!service.Toexist(id)){
             return "redirect:/administradores";
         }
 
-        return "/administradores#edite";
+        return "redirect:/administradores#edite";
     }
     
 

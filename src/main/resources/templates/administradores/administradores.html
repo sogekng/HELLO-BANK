@@ -344,7 +344,7 @@
                             </div>
                             <div class="slide">
                                 <div id="edite" class="content-form" style="background-color: rgb(133, 72, 72);padding:20px;height:100%;width:100%;">
-                                    <form method="POST" action="@{'/administradores/ + ${administrador.id} + '/'}">
+                                    <form method="POST" th:action="@{'/administradores/' + ${administrador.id} + '/update'}">
                                         <div class="form-group">
                                             <label for="nome">Nome</label>
                                             <input type="text" name="nome" class="form-control" th:value="${administrador.nome}" id="nome" placeholder="Nome" autocomplete="off" required>
