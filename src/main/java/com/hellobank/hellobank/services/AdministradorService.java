@@ -15,7 +15,7 @@ public class AdministradorService implements IAdministradorService {
     @Override
     public ArrayList<Administrador> listarTodos() {
         return (ArrayList<Administrador>)dao.findAll();
-<<<<<<< HEAD
+
     }
 
     @Override
