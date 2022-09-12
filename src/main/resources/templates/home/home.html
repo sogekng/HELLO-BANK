@@ -159,18 +159,18 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="dataTableCliente" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
                                             <th>NOME</th>
-                                            <th>EMAIL</th>
                                             <th>CPF</th>
+                                            <th>EMAIL</th>
                                             <th>SENHA</th>
                                             <th>TELEFONE</th>
-                                            <th>AÇÕES</th>
-                                        </tr>
-                                    </thead>
+                                            <th>CONTA</th>
+                                        </tr>                            
+                                    </thead>                                
                                 </table>
                             </div>
                         </div>
@@ -212,5 +212,29 @@
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="js/sb-admin-2.min.js"></script>
     <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <script>
+        
+        carregarclientes();
+
+        function carregarclientes() {
+        $.getJSON("/clientes", function(dados) {
+            for (i = 0; i < dados.length; i++) {
+                $('#dataTableCliente').append('<tbody>'
+                                    + '<td>' + dados[i].id_cliente + '</td>'
+                                    + '<td>' + dados[i].nome + '</td>'
+                                    + '<td>' + dados[i].cpf + '</td>'
+                                    + '<td>' + dados[i].email + '</td>'
+                                    + '<td>' + dados[i].senha + '</td>'
+                                    + '<td>' + dados[i].telefone + '</td>'
+                                    + '<td><a href="#">Acessar Conta</a></td></tr></tbody>'
+                                   )
+                                }
+                            }
+                        );
+                    }
+                    
+    </script>
+
 </body>
 </html>

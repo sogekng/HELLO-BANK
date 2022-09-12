@@ -14,7 +14,7 @@ public class HomeController {
 
     @Autowired
     private IAdministradorService adminService;
-
+   
     @GetMapping("/")
     public String administrador(Model model){
         model.addAttribute("administradores", adminService.listarTodos());

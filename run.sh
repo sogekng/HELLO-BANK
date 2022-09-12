@@ -1,1 +1,1 @@
-java -jar target/hellobank-0.0.1-SNAPSHOT.jar
+java -Dserver.port=8081 -jar target/hellobank-0.0.1-SNAPSHOT.jar
