@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Home</title>
+    <title>Clientes</title>
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -33,7 +33,7 @@
                         <a class="collapse-item" href="/administradores">Administradores</a>
                         <a class="collapse-item" href="/contas">Contas</a>
                         <a class="collapse-item" href="/clientes">Clientes</a>
-                        <a class="collapse-item" href="/login">Login</a>
+                        <a class="collapse-item" href="/login.html">Login</a>
                         <a class="collapse-item" href="/register.html">Register</a>
                         <a class="collapse-item" href="/forgot-password.html">Forgot Password</a>
                         <a class="collapse-item" href="/404.html">404 Page</a>
@@ -123,38 +123,6 @@
                 <div class="container-fluid">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Administradores</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>NOME</th>
-                                            <th>CPF</th>
-                                            <th>SENHA</th>
-                                            <th>AÇÕES</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr th:each="administrador : ${administradores}">
-                                            <td th:text="${administrador.id}"></td>
-                                            <td th:text="${administrador.nome}"></td>
-                                            <td th:text="${administrador.cpf}"></td>
-                                            <td th:text="${administrador.senha}"></td>
-                                            <td>
-                                                <a href="#">Editar</a>
-                                                <a href="#">Excluir</a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Clientes</h6>
                         </div>
                         <div class="card-body">
@@ -164,10 +132,8 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>NOME</th>
-                                            <th>EMAIL</th>
                                             <th>CPF</th>
                                             <th>SENHA</th>
-                                            <th>TELEFONE</th>
                                             <th>AÇÕES</th>
                                         </tr>
                                     </thead>
@@ -177,10 +143,8 @@
                                             <td th:text="${clientes.nome}"></td>
                                             <td th:text="${clientes.cpf}"></td>
                                             <td th:text="${clientes.senha}"></td>
-                                            <td th:text="${clientes.telefone}"></td>
                                             <td>
-                                                <a href="#">Editar</a>
-                                                <a href="#">Excluir</a>
+                                                <button class="btn btn-primary"><a href="#" style="color:#fff;">Ver conta</a></button>
                                             </td>
                                         </tr>
                                     </tbody>

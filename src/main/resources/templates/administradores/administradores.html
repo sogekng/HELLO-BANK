@@ -34,7 +34,7 @@
                         <a class="collapse-item" href="/administradores">Administradores</a>
                         <a class="collapse-item" href="/contas">Contas</a>
                         <a class="collapse-item" href="/clientes">Clientes</a>
-                        <a class="collapse-item" href="/login.html">Login</a>
+                        <a class="collapse-item" href="/login">Login</a>
                         <a class="collapse-item" href="/register.html">Register</a>
                         <a class="collapse-item" href="/forgot-password.html">Forgot Password</a>
                         <a class="collapse-item" href="/404.html">404 Page</a>
@@ -125,7 +125,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Administradores</h6>
-                            <button class="btn btn-primary"><a href="#create">Novo</a></button>
+                            <button class="btn btn-primary"><a href="#create" style="color:#fff;">Novo</a></button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -147,7 +147,7 @@
                                             <td th:text="${administrador.senha}"></td>
                                             <td>
                                                 <button class="btn btn-primary"><a href="#edite" style="color:#fff;text-decoration:none;" th:href="@{'/administradores/' + ${administrador.id}}">Editar</a></button>
-                                                <a href="#" th:onclick="'if(confirm(\'Tem certeza?\')) {window.location.href = \'' + @{/administradores/delete/{id}(id=${administrador.id})} + '\' } '">Excluir</a>
+                                                <button class="btn btn-primary"><a href="#" th:onclick="'if(confirm(\'Tem certeza?\')) {window.location.href = \'' + @{/administradores/delete/{id}(id=${administrador.id})} + '\' } '" style="color:#fff;text-decoration:none;">Excluir</a></button>
                                             </td>
                                         </tr>
                                     </tbody>

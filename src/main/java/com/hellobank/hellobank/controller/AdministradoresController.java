@@ -1,7 +1,6 @@
 package com.hellobank.hellobank.controller;
 
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import com.hellobank.hellobank.dao.AdministradorDAO;
-
 import com.hellobank.hellobank.model.Administrador;
 import com.hellobank.hellobank.services.IAdministradorService;
 
@@ -48,13 +46,6 @@ public class AdministradoresController {
         }
 
         return "administradores/edit";
-    }
-
-    @GetMapping("/administradores/viewer")
-    public String viewer(Model model){
-        model.addAttribute("administradores", service.listarTodos());
-
-        return "administradores/{id}";
     }
 
     @PostMapping("/administradores/{id}/update")

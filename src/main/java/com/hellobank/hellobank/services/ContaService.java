@@ -9,14 +9,14 @@ import com.hellobank.hellobank.dao.ContaDAO;
 import com.hellobank.hellobank.model.Conta;
 
 @Service
-public class ContaService implements IConta{
+public class ContaService implements IContaService{
 
     @Autowired
     ContaDAO dao;
 
 
     @Override
-    public ArrayList<Conta> recuperarTodos() {
+    public ArrayList<Conta> listarTodos() {
         return (ArrayList<Conta>) dao.findAll();
     }
 
