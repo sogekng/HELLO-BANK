@@ -11,17 +11,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.ui.Model;
 import com.hellobank.hellobank.model.Cliente;
 import com.hellobank.hellobank.services.IClienteService;
 
 @RestController
-public class ClienteController {
+public class ClientesController {
     
     @Autowired
     private IClienteService service;
+    
 
-    @GetMapping("/clientes")
+    @GetMapping("/clientes/list")
     public ArrayList<Cliente> listarTodos() {
         return service.listarTodos();
     }
@@ -35,7 +36,7 @@ public class ClienteController {
         return ResponseEntity.status(404).build();
     }
 
-    @PostMapping("/clientes")
+    @PostMapping("/clientes/create")
     public ResponseEntity<Cliente> criarNovo(@RequestBody Cliente novo){
         Cliente res = service.criarNovo(novo);
         if (res != null){
@@ -44,7 +45,7 @@ public class ClienteController {
         return ResponseEntity.badRequest().build();
     }
 
-    @PutMapping("/clientes")
+    @PutMapping("/clientes/update")
     public ResponseEntity<Cliente> atualizarCadastro(@RequestBody Cliente dados){
         Cliente res = service.atualizarDados(dados);
         if (res != null){

@@ -8,18 +8,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.hellobank.hellobank.services.IAdministradorService;
 import com.hellobank.hellobank.services.IClienteService;
-import com.hellobank.hellobank.services.IContaService;
 
 @Controller
-public class HomeController {
+public class HomeControllerClientes {
 
     @Autowired
-    private IAdministradorService adminService;
+    private IClienteService service;
 
-    @GetMapping("/")
-    public String administrador(Model model) {
-        model.addAttribute("administradores", adminService.listarTodos());
+    @GetMapping("/clientes")
+    public String clientes(Model model){
+        model.addAttribute("cliente", service.listarTodos());
 
-        return "home/home";
+        return "clientes/clientes";
     }
 }

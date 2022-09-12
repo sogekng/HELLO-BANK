@@ -13,16 +13,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hellobank.hellobank.model.Conta;
-import com.hellobank.hellobank.services.IConta;
+import com.hellobank.hellobank.services.IContaService;
 
 @RestController
-public class ContaController {
+public class ContasController {
 
     @Autowired
-    IConta service;
+    IContaService service;
 
 
-    @PostMapping("/contas")
+    @PostMapping("/contas/create")
     public  ResponseEntity<Conta> criarNovo(@RequestBody Conta dados) {
 		Conta resultado = service.criarNovo(dados);
 		
@@ -31,12 +31,6 @@ public class ContaController {
 		}
 		return ResponseEntity.badRequest().build();
 	}
-
-
-    @GetMapping("/contas")
-    public List<Conta> listar(){
-        return service.recuperarTodos();
-    }
 
     @GetMapping("/contas/{id}")
     public ResponseEntity<Conta> recuperarPorId(@PathVariable Integer id){

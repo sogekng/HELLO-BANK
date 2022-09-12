@@ -10,7 +10,6 @@ public interface IAdministradorService {
     public Administrador toCreate(Administrador administrador);
     public void toDelete(Integer id);
     public Optional<Administrador> toSearch(Integer id);
-    public boolean toExist(Integer id);
     public Administrador toUpdate(Administrador dados);
-
+    public boolean toExist(Integer id);
 }

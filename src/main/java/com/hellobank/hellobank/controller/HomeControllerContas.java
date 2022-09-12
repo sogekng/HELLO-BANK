@@ -5,21 +5,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import com.hellobank.hellobank.services.IAdministradorService;
-import com.hellobank.hellobank.services.IClienteService;
 import com.hellobank.hellobank.services.IContaService;
 
 @Controller
-public class HomeController {
+public class HomeControllerContas {
 
     @Autowired
-    private IAdministradorService adminService;
+    private IContaService service;
 
-    @GetMapping("/")
-    public String administrador(Model model) {
-        model.addAttribute("administradores", adminService.listarTodos());
+    @GetMapping("/contas")
+    public String contas(Model model){
+        model.addAttribute("conta", service.listarTodos());
 
-        return "home/home";
+        return "contas/contas";
     }
 }
