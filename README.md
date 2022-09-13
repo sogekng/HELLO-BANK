@@ -17,7 +17,6 @@
 
 <p align="center">O HelloBank é uma nova plataforma para gerenciamento de transações, é o seu mais novo banco! </p>
     
-
 <h2>Sobre o HelloBank:</h2>
 <h4> Diferente, sem pegadinhas e sem tarifas: como você sempre quis.
 
