@@ -17,6 +17,12 @@ import com.hellobank.hellobank.services.IContaService;
 @Controller
 public class HomeController {
 
+<<<<<<< HEAD
+=======
+    @Autowired
+    private IAdministradorService adminService;
+
+>>>>>>> fa53b5dd9e5c58ba27f3005a0e9923052c938ba0
     @GetMapping("/")
     public String home(Model model, HttpServletRequest request) throws UnsupportedEncodingException { 
         model.addAttribute("nome", CookieService.getCookies(request, "nome"));
