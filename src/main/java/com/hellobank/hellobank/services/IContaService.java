@@ -1,13 +1,13 @@
 package com.hellobank.hellobank.services;
 
 import java.util.ArrayList;
-
 import com.hellobank.hellobank.model.Conta;
+import java.util.Optional;
 
 public interface IContaService {
-    public Conta criarNovo(Conta dados);
+    public Conta toCreate(Conta novo);
     public ArrayList<Conta> listarTodos();
-    public Conta recuperarPorId(Integer id);
+    public Optional<Conta> toSearch(Integer id);
     public ArrayList<Conta> buscarPorTipo(String palavraChave);
     
 }

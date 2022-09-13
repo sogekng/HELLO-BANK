@@ -1,8 +1,9 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
-  $('#dataTable').DataTable();
+  $('#dataTable').DataTable({
+    lengthMenu: [
+      [2, 4, 10, -1],
+      [2, 4, 10, 'Todos']
+    ],
+  });
 });
-
-function open(id){
-  document.querySelector('#'+id).checked = true;
-}

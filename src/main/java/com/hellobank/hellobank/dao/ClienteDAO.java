@@ -5,6 +5,9 @@ import org.springframework.data.repository.CrudRepository;
 import com.hellobank.hellobank.model.Cliente;
 
 public interface ClienteDAO extends CrudRepository<Cliente, Integer> {
+    @Query(value="select * from hellobank.cliente where cpf = :cpf or email = :email", nativeQuery = true)
+    public Cliente registerDaoCliente(String cpf, String email);
+
     @Query(value="select * from hellobank.cliente where cpf = :cpf and senha = :senha", nativeQuery = true)
     public Cliente loginDaoCliente(String cpf, String senha);
 }

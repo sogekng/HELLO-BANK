@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Clientes</title>
+    <title>Conta</title>
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -29,15 +29,8 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/homeAdmin">Home</a>
-                        <a class="collapse-item" href="/administradores">Administradores</a>
-                        <a class="collapse-item" href="/contas">Contas</a>
-                        <a class="collapse-item" href="/clientes">Clientes</a>
-                        <a class="collapse-item" href="/login">Login</a>
-                        <a class="collapse-item" href="/register">Register</a>
-                        <a class="collapse-item" href="/forgot-password">Forgot Password</a>
-                        <a class="collapse-item" href="/404">404 Page</a>
-                        <a class="collapse-item" href="/blank">Blank Page</a>
+                        <a class="collapse-item" href="/homeCliente">Home</a>
+                        <a class="collapse-item" href="/conta">Contas</a>
                     </div>
                 </div>
             </li>
@@ -51,8 +44,6 @@
                 </a>
                 <div id="collapseTables" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/administradores">Administradores</a>
-                        <a class="collapse-item" href="/clientes">Clientes</a>
                     </div>
                 </div>
             </li>
@@ -122,8 +113,10 @@
                 </nav>
                 <div class="container-fluid">
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Clientes</h6>
+                        <div class="card-header py-3" style="display:flex;flex-direction:row;width:100%;align-items:center;justify-content:space-between;">
+                            <h6 class="m-0 font-weight-bold text-primary">Contas</h6>
+                            <button class="btn btn-primary"><a href="#"  style="color: #fff;text-decoration:none;">Cria conta</a></button>
+                            <button class="btn btn-primary"><a th:href="@{'/conta/' + ${clientes.id_cliente}}"  style="color: #fff;text-decoration:none;">Ver extrato</a></button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -131,21 +124,19 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>NOME</th>
-                                            <th>CPF</th>
-                                            <th>SENHA</th>
-                                            <th>AÇÕES</th>
+                                            <th>NUMERO</th>
+                                            <th>AGENCIA</th>
+                                            <th>TIPO</th>
+                                            <th>SALDO</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="clientes : ${cliente}">
-                                            <td th:text="${clientes.id_cliente}"></td>
-                                            <td th:text="${clientes.nome}"></td>
-                                            <td th:text="${clientes.cpf}"></td>
-                                            <td th:text="${clientes.senha}"></td>
-                                            <td>
-                                                <button class="btn btn-primary"><a href="#" th:onclick="'window.location.href = \'' + @{/conta/{id}(id=${clientes.id_cliente})} + '\''">Ver conta</a></button>
-                                            </td>
+                                        <tr th:each="cont : ${conta}">
+                                            <td th:text="${cont.id_conta}"></td>
+                                            <td th:text="${cont.numero}"></td>
+                                            <td th:text="${cont.agencia}"></td>
+                                            <td th:text="${cont.tipo}"></td>
+                                            <td th:text="${cont.saldo}"></td>
                                         </tr>
                                     </tbody>
                                 </table>

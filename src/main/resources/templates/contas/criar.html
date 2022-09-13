@@ -6,19 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Home</title>
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    
+    <title>Conta</title>
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home">
-                <div class="sidebar-brand-text mx-3">Home</div>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/administradores">
+                <div class="sidebar-brand-text mx-3">Administradores</div>
             </a>
             <hr class="sidebar-divider">
             <li class="nav-item">
@@ -29,15 +31,8 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/">Home</a>
-                        <a class="collapse-item" href="/administradores">Administradores</a>
-                        <a class="collapse-item" href="/contas">Contas</a>
-                        <a class="collapse-item" href="/clientes">Clientes</a>
-                        <a class="collapse-item" href="/login">Login</a>
-                        <a class="collapse-item" href="/register">Register</a>
-                        <a class="collapse-item" href="/forgot-password">Forgot Password</a>
-                        <a class="collapse-item" href="/404">404 Page</a>
-                        <a class="collapse-item" href="/blank">Blank Page</a>
+                        <a class="collapse-item" href="/homeCliente">Home</a>
+                        <a class="collapse-item" href="/conta">Conta</a>
                     </div>
                 </div>
             </li>
@@ -51,8 +46,6 @@
                 </a>
                 <div id="collapseTables" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/administradores">Administradores</a>
-                        <a class="collapse-item" href="/clientes">Clientes</a>
                     </div>
                 </div>
             </li>
@@ -65,8 +58,22 @@
         </ul>
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="display:flex;align-items:center;">
-                    <h4 class="m-0 font-weight-bold text-primary">Seja Bem-Vindo(a) <p th:text="${nome}" style="align-items:center;display: contents;"></p></h4>
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
@@ -108,9 +115,8 @@
                 </nav>
                 <div class="container-fluid">
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3" style="display:flex;flex-direction:row;width:100%;align-items:center;justify-content:space-between;">
-                            <h6 class="m-0 font-weight-bold text-primary">Administradores</h6>
-                            <button class="btn btn-primary"><a href="/administradores" style="color: #fff;text-decoration:none;">Ver tabela</a></button>
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Crie sua conta</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -118,50 +124,45 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>NOME</th>
-                                            <th>CPF</th>
-                                            <th>SENHA</th>
+                                            <th>NUMERO</th>
+                                            <th>AGENCIA</th>
+                                            <th>TIPO</th>
+                                            <th>SALDO</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="adm : ${admin}">
-                                            <td th:text="${adm.id}"></td>
-                                            <td th:text="${adm.nome}"></td>
-                                            <td th:text="${adm.cpf}"></td>
-                                            <td th:text="${adm.senha}"></td>
+                                        <tr th:each="conta : ${cont}">
+                                            <td th:text="${conta.id_conta}"></td>
+                                            <td th:text="${conta.numero}"></td>
+                                            <td th:text="${conta.agencia}"></td>
+                                            <td th:text="${conta.tipo}"></td>
+                                            <td th:text="${conta.saldo}"></td>
                                         </tr>
                                     </tbody>
                                 </table>
+                                <div id="edite" class="content-form" style="background-color: #fff;padding:20px;height:100%;width:100%;">
+                                    <form method="POST" th:action="@{'/conta/' +  ${conta.id_conta} + '/create'}">
+                                        <div class="form-group">
+                                            <label for="numero">Numero</label>
+                                            <input type="text" name="numero" class="form-control" th:text="${conta.numero}" id="nome" placeholder="Nome" autocomplete="off" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="agencia">Agencia</label>
+                                            <input type="text" name="agencia" class="form-control" th:text="${conta.agencia}" id="cpf" placeholder="000.000.000-00" required onkeypress="$(this).mask('000.000.000-00');" autocomplete="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <select name="tipo" id="" th:value="${conta.tipo}">
+                                                <option value="" required>Conta corrente</option>
+                                                <option value="">Conta poupanca</option>
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Criar</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3" style="display:flex;flex-direction:row;width:100%;align-items:center;justify-content:space-between;">
-                            <h6 class="m-0 font-weight-bold text-primary">Clientes</h6>
-                            <button class="btn btn-primary"><a href="/clientes" style="color: #fff;text-decoration:none;">Ver tabela</a></button>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTableCliente" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>NOME</th>
-                                            <th>CPF</th>
-                                            <th>EMAIL</th>
-                                            <th>SENHA</th>
-                                            <th>TELEFONE</th>
-<<<<<<< HEAD
-                                        </tr>
-=======
-                                            <th>CONTA</th>
-                                        </tr>                            
->>>>>>> fa53b5dd9e5c58ba27f3005a0e9923052c938ba0
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                    <br>
                 </div>
             </div>
             <footer class="sticky-footer bg-white">
@@ -193,32 +194,14 @@
             </div>
         </div>
     </div>
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="js/sb-admin-2.min.js"></script>
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <script>
-        
-        carregarclientes();
-
-        function carregarclientes() {
-        $.getJSON("/clientes/list", function(dados) {
-            for (i = 0; i < dados.length; i++) {
-                $('#dataTableCliente').append('<tbody>'
-                                    + '<td>' + dados[i].id_cliente + '</td>'
-                                    + '<td>' + dados[i].nome + '</td>'
-                                    + '<td>' + dados[i].cpf + '</td>'
-                                    + '<td>' + dados[i].email + '</td>'
-                                    + '<td>' + dados[i].senha + '</td>'
-                                    + '<td>' + dados[i].telefone + '</td>'
-                                    + '<td><a href="#">Acessar Conta</a></td></tr></tbody>'
-                                   )
-                                }
-                            }
-                        );
-                    }         
-    </script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/js/sb-admin-2.min.js"></script>
+    <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="/js/datatables-demo.js"></script>
+    <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 </body>
 </html>

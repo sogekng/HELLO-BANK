@@ -1,10 +1,10 @@
 package com.hellobank.hellobank.services;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.hellobank.hellobank.dao.ContaDAO;
 import com.hellobank.hellobank.model.Conta;
 
@@ -21,17 +21,17 @@ public class ContaService implements IContaService{
     }
 
     @Override
-    public Conta recuperarPorId(Integer id) {
-        if (id != null) {
-            return dao.findById(id).orElse(null);
-        }
-        return null;
+    public Optional<Conta> toSearch(Integer id) {
+        return dao.findById(id);
     }
     
 
     @Override
-    public Conta criarNovo(Conta dados) {
-        return dao.save(dados);
+    public Conta toCreate(Conta novo) {
+        if (novo != null){
+            return dao.save(novo);
+        }
+        return null;
     }
 
     @Override

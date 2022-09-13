@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Clientes</title>
+    <title>Home</title>
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -17,7 +17,7 @@
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/homeCliente">
                 <div class="sidebar-brand-text mx-3">Home</div>
             </a>
             <hr class="sidebar-divider">
@@ -29,15 +29,16 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/homeAdmin">Home</a>
+                        <a class="collapse-item" href="/homeCliente">Home</a>
+                        <a class="collapse-item" href="/conta">Conta</a>
+                        <!--<a class="collapse-item" th:href="@{'/conta/' + ${id_cliente.id_cliente}}">Contas</a>
                         <a class="collapse-item" href="/administradores">Administradores</a>
-                        <a class="collapse-item" href="/contas">Contas</a>
                         <a class="collapse-item" href="/clientes">Clientes</a>
                         <a class="collapse-item" href="/login">Login</a>
                         <a class="collapse-item" href="/register">Register</a>
                         <a class="collapse-item" href="/forgot-password">Forgot Password</a>
                         <a class="collapse-item" href="/404">404 Page</a>
-                        <a class="collapse-item" href="/blank">Blank Page</a>
+                        <a class="collapse-item" href="/blank">Blank Page</a>-->
                     </div>
                 </div>
             </li>
@@ -51,8 +52,8 @@
                 </a>
                 <div id="collapseTables" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/administradores">Administradores</a>
-                        <a class="collapse-item" href="/clientes">Clientes</a>
+                        <!--<a class="collapse-item" href="/administradores">Administradores</a>
+                        <a class="collapse-item" href="/clientes">Clientes</a>-->
                     </div>
                 </div>
             </li>
@@ -65,22 +66,8 @@
         </ul>
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="display:flex;align-items:center;">
+                    <h4 class="m-0 font-weight-bold text-primary">Ola cliente <p th:text="${nomeUsuario}" style="align-items:center;display: contents;"></p></h4>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
@@ -121,37 +108,6 @@
                     </ul>
                 </nav>
                 <div class="container-fluid">
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Clientes</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>NOME</th>
-                                            <th>CPF</th>
-                                            <th>SENHA</th>
-                                            <th>AÇÕES</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr th:each="clientes : ${cliente}">
-                                            <td th:text="${clientes.id_cliente}"></td>
-                                            <td th:text="${clientes.nome}"></td>
-                                            <td th:text="${clientes.cpf}"></td>
-                                            <td th:text="${clientes.senha}"></td>
-                                            <td>
-                                                <button class="btn btn-primary"><a href="#" th:onclick="'window.location.href = \'' + @{/conta/{id}(id=${clientes.id_cliente})} + '\''">Ver conta</a></button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <footer class="sticky-footer bg-white">
@@ -189,7 +145,6 @@
     <script src="js/sb-admin-2.min.js"></script>
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    <script src="js/datatables-demo.js"></script>
     <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 </body>

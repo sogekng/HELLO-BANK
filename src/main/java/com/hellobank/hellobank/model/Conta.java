@@ -3,7 +3,6 @@ package com.hellobank.hellobank.model;
 
 
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -46,6 +44,19 @@ public class Conta{
     @OneToMany(mappedBy="idConta", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("idConta")
     private List<Transacao> listaTransacoes;
+
+    public Conta() {
+    }
+
+    public Conta(Integer id_conta, String agencia, String tipo, Double saldo, Cliente cliente, List<Transacao> listaTransacoes) {
+        this.id_conta = id_conta;
+        this.numero = String.valueOf(Integer.valueOf("789475") + (id_conta-1)) + "-9";
+        this.agencia = "0001";
+        this.tipo = tipo;
+        this.saldo = 0.0;
+        this.cliente = cliente;
+        this.listaTransacoes = listaTransacoes;
+    }
 
     public String getNumero() {
         return numero;

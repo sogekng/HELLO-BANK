@@ -2,7 +2,6 @@ package com.hellobank.hellobank.services;
 
 import java.util.ArrayList;
 import java.util.Optional;
-
 import com.hellobank.hellobank.model.Administrador;
 
 public interface IAdministradorService {

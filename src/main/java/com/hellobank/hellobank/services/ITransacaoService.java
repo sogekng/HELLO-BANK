@@ -1,7 +1,6 @@
 package com.hellobank.hellobank.services;
 
 import java.util.ArrayList;
-
 import com.hellobank.hellobank.model.Transacao;
 
 public interface ITransacaoService {

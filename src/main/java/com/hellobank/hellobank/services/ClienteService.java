@@ -1,10 +1,8 @@
 package com.hellobank.hellobank.services;
 
 import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.hellobank.hellobank.dao.ClienteDAO;
 import com.hellobank.hellobank.model.Cliente;
 
@@ -47,6 +45,11 @@ public class ClienteService implements IClienteService {
 
     @Override
     public Cliente loginCliente(String cpf, String senha) {
-        return null;
+        return dao.loginDaoCliente(cpf, senha);
+    }
+
+    @Override
+    public Cliente registerCliente(String cpf, String email) {
+        return dao.registerDaoCliente(cpf, email);
     }
 }

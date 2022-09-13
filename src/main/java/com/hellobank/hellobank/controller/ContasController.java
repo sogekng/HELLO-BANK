@@ -1,8 +1,7 @@
 package com.hellobank.hellobank.controller;
 
+import java.util.Optional;
 import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.ui.Model;
 import com.hellobank.hellobank.model.Conta;
 import com.hellobank.hellobank.services.IContaService;
@@ -29,24 +27,33 @@ public class ContasController {
         return "contas/contas";
     }
 
+    @GetMapping("/conta")
+    public String conta(Model model){
+        model.addAttribute("con", service.listarTodos());
+
+        return "contas/conta";
+    }
+
 
     @PostMapping("/contas/create")
-    public  ResponseEntity<Conta> criarNovo(@RequestBody Conta dados) {
-		Conta resultado = service.criarNovo(dados);
-		
-		if(resultado != null) {
-			return ResponseEntity.ok(dados);
-		}
-		return ResponseEntity.badRequest().build();
-	}
+    public String create(Conta conta, Model model){
+        service.toCreate(conta);
+        model.addAttribute("con", conta);
+        return "contas/conta";
+    }
+        
 
     @GetMapping("/contas/{id}")
-    public ResponseEntity<Conta> recuperarPorId(@PathVariable Integer id){
-        Conta res = service.recuperarPorId(id);
-        if (res != null){
-            return ResponseEntity.ok(res);
+    public String search(@PathVariable Integer id, Model model){
+        Optional<Conta> conta = service.toSearch(id);
+        
+        try{
+            model.addAttribute("conta", conta.get());
+        }catch(Exception e){
+            return "redirect:/clientes";
         }
-        return ResponseEntity.status(404).build();
+
+        return "contas/conta";
     }
 
     @GetMapping("/contas/busca")
