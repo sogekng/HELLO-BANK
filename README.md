@@ -29,3 +29,12 @@
  📍 Back-end: Cadastrar, listar, atualizar, deleter clientes e fornecer histórico de transação entre contas;  <br>
  📍 Banco de Dados: Tabelas bem estruturadas e populadas com valores para testes e O Banco deve ser entregue em script SQL junto ao repositório ;  <br>
 </h4>
+<h2>🛠️ Desenvolvimento </h2>
+<h4> 
+   ![modelagem de dados](https://user-images.githubusercontent.com/102381119/189784761-de158974-f670-448f-9141-4b2eea023259.jpeg)
+
+ 📍 Estrutura do banco de dados e relacionamento entre tabelas
+<br>
+<img src="https://user-images.githubusercontent.com/102381119/189784761-de158974-f670-448f-9141-4b2eea023259.jpeg" width="750" height="400" />
+<br>
+<br>
