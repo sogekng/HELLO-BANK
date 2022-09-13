@@ -58,5 +58,11 @@
     keepStatic: true
   });
 
+  $("input[id*='telefone']").inputmask({
+    mask: ['(99) 9999-99999'],
+    keepStatic: true
+  });
+  
+
 })(jQuery); // End of use strict
 

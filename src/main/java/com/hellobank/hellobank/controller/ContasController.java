@@ -11,15 +11,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.ui.Model;
 import com.hellobank.hellobank.model.Conta;
 import com.hellobank.hellobank.services.IContaService;
+import org.springframework.stereotype.Controller;
 
-@RestController
+@Controller
 public class ContasController {
 
     @Autowired
     IContaService service;
+
+    @GetMapping("/contas")
+    public String contas(Model model){
+        model.addAttribute("conta", service.listarTodos());
+
+        return "contas/contas";
+    }
 
 
     @PostMapping("/contas/create")

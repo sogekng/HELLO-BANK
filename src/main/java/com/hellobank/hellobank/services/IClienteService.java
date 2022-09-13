@@ -7,7 +7,8 @@ import com.hellobank.hellobank.model.Cliente;
 public interface IClienteService  {
     public ArrayList<Cliente> listarTodos();
     public Cliente buscarPorId(Integer id);
-    public Cliente criarNovo(Cliente novo);
+    public Cliente toCreate(Cliente cliente);
     public Cliente atualizarDados(  Cliente dados);
     public void excluirCadastro(Integer id);
+    public Cliente loginCliente(String cpf, String senha);
 }

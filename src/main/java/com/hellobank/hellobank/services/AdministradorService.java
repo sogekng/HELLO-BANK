@@ -50,4 +50,9 @@ public class AdministradorService implements IAdministradorService {
     public boolean toExist(Integer id) {
         return dao.existsById(id);
     }
+    
+    @Override
+    public Administrador loginAdmin(String cpf, String senha) {
+        return dao.loginDaoAdmin(cpf, senha);
+    }
 }

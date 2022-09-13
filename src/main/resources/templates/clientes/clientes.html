@@ -17,7 +17,7 @@
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home">
                 <div class="sidebar-brand-text mx-3">Home</div>
             </a>
             <hr class="sidebar-divider">
@@ -33,11 +33,11 @@
                         <a class="collapse-item" href="/administradores">Administradores</a>
                         <a class="collapse-item" href="/contas">Contas</a>
                         <a class="collapse-item" href="/clientes">Clientes</a>
-                        <a class="collapse-item" href="/login.html">Login</a>
-                        <a class="collapse-item" href="/register.html">Register</a>
-                        <a class="collapse-item" href="/forgot-password.html">Forgot Password</a>
-                        <a class="collapse-item" href="/404.html">404 Page</a>
-                        <a class="collapse-item" href="/blank.html">Blank Page</a>
+                        <a class="collapse-item" href="/login">Login</a>
+                        <a class="collapse-item" href="/register">Register</a>
+                        <a class="collapse-item" href="/forgot-password">Forgot Password</a>
+                        <a class="collapse-item" href="/404">404 Page</a>
+                        <a class="collapse-item" href="/blank">Blank Page</a>
                     </div>
                 </div>
             </li>
@@ -144,7 +144,7 @@
                                             <td th:text="${clientes.cpf}"></td>
                                             <td th:text="${clientes.senha}"></td>
                                             <td>
-                                                <button class="btn btn-primary"><a href="#" style="color:#fff;">Ver conta</a></button>
+                                                <button class="btn btn-primary"><a href="/contas"  style="color: #fff;text-decoration:none;">Ver conta</a></button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -171,15 +171,14 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tem certeza?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="/logout">Logout</a>
                 </div>
             </div>
         </div>

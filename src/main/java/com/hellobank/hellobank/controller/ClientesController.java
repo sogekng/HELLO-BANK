@@ -14,12 +14,21 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.ui.Model;
 import com.hellobank.hellobank.model.Cliente;
 import com.hellobank.hellobank.services.IClienteService;
+import org.springframework.stereotype.Controller;
 
-@RestController
+@Controller
 public class ClientesController {
     
     @Autowired
     private IClienteService service;
+    
+
+    @GetMapping("/clientes")
+    public String clientes(Model model){
+        model.addAttribute("cliente", service.listarTodos());
+
+        return "clientes/clientes";
+    }
     
 
     @GetMapping("/clientes/list")
@@ -37,12 +46,9 @@ public class ClientesController {
     }
 
     @PostMapping("/clientes/create")
-    public ResponseEntity<Cliente> criarNovo(@RequestBody Cliente novo){
-        Cliente res = service.criarNovo(novo);
-        if (res != null){
-            return ResponseEntity.ok(novo);
-        }
-        return ResponseEntity.badRequest().build();
+    public String create(Cliente cliente){
+        service.toCreate(cliente);
+        return "redirect:/clientes";
     }
 
     @PutMapping("/clientes/update")

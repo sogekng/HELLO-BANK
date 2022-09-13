@@ -12,4 +12,5 @@ public interface IAdministradorService {
     public Optional<Administrador> toSearch(Integer id);
     public Administrador toUpdate(Administrador dados);
     public boolean toExist(Integer id);
+    public Administrador loginAdmin(String cpf, String senha);
 }

@@ -1,24 +1,30 @@
 package com.hellobank.hellobank.controller;
 
+import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import com.hellobank.hellobank.services.IAdministradorService;
+import com.hellobank.hellobank.model.Cliente;
+import com.hellobank.hellobank.services.CookieService;
 import com.hellobank.hellobank.services.IClienteService;
 
+
 @Controller
-public class HomeControllerClientes {
+public class RegisterController {
 
     @Autowired
     private IClienteService service;
 
-    @GetMapping("/clientes")
-    public String clientes(Model model){
-        model.addAttribute("cliente", service.listarTodos());
+    @GetMapping("/register")
+    public String register() {
+        return "register/register";
+    }
 
-        return "clientes/clientes";
+    @PostMapping("/register/create")
+    public String create(Model model, Cliente cliente) {
+        service.toCreate(cliente);
+        return "redirect:/login";
     }
 }

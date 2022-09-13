@@ -10,6 +10,7 @@ import com.hellobank.hellobank.model.Cliente;
 
 @Service
 public class ClienteService implements IClienteService {
+
     @Autowired
     private ClienteDAO dao;
 
@@ -24,7 +25,7 @@ public class ClienteService implements IClienteService {
     }
 
     @Override
-    public Cliente criarNovo(Cliente novo) {
+    public Cliente toCreate(Cliente novo) {
         if (novo != null){
             return dao.save(novo);
         }
@@ -42,5 +43,10 @@ public class ClienteService implements IClienteService {
     @Override
     public void excluirCadastro(Integer id) {
         dao.deleteById(id);
+    }
+
+    @Override
+    public Cliente loginCliente(String cpf, String senha) {
+        return null;
     }
 }

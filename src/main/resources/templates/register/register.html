@@ -25,39 +25,48 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Register</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" action="/register/create" method="POST">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" id="name"
-                                                placeholder="Name">
+                                            <input type="text" name="nome" class="form-control form-control-user" id="name" placeholder="Seu nome" required autocomplete="off">
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="email"
-                                                placeholder="Email Address">
+                                            <input type="email" name="email" class="form-control form-control-user" id="user_email" placeholder="Seu melhor e-mail" required autocomplete="off">
                                         </div>
                                         <div class="form-group">
-                                            <input type="cpf" class="form-control form-control-user" id="cpf"
+                                            <input type="text" name="cpf" class="form-control form-control-user" id="cpf"
                                                 placeholder="000.000.000-00" required onkeypress="$(this).mask('000.000.000-00');" autocomplete="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="telefone" class="form-control form-control-user" id="telefone" placeholder="(00) 0000-00000" required onkeypress="$(this).mask('(99) 9999-99999');" autocomplete="off">
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input type="password" class="form-control form-control-user"
-                                                    id="password" placeholder="Password">
+                                                <input type="password" name="senha" class="form-control form-control-user" id="password" placeholder="Senha" required autocomplete="off">
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="password" class="form-control form-control-user"
-                                                    id="repeatPassword" placeholder="Repeat Password">
+                                                <input type="password" name="senha" class="form-control form-control-user" id="password" placeholder="Repita a Senha" required autocomplete="off">
                                             </div>
                                         </div>
-                                        <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                            Register Account
-                                        </a>
+                                        <span title='' class='password-strength' style="margin:2px;border-radius:10px"></span>
+                                        <script>
+                                            document.querySelector('#password').addEventListener('keyup', function() {
+                                                var length = this.value.length; 
+                                                var title = '';
+                                                if (length > 0) {
+                                                    if (length <= 2) title = 'fraca';
+                                                    else if (length > 2 && length < 8) title = 'normal';
+                                                    else title = 'forte';
+                                                }
+                                                document.querySelector('.password-strength').setAttribute('title', title);
+                                            }, false);
+                                        </script>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                            Cadastrar
+                                        </button>
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="login.html">Already have an account? Login!</a>
+                                        <a class="small" href="/login">Logon</a>
                                     </div>
                                 </div>
                             </div>
@@ -71,6 +80,9 @@
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="js/sb-admin-2.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="js/datatables-demo.js"></script>
     <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 </body>
