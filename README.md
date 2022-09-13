@@ -8,8 +8,11 @@
     HelloBank 
 </h2>
 
+![bancoinicio](https://user-images.githubusercontent.com/102381119/189783699-fb735cc5-53ba-47b3-905b-1276a774818b.jpg)
+
 <p align="center">
-<img align="center" src="img/bancoinicio.jpg" style="width: 55%;" alt="Capa">
+<img align="center" src="https://user-images.githubusercontent.com/102381119/189783699-fb735cc5-53ba-47b3-905b-1276a774818b.jpg
+" style="width: 55%;" alt="Capa">
 </p>
 
 <p align="center">O HelloBank é uma nova plataforma para gerenciamento de transações, é o seu mais novo banco! </p>
