@@ -1,4 +1,4 @@
-package com.hellobank.hellobank;
+package com.hellobank.hellobank.models;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

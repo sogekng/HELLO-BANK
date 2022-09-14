@@ -1,4 +1,4 @@
-package com.hellobank.hellobank;
+package com.hellobank.hellobank.models;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -19,12 +19,12 @@ class TransacaoTest {
 	void validarPorpiedadesTransacao() {
 		var transacao = new Transacao();
 		LocalDate dt = LocalDate.from(ZonedDateTime.now());
-		transacao.setData(dt);
+		transacao.setDataTransacao(dt);
 
 		transacao.setValor(100.00);
 		//assertequal é uma função que faz uma validacao sobre um dado
 		;
-		assertEquals(dt , transacao.getData());
+		assertEquals(dt , transacao.getDataTransacao());
 		assertEquals(100.00, transacao.getValor());
 		
 		

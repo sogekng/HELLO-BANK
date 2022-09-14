@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hellobank.hellobank.model.Transacao;
 import com.hellobank.hellobank.services.ITransacaoService;
 
+
+
 @RestController
 public class TransacaoController {
     @Autowired
@@ -52,12 +54,20 @@ public class TransacaoController {
     }
 
     @GetMapping("/extrato/{id}")
-    public ResponseEntity<ArrayList<Transacao>> extrato(@PathVariable Integer id){
-        var res = service.extrato(id);
+    public ArrayList<String> extrato(@PathVariable Integer id){
+        ArrayList<String> res = service.extrato(id);
+        if (id != null) {
+            return res;            
+        }
+        return null;
+    }
+
+    @PostMapping("/transferencia/{id}")
+    public ResponseEntity<Transacao> transferencia(@RequestBody Transacao nova, @PathVariable Integer id){
+        Transacao res = service.transferir(nova, id);
         if (res != null){
             return ResponseEntity.ok(res);
         }
-        return ResponseEntity.status(404).build();
+        return ResponseEntity.badRequest().build();
     }
-
 }

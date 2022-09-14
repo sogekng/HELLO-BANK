@@ -99,6 +99,6 @@ public class Cliente {
 
     public void setListaContas(List<Conta> listaContas) {
         this.listaContas = listaContas;
-    }
+    }    
 
 }
