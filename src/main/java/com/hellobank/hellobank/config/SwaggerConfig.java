@@ -31,7 +31,7 @@ public class SwaggerConfig {
             .description("API para gerenciar transações do banco fictício HelloBank.")
             .version("1.0.0")
             .license("Apache License Version 2.0")
-            .contact(new Contact("Desenvolvido pelo grupo 3", "grupo3.com", "grupo3@dev.com"))
+            .contact(new Contact("Desenvolvido pelo grupo 3", "https://github.com/sogekng/FINAL_CHALLENGE_IBM", "grupo3@dev.com"))
             .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
             .build();
         
