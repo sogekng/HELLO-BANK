@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.hellobank.hellobank.services.CookieService;
 import com.hellobank.hellobank.services.IClienteService;
 import com.hellobank.hellobank.services.IAdministradorService;
+import com.hellobank.hellobank.model.Administrador;
+import com.hellobank.hellobank.model.Cliente;
 
 @Controller
 public class HomeController {
@@ -29,12 +31,11 @@ public class HomeController {
     }
         
     @GetMapping("/homeAdmin")
-    public String homeAdmin(Model model1, Model model2, Model model3, HttpServletRequest request) throws UnsupportedEncodingException{
-        String res = CookieService.getCookies(request, "nome");
+    public String homeAdmin(Model model1, Model model2, Model model3, Administrador administrador){
          
-        model1.addAttribute("client", serviceCliente.listarTodos());
+        model1.addAttribute("clien", serviceCliente.listarTodos());
         model2.addAttribute("admin", serviceAdministrador.listarTodos());
-        model3.addAttribute("nomer", res);
+        model3.addAttribute("nomeAdmin", administrador.getNome());
         return "home/homeAdmin";
     }
 }

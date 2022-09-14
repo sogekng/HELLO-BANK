@@ -44,12 +44,17 @@ public class AdministradorService implements IAdministradorService {
     }
 
     @Override
-    public boolean toExist(Integer id) {
+    public boolean toExistId(Integer id) {
         return dao.existsById(id);
     }
-    
+
     @Override
-    public Administrador loginAdmin(String cpf, String senha) {
-        return dao.loginDaoAdmin(cpf, senha);
+    public boolean toExistCpf(String cpf) {
+        return dao.existByCpf(cpf);
+    }
+
+    @Override
+    public boolean toExistLogin(String cpf, String senha) {
+        return dao.existByLogin(cpf, senha);
     }
 }

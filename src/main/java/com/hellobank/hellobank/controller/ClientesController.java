@@ -1,5 +1,7 @@
 package com.hellobank.hellobank.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,12 +30,16 @@ public class ClientesController {
     }
 
     @GetMapping("/clientes/{id}")
-    public ResponseEntity<Cliente> buscarPorId(@PathVariable Integer id) {
-        Cliente res = service.buscarPorId(id);
-        if (res != null) {
-            return ResponseEntity.ok(res);
+    public String search(@PathVariable Integer id, Model model) {
+        Optional<Cliente> client = service.toSearch(id);
+        
+        try{
+            model.addAttribute("client", client.get());
+        }catch(Exception e){
+            return "redirect:/clientes";
         }
-        return ResponseEntity.status(404).build();
+
+        return "clientes/cliente";
     }
 
     @PostMapping("/clientes/create")

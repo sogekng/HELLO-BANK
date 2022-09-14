@@ -10,6 +10,7 @@ public interface IAdministradorService {
     public void toDelete(Integer id);
     public Optional<Administrador> toSearch(Integer id);
     public Administrador toUpdate(Administrador dados);
-    public boolean toExist(Integer id);
-    public Administrador loginAdmin(String cpf, String senha);
+    public boolean toExistCpf(String cpf);
+    public boolean toExistId(Integer id);
+    public boolean toExistLogin(String cpf, String senha);
 }

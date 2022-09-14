@@ -7,11 +7,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Clientes</title>
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
     <div id="wrapper">
@@ -108,7 +108,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="/img/undraw_profile.svg">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
@@ -144,7 +144,7 @@
                                             <td th:text="${clientes.cpf}"></td>
                                             <td th:text="${clientes.senha}"></td>
                                             <td>
-                                                <button class="btn btn-primary"><a href="#" th:onclick="'window.location.href = \'' + @{/conta/{id}(id=${clientes.id_cliente})} + '\''">Ver conta</a></button>
+                                                <button class="btn btn-primary"><a href="#" style="color: #fff;text-decoration:none;" th:onclick="'window.location.href = \'' + @{/conta/{id}(id=${clientes.id_cliente})} + '\''">Ver conta</a></button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -183,13 +183,13 @@
             </div>
         </div>
     </div>
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="js/sb-admin-2.min.js"></script>
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    <script src="js/datatables-demo.js"></script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/js/sb-admin-2.min.js"></script>
+    <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="/js/datatables-demo.js"></script>
     <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 </body>

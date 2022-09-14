@@ -9,5 +9,5 @@ public interface IContaService {
     public ArrayList<Conta> listarTodos();
     public Optional<Conta> toSearch(Integer id);
     public ArrayList<Conta> buscarPorTipo(String palavraChave);
-    
+    public Conta registerConta(String tipo, Integer id_cliente);
 }

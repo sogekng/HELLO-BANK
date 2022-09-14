@@ -2,13 +2,15 @@ package com.hellobank.hellobank.services;
 
 import java.util.ArrayList;
 import com.hellobank.hellobank.model.Cliente;
+import java.util.Optional;
 
 public interface IClienteService  {
     public ArrayList<Cliente> listarTodos();
-    public Cliente buscarPorId(Integer id);
+    public Optional<Cliente> toSearch(Integer id);
+    public boolean toExistId(Integer id);
+    public boolean toExistCpf(String cpf);
+    public boolean toExistLogin(String cpf, String senha);
     public Cliente toCreate(Cliente cliente);
     public Cliente atualizarDados(  Cliente dados);
     public void excluirCadastro(Integer id);
-    public Cliente loginCliente(String cpf, String senha);
-    public Cliente registerCliente(String cpf, String email);
 }

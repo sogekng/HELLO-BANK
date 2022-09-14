@@ -27,13 +27,11 @@ public class ContasController {
 
     @GetMapping("/conta")
     public String conta(Model model){
-        model.addAttribute("con", service.listarTodos());
-
         return "contas/conta";
     }
 
 
-    @PostMapping("/contas/create")
+    @PostMapping("/conta/create")
     public String create(Conta conta, Model model){
         service.toCreate(conta);
         model.addAttribute("con", conta);

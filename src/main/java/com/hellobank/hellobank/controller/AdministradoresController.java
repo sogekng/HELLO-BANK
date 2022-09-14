@@ -25,9 +25,17 @@ public class AdministradoresController {
     }
 
     @PostMapping("/administradores/create")
-    public String create(Administrador administrador){
-        service.toCreate(administrador);
-        return "redirect:/administradores";
+    public String create(Administrador administrador, Model model1, Model model2){
+        if(service.toExistCpf(administrador.getCpf())){
+            model1.addAttribute("er", "Credenciais já cadastradas");
+            model2.addAttribute("administradores", service.listarTodos());
+            return "administradores/administradores";
+        }else{
+            service.toCreate(administrador);
+            model1.addAttribute("ac", "Credenciais cadastradas com sucesso!");
+            model2.addAttribute("administradores", service.listarTodos());
+            return "administradores/administradores";
+        }
     }
 
     @GetMapping("/administradores/{id}")
@@ -45,7 +53,7 @@ public class AdministradoresController {
 
     @PostMapping("/administradores/{id}/update")
     public String update(@PathVariable Integer id, Administrador administrador){
-        if(!service.toExist(id)){
+        if(!service.toExistId(id)){
             return "redirect:/administradores";
         }
 

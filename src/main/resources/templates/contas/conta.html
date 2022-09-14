@@ -12,13 +12,14 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home">
-                <div class="sidebar-brand-text mx-3">Home</div>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/administradores">
+                <div class="sidebar-brand-text mx-3">Sua Conta</div>
             </a>
             <hr class="sidebar-divider">
             <li class="nav-item">
@@ -99,7 +100,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="/img/undraw_profile.svg">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
@@ -114,9 +115,8 @@
                 <div class="container-fluid">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3" style="display:flex;flex-direction:row;width:100%;align-items:center;justify-content:space-between;">
-                            <h6 class="m-0 font-weight-bold text-primary">Contas</h6>
-                            <button class="btn btn-primary"><a href="#"  style="color: #fff;text-decoration:none;">Cria conta</a></button>
-                            <button class="btn btn-primary"><a th:href="@{'/conta/' + ${clientes.id_cliente}}"  style="color: #fff;text-decoration:none;">Ver extrato</a></button>
+                            <h6 class="m-0 font-weight-bold text-primary">Administradores</h6>
+                            <button class="btn btn-primary"><a href="#create"  style="color: #fff;text-decoration:none;">Novo</a></button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -131,18 +131,30 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="cont : ${conta}">
-                                            <td th:text="${cont.id_conta}"></td>
-                                            <td th:text="${cont.numero}"></td>
-                                            <td th:text="${cont.agencia}"></td>
-                                            <td th:text="${cont.tipo}"></td>
-                                            <td th:text="${cont.saldo}"></td>
+                                        <tr th:each="conta : ${conta}">
+                                            <td th:text="${conta.id_conta}"></td>
+                                            <td th:text="${conta.numero}"></td>
+                                            <td th:text="${conta.agencia}"></td>
+                                            <td th:text="${conta.tipo}"></td>
+                                            <td th:text="${conta.saldo}"></td>
                                         </tr>
                                     </tbody>
                                 </table>
+                                <div id="create" class="content-form" style="background-color: #fff;padding:20px;height:100%;width:100%;">
+                                    <form method="POST" action="/conta/create">
+                                        <div class="form-group">
+                                            <select name="tipo" id="" >
+                                                <option value="" required>Conta corrente</option>
+                                                <option value="">Conta poupanca</option>
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Criar</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <br>
                 </div>
             </div>
             <footer class="sticky-footer bg-white">

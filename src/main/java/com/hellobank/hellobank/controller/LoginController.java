@@ -1,6 +1,8 @@
 package com.hellobank.hellobank.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,31 +29,28 @@ public class LoginController {
     }
 
     @PostMapping("/logon")
-    public String logon(Model model, Administrador administrador, Cliente cliente, String remember, HttpServletResponse request) throws IOException{
-        Administrador admin = serviceAdmin.loginAdmin(administrador.getCpf(), administrador.getSenha());
-
-        if(admin != null){
+    public String logon(Model model1, Model model2, Administrador administrador, Cliente cliente, String remember, HttpServletResponse response) throws IOException{
+        if(serviceAdmin.toExistLogin(administrador.getCpf(), administrador.getSenha())){
             Integer time = remember != null ? 60*60 : 60*60*24;
-            CookieService.setCookies(request, "id", String.valueOf(administrador.getId()), time);
-            CookieService.setCookies(request, "nome", String.valueOf(administrador.getNome()), time);
-            return "redirect:/homeAdmin";
+            CookieService.setCookie(response, "nome", String.valueOf(administrador.getNome()), time);
+            model1.addAttribute("admin", serviceAdmin.listarTodos());
+            model2.addAttribute("clien", serviceCliente.listarTodos());
+            return "home/homeAdmin";
+        }
+        else if(serviceCliente.toExistLogin(cliente.getCpf(), cliente.getSenha())){
+            Integer time = remember != null ? 60*60 : 60*60*24;
+            CookieService.setCookie(response, "nome", String.valueOf(cliente.getNome()), time);
+            return "home/homeCliente";
         }
 
-        Cliente client = serviceCliente.loginCliente(cliente.getCpf(), cliente.getSenha());
-
-        if(client != null){
-            Integer time = remember != null ? 60*60 : 60*60*24;
-            CookieService.setCookies(request, "nome", String.valueOf(cliente.getNome()), time);
-            return "redirect:/homeCliente";
-        }
-
-        model.addAttribute("error", "Usuario ou senha incorretas");
+        model1.addAttribute("error", "Usuario ou senha incorretas");
         return "login/login";
     }
 
     @GetMapping("/logout")
-    public String logout(HttpServletResponse request) throws IOException{
-        CookieService.setCookies(request, "id", "", 0);
+    public String logout(HttpServletResponse response) throws IOException{
+        CookieService.setCookie(response, "id", "", 0);
+        CookieService.setCookie(response, "nome", "", 0);
         return "redirect:/login";
     }
 }

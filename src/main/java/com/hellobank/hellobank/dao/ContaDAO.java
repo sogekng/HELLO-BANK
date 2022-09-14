@@ -11,4 +11,7 @@ public interface ContaDAO extends CrudRepository<Conta, Integer> {
     @Query("SELECT p FROM Conta p WHERE p.id_conta = ?1")
 	public Conta encontrarPorId(Integer id);
 
+    @Query(value="select * from hellobank.conta where tipo = :tipo and id_cliente = :id_cliente", nativeQuery = true)
+    public Conta registerDaoConta(String tipo, Integer id_cliente);
+
 }

@@ -7,11 +7,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Home</title>
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
     <div id="wrapper">
@@ -31,14 +31,6 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/homeCliente">Home</a>
                         <a class="collapse-item" href="/conta">Conta</a>
-                        <!--<a class="collapse-item" th:href="@{'/conta/' + ${id_cliente.id_cliente}}">Contas</a>
-                        <a class="collapse-item" href="/administradores">Administradores</a>
-                        <a class="collapse-item" href="/clientes">Clientes</a>
-                        <a class="collapse-item" href="/login">Login</a>
-                        <a class="collapse-item" href="/register">Register</a>
-                        <a class="collapse-item" href="/forgot-password">Forgot Password</a>
-                        <a class="collapse-item" href="/404">404 Page</a>
-                        <a class="collapse-item" href="/blank">Blank Page</a>-->
                     </div>
                 </div>
             </li>
@@ -52,8 +44,6 @@
                 </a>
                 <div id="collapseTables" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <!--<a class="collapse-item" href="/administradores">Administradores</a>
-                        <a class="collapse-item" href="/clientes">Clientes</a>-->
                     </div>
                 </div>
             </li>
@@ -67,7 +57,7 @@
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="display:flex;align-items:center;">
-                    <h4 class="m-0 font-weight-bold text-primary">Ola cliente <p th:text="${nomeUsuario}" style="align-items:center;display: contents;"></p></h4>
+                    <h1 class="h3 mb-0 text-gray-800">Olá - <span th:text="${nomeCliente}"></span> seja muito bem vindo a sua área do cliente</h1>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
@@ -95,7 +85,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="/img/undraw_profile.svg">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
@@ -139,12 +129,12 @@
             </div>
         </div>
     </div>
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="js/sb-admin-2.min.js"></script>
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/js/sb-admin-2.min.js"></script>
+    <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 </body>

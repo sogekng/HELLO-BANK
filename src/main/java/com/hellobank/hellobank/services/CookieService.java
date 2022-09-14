@@ -11,18 +11,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class CookieService {
-    public static void setCookies(HttpServletResponse request, String key, String value, Integer seconds) throws IOException {
-        Cookie cookie = new Cookie(key, URLEncoder.encode(value, "UTF-8"));
-        cookie.setMaxAge(seconds);
-        cookie.setSecure(true);
-        cookie.setHttpOnly(true);
-        request.addCookie(cookie);
-    }
+  public static void setCookie(HttpServletResponse response, String key, String valor, int segundos) throws IOException{
+    Cookie cookie = new Cookie(key, URLEncoder.encode( valor, "UTF-8" ));
+    cookie.setMaxAge(segundos);
+    cookie.setHttpOnly(true);
+    response.addCookie(cookie);
+  }
 
-    public static String getCookies(HttpServletRequest request, String key) throws UnsupportedEncodingException{
-        String value = Optional.ofNullable(request.getCookies()).flatMap(cookies -> Arrays.stream(cookies).filter(cookie -> key.equals(cookie.getName())).findAny()).map(c -> c.getValue()).orElse(null);
+  public static String getCookie(HttpServletRequest request, String key) throws UnsupportedEncodingException{
+    String valor = Optional.ofNullable(request.getCookies())
+       .flatMap(cookies -> Arrays.stream(cookies)
+             .filter(cookie->key.equals(cookie.getName()))
+             .findAny()
+       )
+       .map(e-> e.getValue() )
+       .orElse(null);
 
-        value = URLDecoder.decode(value, "UTF-8");
-        return value;
-    }
+    valor = URLDecoder.decode(valor, "UTF-8");
+    return valor;
+  }
 }

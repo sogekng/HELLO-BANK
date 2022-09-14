@@ -5,9 +5,12 @@ import org.springframework.data.repository.CrudRepository;
 import com.hellobank.hellobank.model.Cliente;
 
 public interface ClienteDAO extends CrudRepository<Cliente, Integer> {
-    @Query(value="select * from hellobank.cliente where cpf = :cpf or email = :email", nativeQuery = true)
-    public Cliente registerDaoCliente(String cpf, String email);
+    @Query(value="select CASE WHEN count(1) > 0 THEN 'true' ELSE 'false' END  from cliente where cpf = :cpf and senha = :senha", nativeQuery = true)
+    public boolean existByLogin(String cpf, String senha);
 
-    @Query(value="select * from hellobank.cliente where cpf = :cpf and senha = :senha", nativeQuery = true)
-    public Cliente loginDaoCliente(String cpf, String senha);
+    @Query(value="select CASE WHEN count(1) > 0 THEN 'true' ELSE 'false' END  from cliente where cpf = :cpf", nativeQuery = true)
+    public boolean existByCpf(String cpf);
+
+    @Query(value="select CASE WHEN count(1) > 0 THEN 'true' ELSE 'false' END  from cliente where id = :id", nativeQuery = true)
+    public boolean existById(int id);
 }

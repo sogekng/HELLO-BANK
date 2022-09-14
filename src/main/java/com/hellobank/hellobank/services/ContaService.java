@@ -42,4 +42,8 @@ public class ContaService implements IContaService{
         return null;
     }
     
+    @Override
+    public Conta registerConta(String tipo, Integer id_cliente) {
+        return dao.registerDaoConta(tipo, id_cliente);
+    }
 }

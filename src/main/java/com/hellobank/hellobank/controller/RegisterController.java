@@ -8,26 +8,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.hellobank.hellobank.model.Cliente;
 import com.hellobank.hellobank.services.IClienteService;
 
+
 @Controller
 public class RegisterController {
 
     @Autowired
-    private IClienteService service;
+    private IClienteService serviceCliente;
 
     @GetMapping("/register")
-    public String register() {
+    public String register(){
         return "register/register";
     }
 
     @PostMapping("/register/create")
-    public String create(Model model, Cliente cliente) {
-        Cliente client = service.registerCliente(cliente.getCpf(), cliente.getEmail());
-
-        if(client != null){
-            model.addAttribute("erro", "Usuario ja existe");
+    public String create(Cliente cliente, Model model){
+        if(serviceCliente.toExistCpf(cliente.getCpf())){
+            model.addAttribute("err", "CPF já cadastrado");
             return "register/register";
         }else{
-            service.toCreate(cliente);
+            serviceCliente.toCreate(cliente);
+            model.addAttribute("ace", "Credenciais cadastradas com sucesso!");
             return "redirect:/login";
         }
     }

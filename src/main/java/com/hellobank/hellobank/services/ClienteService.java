@@ -1,5 +1,6 @@
 package com.hellobank.hellobank.services;
 
+import java.util.Optional;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +19,23 @@ public class ClienteService implements IClienteService {
     }
 
     @Override
-    public Cliente buscarPorId(Integer id) {
-        return dao.findById(id).orElse(null);
+    public Optional<Cliente> toSearch(Integer id) {
+        return dao.findById(id);
+    }
+
+    @Override
+    public boolean toExistId(Integer id) {
+        return dao.existsById(id);
+    }
+
+    @Override
+    public boolean toExistCpf(String cpf) {
+        return dao.existByCpf(cpf);
+    }
+
+    @Override
+    public boolean toExistLogin(String cpf, String senha) {
+        return dao.existByLogin(cpf, senha);
     }
 
     @Override
@@ -41,15 +57,5 @@ public class ClienteService implements IClienteService {
     @Override
     public void excluirCadastro(Integer id) {
         dao.deleteById(id);
-    }
-
-    @Override
-    public Cliente loginCliente(String cpf, String senha) {
-        return dao.loginDaoCliente(cpf, senha);
-    }
-
-    @Override
-    public Cliente registerCliente(String cpf, String email) {
-        return dao.registerDaoCliente(cpf, email);
     }
 }

@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Home</title>
+    <title>Cliente</title>
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
     <div id="wrapper">
@@ -29,15 +29,8 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/homeAdmin">Home</a>
-                        <a class="collapse-item" href="/administradores">Administradores</a>
-                        <a class="collapse-item" href="/contas">Contas</a>
-                        <a class="collapse-item" href="/clientes">Clientes</a>
-                        <a class="collapse-item" href="/login">Login</a>
-                        <a class="collapse-item" href="/register">Register</a>
-                        <a class="collapse-item" href="/forgot-password">Forgot Password</a>
-                        <a class="collapse-item" href="/404">404 Page</a>
-                        <a class="collapse-item" href="/blank">Blank Page</a>
+                        <a class="collapse-item" href="/homeCliente">Home</a>
+                        <a class="collapse-item" href="/conta">Contas</a>
                     </div>
                 </div>
             </li>
@@ -51,8 +44,6 @@
                 </a>
                 <div id="collapseTables" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/administradores">Administradores</a>
-                        <a class="collapse-item" href="/clientes">Clientes</a>
                     </div>
                 </div>
             </li>
@@ -65,8 +56,22 @@
         </ul>
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="display:flex;align-items:center;">
-                    <h4 class="m-0 font-weight-bold text-primary">Seja Bem-Vindo(a) <p th:text="${nomeAdmin}" style="align-items:center;display: contents;"></p></h4>
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
@@ -109,8 +114,9 @@
                 <div class="container-fluid">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3" style="display:flex;flex-direction:row;width:100%;align-items:center;justify-content:space-between;">
-                            <h6 class="m-0 font-weight-bold text-primary">Administradores</h6>
-                            <button class="btn btn-primary"><a href="/administradores" style="color: #fff;text-decoration:none;">Ver tabela</a></button>
+                            <h6 class="m-0 font-weight-bold text-primary">Contas</h6>
+                            <button class="btn btn-primary"><a href="#"  style="color: #fff;text-decoration:none;">Cria conta</a></button>
+                            <button class="btn btn-primary"><a th:href="@{'/conta/' + ${clientes.id_cliente}}"  style="color: #fff;text-decoration:none;">Ver extrato</a></button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -118,50 +124,19 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>NOME</th>
-                                            <th>CPF</th>
-                                            <th>SENHA</th>
+                                            <th>NUMERO</th>
+                                            <th>AGENCIA</th>
+                                            <th>TIPO</th>
+                                            <th>SALDO</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="adm : ${admin}">
-                                            <td th:text="${adm.id}"></td>
-                                            <td th:text="${adm.nome}"></td>
-                                            <td th:text="${adm.cpf}"></td>
-                                            <td th:text="${adm.senha}"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container-fluid">
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3" style="display:flex;flex-direction:row;width:100%;align-items:center;justify-content:space-between;">
-                            <h6 class="m-0 font-weight-bold text-primary">Clientes</h6>
-                            <button class="btn btn-primary"><a href="/clientes" style="color: #fff;text-decoration:none;">Ver tabela</a></button>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTableCliente" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>NOME</th>
-                                            <th>CPF</th>
-                                            <th>EMAIL</th>
-                                            <th>SENHA</th>
-                                            <th>TELEFONE</th>                           
-                                    </thead>
-                                    <tbody>
-                                        <tr th:each="clt : ${clien}">
-                                            <td th:text="${clt.id_cliente}"></td>
-                                            <td th:text="${clt.nome}"></td>
-                                            <td th:text="${clt.cpf}"></td>
-                                            <td th:text="${clt.email}"></td>
-                                            <td th:text="${clt.senha}"></td>
-                                            <td th:text="${clt.telefone}"></td>
+                                        <tr th:each="clcont : ${client}">
+                                            <td th:text="${cl.id_cliente}"></td>
+                                            <td th:text="${cl.numero}"></td>
+                                            <td th:text="${cl.agencia}"></td>
+                                            <td th:text="${cl.tipo}"></td>
+                                            <td th:text="${cl.saldo}"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -205,6 +180,7 @@
     <script src="/js/sb-admin-2.min.js"></script>
     <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="/js/datatables-demo.js"></script>
     <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 </body>
