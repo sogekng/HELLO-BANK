@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    
     <title>Conta</title>
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -20,7 +19,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/administradores">
-                <div class="sidebar-brand-text mx-3">Administradores</div>
+                <div class="sidebar-brand-text mx-3">Sua Conta</div>
             </a>
             <hr class="sidebar-divider">
             <li class="nav-item">
@@ -32,7 +31,7 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/homeCliente">Home</a>
-                        <a class="collapse-item" href="/conta">Conta</a>
+                        <a class="collapse-item" href="/conta">Contas</a>
                     </div>
                 </div>
             </li>
@@ -115,8 +114,9 @@
                 </nav>
                 <div class="container-fluid">
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Crie sua conta</h6>
+                        <div class="card-header py-3" style="display:flex;flex-direction:row;width:100%;align-items:center;justify-content:space-between;">
+                            <h6 class="m-0 font-weight-bold text-primary">Criar conta</h6>
+                            <button class="btn btn-primary"><a href="#create" style="color: #fff;text-decoration:none;">Novo</a></button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -124,42 +124,37 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>NUMERO</th>
-                                            <th>AGENCIA</th>
-                                            <th>TIPO</th>
-                                            <th>SALDO</th>
+                                            <th>NOME</th>
+                                            <th>CPF</th>
+                                            <th>SENHA</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="conta : ${cont}">
-                                            <td th:text="${conta.id_conta}"></td>
-                                            <td th:text="${conta.numero}"></td>
-                                            <td th:text="${conta.agencia}"></td>
-                                            <td th:text="${conta.tipo}"></td>
-                                            <td th:text="${conta.saldo}"></td>
+                                        <tr th:each="c : ${cliennt}">
+                                            <td th:text="${c.id_cliente}"></td>
+                                            <td th:text="${c.nome}"></td>
+                                            <td th:text="${c.cpf}"></td>
+                                            <td th:text="${c.senha}"></td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div id="edite" class="content-form" style="background-color: #fff;padding:20px;height:100%;width:100%;">
-                                    <form method="POST" th:action="@{'/conta/' +  ${conta.id_conta} + '/create'}">
-                                        <div class="form-group">
-                                            <label for="numero">Numero</label>
-                                            <input type="text" name="numero" class="form-control" th:text="${conta.numero}" id="nome" placeholder="Nome" autocomplete="off" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="agencia">Agencia</label>
-                                            <input type="text" name="agencia" class="form-control" th:text="${conta.agencia}" id="cpf" placeholder="000.000.000-00" required onkeypress="$(this).mask('000.000.000-00');" autocomplete="off">
-                                        </div>
-                                        <div class="form-group">
-                                            <select name="tipo" id="" th:value="${conta.tipo}">
-                                                <option value="" required>Conta corrente</option>
-                                                <option value="">Conta poupanca</option>
-                                            </select>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Criar</button>
-                                    </form>
-                                </div>
+                                <div th:if="${erroo != null}" th:text="${erroo}" class="alert alert-danger" role="alert"></div>
+                                <div th:if="${acer != null}" th:text="${acer}" class="alert alert-danger" role="alert"></div>
                             </div>
+                        </div>
+                        <div id="create" class="content-form" style="background-color: #fff;padding:20px;height:100%;width:100%;">
+                            <form  method="post">
+                                <div class="form-group">
+                                    <!--Olá<span th:if="${c.nome != null}" th:text="${c.nome}" class="alert alert-danger" role="alert"> crie sua conta para continuar</span>-->
+                                </div>
+                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                                    <option selected>Escolha o tipo de conta</option>
+                                    <option value="1">Conrente</option>
+                                    <option value="2">Poupanca</option>
+                                </select>
+    
+                                <button type="submit" class="btn btn-primary">Criar</button>
+                            </form>
                         </div>
                     </div>
                     <br>
@@ -200,8 +195,5 @@
     <script src="/js/sb-admin-2.min.js"></script>
     <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    <script src="/js/datatables-demo.js"></script>
     <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
-</body>
-</html>

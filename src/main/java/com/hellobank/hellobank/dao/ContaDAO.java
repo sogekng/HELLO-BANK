@@ -11,7 +11,10 @@ public interface ContaDAO extends CrudRepository<Conta, Integer> {
     @Query("SELECT p FROM Conta p WHERE p.id_conta = ?1")
 	public Conta encontrarPorId(Integer id);
 
-    @Query(value="select * from hellobank.conta where tipo = :tipo and id_cliente = :id_cliente", nativeQuery = true)
-    public Conta registerDaoConta(String tipo, Integer id_cliente);
+    @Query(value="select CASE WHEN count(1) > 0 THEN 'true' ELSE 'false' END  from conta where id_conta = :id_conta", nativeQuery = true)
+    public boolean existByCount(Integer id_conta);
+
+    @Query(value="select CASE WHEN count(1) > 0 THEN 'true' ELSE 'false' END  from conta where tipo = :tipo", nativeQuery = true)
+    public boolean existByType(String tipo);
 
 }

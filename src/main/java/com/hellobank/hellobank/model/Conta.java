@@ -45,14 +45,7 @@ public class Conta{
     @JsonIgnoreProperties("idConta")
     private List<Transacao> listaTransacoes;
 
-    public Conta() {
-    }
-
-    public Conta(String numero, String agencia, Double saldo) {
-        this.numero = String.valueOf(Integer.valueOf("789475") + (id_conta-1)) + "-9";
-        this.agencia = "0001";
-        this.saldo = 0.0;
-    }
+    
 
     public String getNumero() {
         return numero;

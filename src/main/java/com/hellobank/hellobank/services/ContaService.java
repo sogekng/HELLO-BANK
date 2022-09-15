@@ -25,7 +25,6 @@ public class ContaService implements IContaService{
         return dao.findById(id);
     }
     
-
     @Override
     public Conta toCreate(Conta novo) {
         if (novo != null){
@@ -43,7 +42,12 @@ public class ContaService implements IContaService{
     }
     
     @Override
-    public Conta registerConta(String tipo, Integer id_cliente) {
-        return dao.registerDaoConta(tipo, id_cliente);
+    public boolean toExistCount(Integer id_conta) {
+        return dao.existByCount(id_conta);
+    }
+
+    @Override
+    public boolean toExistType(String tipo) {
+        return dao.existByType(tipo);
     }
 }

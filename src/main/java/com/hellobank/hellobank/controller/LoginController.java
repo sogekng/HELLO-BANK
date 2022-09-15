@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.hellobank.hellobank.model.Administrador;
 import com.hellobank.hellobank.model.Cliente;
+import com.hellobank.hellobank.model.Conta;
 import com.hellobank.hellobank.services.CookieService;
 import com.hellobank.hellobank.services.IAdministradorService;
 import com.hellobank.hellobank.services.IClienteService;
+import com.hellobank.hellobank.services.IContaService;
+import java.util.Optional;
 
 @Controller
 public class LoginController {
@@ -22,6 +25,8 @@ public class LoginController {
     private IAdministradorService serviceAdmin;
     @Autowired
     private IClienteService serviceCliente;
+    @Autowired
+    private IContaService serviceConta;
 
     @GetMapping("/login")
     public String login(){
@@ -40,7 +45,8 @@ public class LoginController {
         else if(serviceCliente.toExistLogin(cliente.getCpf(), cliente.getSenha())){
             Integer time = remember != null ? 60*60 : 60*60*24;
             CookieService.setCookie(response, "nome", String.valueOf(cliente.getNome()), time);
-            return "home/homeCliente";
+            model1.addAttribute("cliennt", serviceCliente.listarTodos());
+            return "contas/create";
         }
 
         model1.addAttribute("error", "Usuario ou senha incorretas");
