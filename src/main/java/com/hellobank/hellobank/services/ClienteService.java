@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.hellobank.hellobank.dao.ClienteDAO;
 import com.hellobank.hellobank.model.Cliente;
+import com.hellobank.hellobank.model.Conta;
 
 @Service
 public class ClienteService implements IClienteService {
@@ -25,10 +26,15 @@ public class ClienteService implements IClienteService {
 
     @Override
     public Cliente criarNovo(Cliente novo) {
-        if (novo != null){
+        if(novo.getCpf() != null && novo.getNome() != null){
+            for(Conta conta: novo.getListaContas()) {
+                conta.setCliente(novo);
+            }
             return dao.save(novo);
         }
+
         return null;
+
     }
 
     @Override
