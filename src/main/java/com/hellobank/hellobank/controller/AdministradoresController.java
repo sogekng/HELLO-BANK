@@ -65,7 +65,7 @@ public class AdministradoresController {
 
     @GetMapping("/administradores/delete/{id}")
     public String delete(@PathVariable Integer id){
-            service.toDelete(id);
+        service.toDelete(id);
         return "redirect:/administradores";
     }
     

@@ -79,10 +79,11 @@ public class ContasController {
         return "contas/conta";
     }
 
-    @GetMapping("administrador/conta/{id}")
+    @GetMapping("/administrador/conta/{id}")
     public String searchAdmin(@PathVariable Integer id, Model model1, Model model2){
-        Optional<Conta> conta = service.toSearch(id);
+        Optional<Conta> conta = service.toSearchIdCliente(id);
         Optional<Cliente> cliente = serviceCliente.toSearch(id);
+
 
         try{
             if(conta != null){

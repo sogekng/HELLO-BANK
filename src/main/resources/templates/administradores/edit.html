@@ -33,7 +33,6 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/homeAdmin">Home</a>
                         <a class="collapse-item" href="/administradores">Administradores</a>
-                        <a class="collapse-item" href="/contas">Contas</a>
                         <a class="collapse-item" href="/clientes">Clientes</a>
                         <a class="collapse-item" href="/login">Login</a>
                         <a class="collapse-item" href="/register">Register</a>
@@ -145,6 +144,8 @@
                                     </tbody>
                                 </table>
                                 <div id="edite" class="content-form" style="background-color: #fff;padding:20px;height:100%;width:100%;">
+                                    <h6 class="m-0 font-weight-bold text-primary">Editar Administrador</h6>
+                                    <br>
                                     <form method="POST" th:action="@{'/administradores/' +  ${administrador.id} + '/update'}">
                                         <div class="form-group">
                                             <label for="nome">Nome</label>
@@ -202,7 +203,6 @@
     <script src="/js/sb-admin-2.min.js"></script>
     <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    <script src="/js/datatables-demo.js"></script>
     <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 </body>

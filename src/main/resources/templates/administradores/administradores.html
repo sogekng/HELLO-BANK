@@ -32,7 +32,6 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/homeAdmin">Home</a>
                         <a class="collapse-item" href="/administradores">Administradores</a>
-                        <a class="collapse-item" href="/contas">Contas</a>
                         <a class="collapse-item" href="/clientes">Clientes</a>
                         <a class="collapse-item" href="/login">Login</a>
                         <a class="collapse-item" href="/register">Register</a>
@@ -144,13 +143,31 @@
                                             <td th:text="${administrador.senha}"></td>
                                             <td>
                                                 <button class="btn btn-primary"><a href="#edite" style="color:#fff;text-decoration:none;" th:href="@{'/administradores/' + ${administrador.id}}">Editar</a></button>
-                                                <button class="btn btn-primary"><a href="#" th:onclick="'if(confirm(\'Tem certeza?\')) {window.location.href = \'' + @{/administradores/delete/{id}(id=${administrador.id})} + '\' } '" style="color:#fff;text-decoration:none;">Excluir</a></button>
+                                                <button class="btn btn-primary"><a style="color:#fff;text-decoration:none;" data-toggle="modal" data-target="#excluir">Excluir</a></button>                                      
                                             </td>
+                                            <div class="modal fade" id="excluir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Tem certeza?</h5>
+                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                                            <a class="btn btn-primary" th:href="@{'/administradores/delete/' + ${administrador.id}}">Excluir</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <div id="create" class="content-form" style="background-color: #fff;padding:20px;height:100%;width:100%;">
-                                    <form action="/administradores/create" method="POST">
+                                    <h6 class="m-0 font-weight-bold text-primary">Adicionar Administrador</h6>
+                                    <br>
+                                    <form action="/administradores/create" method="POST" id="create">
                                         <div class="form-group">
                                             <label for="nome">Nome</label>
                                             <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome" autocomplete="off" required>
