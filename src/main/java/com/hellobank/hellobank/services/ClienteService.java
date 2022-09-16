@@ -34,7 +34,7 @@ public class ClienteService implements IClienteService {
     }
 
     @Override
-    public boolean toExistLogin(String cpf, String senha) {
+    public Cliente toExistLogin(String cpf, String senha) {
         return dao.existByLogin(cpf, senha);
     }
 

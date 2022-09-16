@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.hellobank.hellobank.services.CookieService;
 import com.hellobank.hellobank.services.IClienteService;
 import com.hellobank.hellobank.services.IAdministradorService;
@@ -23,11 +25,6 @@ public class HomeController {
     @GetMapping("/")
     public String home(){
         return "login/login";
-    }
-
-    @GetMapping("/homeCliente")
-    public String homeCliente(){
-        return "home/homeCliente";
     }
         
     @GetMapping("/homeAdmin")

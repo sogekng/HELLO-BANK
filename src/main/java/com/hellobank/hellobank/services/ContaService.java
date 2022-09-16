@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.hellobank.hellobank.dao.ContaDAO;
+import com.hellobank.hellobank.model.Cliente;
 import com.hellobank.hellobank.model.Conta;
 
 @Service
@@ -24,11 +25,16 @@ public class ContaService implements IContaService{
     public Optional<Conta> toSearch(Integer id) {
         return dao.findById(id);
     }
+
+    @Override
+    public Optional<Conta> toSearchIdCliente(Integer id_cliente) {
+        return dao.findByIdCliente(id_cliente);
+    }
     
     @Override
-    public Conta toCreate(Conta novo) {
-        if (novo != null){
-            return dao.save(novo);
+    public Conta toCreate(Conta conta) {
+        if (conta != null){
+            return dao.save(conta);
         }
         return null;
     }
@@ -42,7 +48,7 @@ public class ContaService implements IContaService{
     }
     
     @Override
-    public boolean toExistCount(Integer id_conta) {
+    public boolean toExistId(Integer id_conta) {
         return dao.existByCount(id_conta);
     }
 

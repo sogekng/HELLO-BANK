@@ -30,8 +30,7 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/homeCliente">Home</a>
-                        <a class="collapse-item" href="/conta">Contas</a>
+                        <a class="collapse-item" href="/clientes/conta">Home</a>
                     </div>
                 </div>
             </li>
@@ -115,8 +114,7 @@
                 <div class="container-fluid">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3" style="display:flex;flex-direction:row;width:100%;align-items:center;justify-content:space-between;">
-                            <h6 class="m-0 font-weight-bold text-primary">Criar conta</h6>
-                            <button class="btn btn-primary"><a href="#create" style="color: #fff;text-decoration:none;">Novo</a></button>
+                            <h5 th:text="${cliennt.nome}" class="m-0 font-weight-bold text-primary"></h5>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -127,6 +125,7 @@
                                             <th>NOME</th>
                                             <th>CPF</th>
                                             <th>SENHA</th>
+                                            <th>AÇÕES</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -135,26 +134,14 @@
                                             <td th:text="${c.nome}"></td>
                                             <td th:text="${c.cpf}"></td>
                                             <td th:text="${c.senha}"></td>
+                                            <td>
+                                                <button class="btn btn-primary"><a href="#edite" style="color:#fff;text-decoration:none;" th:href="@{'/clientes/conta/' + ${cliennt.id_cliente}}">Ver conta</a></button>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <div th:if="${erroo != null}" th:text="${erroo}" class="alert alert-danger" role="alert"></div>
-                                <div th:if="${acer != null}" th:text="${acer}" class="alert alert-danger" role="alert"></div>
                             </div>
-                        </div>
-                        <div id="create" class="content-form" style="background-color: #fff;padding:20px;height:100%;width:100%;">
-                            <form  method="post">
-                                <div class="form-group">
-                                    <!--Olá<span th:if="${c.nome != null}" th:text="${c.nome}" class="alert alert-danger" role="alert"> crie sua conta para continuar</span>-->
-                                </div>
-                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                                    <option selected>Escolha o tipo de conta</option>
-                                    <option value="1">Conrente</option>
-                                    <option value="2">Poupanca</option>
-                                </select>
-    
-                                <button type="submit" class="btn btn-primary">Criar</button>
-                            </form>
                         </div>
                     </div>
                     <br>

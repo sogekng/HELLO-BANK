@@ -14,10 +14,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.Random;
 
 @Entity
 @Table(name = "conta")
 public class Conta{
+
+    //Random gerador = new Random(19700621);
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +30,7 @@ public class Conta{
     @Column(name="numero", length =20, nullable = false)
     private String numero;
 
-    @Column(name="agencia", length=7, nullable = false)
+    @Column(name="agencia", length=8, nullable = false)
     private String agencia;
 
     @Column(name="tipo", length=20, nullable = false)
@@ -44,8 +47,6 @@ public class Conta{
     @OneToMany(mappedBy="idConta", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("idConta")
     private List<Transacao> listaTransacoes;
-
-    
 
     public String getNumero() {
         return numero;

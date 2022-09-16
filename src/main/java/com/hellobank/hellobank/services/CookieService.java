@@ -15,6 +15,8 @@ public class CookieService {
     Cookie cookie = new Cookie(key, URLEncoder.encode( valor, "UTF-8" ));
     cookie.setMaxAge(segundos);
     cookie.setHttpOnly(true);
+    cookie.setSecure(true);
+    cookie.setPath("/");
     response.addCookie(cookie);
   }
 

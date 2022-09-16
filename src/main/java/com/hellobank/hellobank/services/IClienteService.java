@@ -9,7 +9,7 @@ public interface IClienteService  {
     public Optional<Cliente> toSearch(Integer id);
     public boolean toExistId(Integer id);
     public boolean toExistCpf(String cpf);
-    public boolean toExistLogin(String cpf, String senha);
+    public Cliente toExistLogin(String cpf, String senha);
     public Cliente toCreate(Cliente cliente);
     public Cliente atualizarDados(  Cliente dados);
     public void excluirCadastro(Integer id);

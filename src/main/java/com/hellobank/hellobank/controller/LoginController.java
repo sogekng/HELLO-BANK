@@ -28,6 +28,13 @@ public class LoginController {
     @Autowired
     private IContaService serviceConta;
 
+    @GetMapping("/forgotPassword")
+    public String forgotPassword(){
+        return "login/forgot-password";
+    }
+
+    
+
     @GetMapping("/login")
     public String login(){
         return "login/login";
@@ -35,18 +42,19 @@ public class LoginController {
 
     @PostMapping("/logon")
     public String logon(Model model1, Model model2, Administrador administrador, Cliente cliente, String remember, HttpServletResponse response) throws IOException{
+        Cliente clien = this.serviceCliente.toExistLogin(cliente.getCpf(), cliente.getSenha());
+        //Administrador admin = this.serviceAdmin.toExistLogin(administrador.getCpf(), administrador.getSenha());
         if(serviceAdmin.toExistLogin(administrador.getCpf(), administrador.getSenha())){
             Integer time = remember != null ? 60*60 : 60*60*24;
             CookieService.setCookie(response, "nome", String.valueOf(administrador.getNome()), time);
             model1.addAttribute("admin", serviceAdmin.listarTodos());
             model2.addAttribute("clien", serviceCliente.listarTodos());
             return "home/homeAdmin";
-        }
-        else if(serviceCliente.toExistLogin(cliente.getCpf(), cliente.getSenha())){
+
+        }else if (clien != null) {
             Integer time = remember != null ? 60*60 : 60*60*24;
-            CookieService.setCookie(response, "nome", String.valueOf(cliente.getNome()), time);
-            model1.addAttribute("cliennt", serviceCliente.listarTodos());
-            return "contas/create";
+            CookieService.setCookie(response, "id_cliente", String.valueOf(clien.getId_cliente()), time);
+            return "redirect:/clientes/conta";
         }
 
         model1.addAttribute("error", "Usuario ou senha incorretas");

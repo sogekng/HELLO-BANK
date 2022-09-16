@@ -30,8 +30,7 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/homeCliente">Home</a>
-                        <a class="collapse-item" href="/conta">Contas</a>
+                        <a class="collapse-item" href="/clientes/conta">Home</a>
                     </div>
                 </div>
             </li>
@@ -115,8 +114,8 @@
                 <div class="container-fluid">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3" style="display:flex;flex-direction:row;width:100%;align-items:center;justify-content:space-between;">
-                            <h6 class="m-0 font-weight-bold text-primary">Conta</h6>
-                            <button class="btn btn-primary"><a href="#create"  style="color: #fff;text-decoration:none;">Novo</a></button>
+                            <h5 th:text="${cliennn.nome}" class="m-0 font-weight-bold text-primary"></h5>
+                            <button class="btn btn-primary"><a href=""  style="color: #fff;text-decoration:none;">Nova Conta</a></button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -140,8 +139,45 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div th:if="${erro != null}" th:text="${erro}" class="alert alert-danger" role="alert"></div>
-                                <div th:if="${acer != null}" th:text="${acer}" class="alert alert-danger" role="alert"></div>
+                                <div th:if="${accertt != null}" th:text="${accertt}" class="alert alert-success" role="alert"></div>
+                                <div th:if="${erro != null}">
+                                    <p th:text="${erro}" class="alert alert-danger" role="alert"></p>
+                                    <div id="create" class="content-form" style="background-color: #fff;padding:20px;height:100%;width:100%;">
+                                        <h6 class="m-0 font-weight-bold text-primary">Crie sua conta</h6>
+                                        <br>
+                                        <form role="form" th:action="@{/clientes/conta} + '/'+ ${cliennn.id_cliente} + '/create' " method="POST">
+                                            
+                                            <div class="form-group row">
+                                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                                    <label for="agencia">Agencia</label>
+                                                    <input type="text" class="form-control" id="agencia" name="agencia" value="0001" placeholder="Agencia" readonly>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label for="numero">Numero</label>
+                                                    <input type="text" class="form-control" id="numero" name="numero" placeholder="Numero" readonly>
+                                                    <script>
+                                                        var numero = String(789475 + Math.floor(Math.random() * 10000)) + "-" + String(Math.floor(Math.random() * 10));
+                                                        document.getElementById("numero").value = numero;
+                                                    </script>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <input type="hidden" class="form-control" id="saldo" name="saldo" value="0.0" placeholder="Saldo" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <select name="tipo" id="tipo" class="form-control" required>
+                                                    <option value="Corrente">Corrente</option>
+                                                    <option value="Poupanca">Poupanca</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="hidden" class="form-control" name="cliente" th:value="${cliennn.id_cliente}" readonly>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Criar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div th:if="${acertt != null}" th:text="${acertt}" class="alert alert-danger" role="alert"></div>
                             </div>
                         </div>
                     </div>
