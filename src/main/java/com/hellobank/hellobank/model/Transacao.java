@@ -19,12 +19,8 @@ public class Transacao {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_trasacao")
-    private Integer id_trasacao;
-
     @Column(name = "id_transacao")
     private Integer id_transacao;
-
 
     @Column(name = "tipo")
     private String tipo;
@@ -34,15 +30,6 @@ public class Transacao {
 
     @Column(name = "data_transacao", length = 20, nullable = false)
     private LocalDate dataTransacao;
-
-
-    public Integer getId_trasacao() {
-        return id_trasacao;
-    }
-
-    public void setId_trasacao(Integer id_trasacao) {
-        this.id_trasacao = id_trasacao;
-    }
 
     @ManyToOne
     @JoinColumn(name="id_conta")
