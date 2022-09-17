@@ -63,15 +63,23 @@ public class TransacaoController {
     }
 
     @PostMapping("/transferencia/{id}")
-    public String transferencia(Transacao nova, @PathVariable Integer id, Model model){
+    public String transferencia(@PathVariable Integer id, Transacao nova, Model model, Integer idDestino){
 
-        Transacao res = service.transferir(nova, id);
-        if (res != null){
-            model.addAttribute("accertt", "Transferência realizada com sucesso!");
+        if(nova.getTipo().equals("transferencia")){
+            service.transferir(nova, idDestino);
         }else{
-            model.addAttribute("errooo", "Transferência não realizada!");
+            service.criarNovo(nova);
         }
-        return "redirect:/clientes/conta";
+
+        return "clientes/conta";
+
+        //Transacao res = service.transferir(nova, id);
+        //if (res != null){
+        //    model.addAttribute("accertt", "Transferência realizada com sucesso!");
+        //}else{
+        //    model.addAttribute("errooo", "Transferência não realizada!");
+        //}
+        //return "clientes/conta";
     }
 
 }

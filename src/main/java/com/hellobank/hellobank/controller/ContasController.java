@@ -16,6 +16,8 @@ import com.hellobank.hellobank.services.IClienteService;
 import org.springframework.stereotype.Controller;
 import javax.servlet.http.HttpServletRequest;
 import com.hellobank.hellobank.services.CookieService;
+import com.hellobank.hellobank.model.Transacao;
+import com.hellobank.hellobank.services.ITransacaoService;
 
 @Controller
 public class ContasController {
@@ -24,6 +26,8 @@ public class ContasController {
     IContaService service;
     @Autowired
     IClienteService serviceCliente;
+    @Autowired
+    ITransacaoService serviceTransacao;
 
     @GetMapping("/contas")
     public String contas(Model model1, Model model2){
@@ -99,6 +103,30 @@ public class ContasController {
     @GetMapping("/contas/busca")
     public ArrayList<Conta> buscarPorTipo(@RequestParam(name = "palavraChave") String palavraChave){
         return service.buscarPorTipo(palavraChave);
+    }
+
+
+    @PostMapping("/transferir/{id}")
+    public String deposito(@PathVariable Integer id, Model model, Integer idCliente){
+
+        return "/transferencia/" + idCliente;
+
+
+        //Optional<Conta> conta = service.toSearchIdCliente(id);
+        //Optional<Cliente> cliente = serviceCliente.toSearch(id);
+//
+        //Transacao res = serviceTransacao.criarNovo(nova);
+        //if (res != null){
+        //    model1.addAttribute("accertt", "Transferência realizada com sucesso!");
+        //    model2.addAttribute("cont", conta.get());
+        //    model3.addAttribute("cliennn", cliente.get());
+        //    
+        //}else{
+        //    model1.addAttribute("errooo", "Transferência não realizada!");
+        //    model2.addAttribute("cont", conta.get());
+        //    model3.addAttribute("cliennn", cliente.get());
+        //}
+        //return "contas/conta";
     }
     
 }

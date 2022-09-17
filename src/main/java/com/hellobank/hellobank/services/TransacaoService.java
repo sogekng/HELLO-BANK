@@ -38,7 +38,7 @@ public class TransacaoService implements ITransacaoService {
     public Transacao criarNovo(Transacao novo) {
         Conta conta = daoConta.encontrarPorId(novo.getIdConta().getId_conta());
         if (novo != null) {
-            if ("saque".equals(novo.getTipo()) && "Poupança".equals(conta.getTipo())){
+            if ("saque".equals(novo.getTipo()) && "Poupanca".equals(conta.getTipo())){
                 if (novo.getValor() > conta.getSaldo()){
                     return null;
                 } else {

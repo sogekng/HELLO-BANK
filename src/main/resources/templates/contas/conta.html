@@ -181,7 +181,7 @@
                             <div th:if="${erro == null}">
                                 <h5 class="m-0 font-weight-bold text-primary">Area de tranferencia</h5>
                                 <br>
-                                <form method="POST" th:action="@{/transferencia} + '/'+ ${cliennn.id_cliente}" th:each="consss : ${cont}">
+                                <form method="POST" th:action="@{/transferir} + '/'+ ${cliennn.id_cliente}" th:each="consss : ${cont}">
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3">
                                             <div class="input-group-prepend">
@@ -190,7 +190,6 @@
                                                     document.getElementById("dt").value = new Date().toISOString().slice(0, 10);
                                                     document.getElementById('dt').max = new Date().toISOString().split("T")[0];
                                                     document.getElementById('dt').min = new Date().toISOString().split("T")[0];
-
                                                 </script>
                                             </div>
                                         </div>
@@ -205,11 +204,23 @@
                                             <input type="hidden" class="form-control" name="idConta" th:value="${consss.id_conta}" readonly>
                                         </div>
                                     </div>
+                                    <script>
+                                        if(document.getElementById("tipo").value == "transferencia"){
+                                            document.getElementById("transferencia").style.opacity = 1;
+                                        }
+                                    </script>
                                     <div class="form-group">
                                         <select name="tipo" id="tipo" class="form-control" required>
                                             <option value="saque">Saque</option>
                                             <option value="deposito">Deposito</option>
+                                            <option value="transferencia">Transferencia</option>
                                         </select>
+                                    </div>
+                                    <div id="transferencia" style="opacity:0;">
+                                        <div class="form-group">
+                                            <label for="cpf_cliente">CPF do Cliente</label>
+                                            <input type="text" class="form-control" id="cpf_cliente" name="cpf_cliente" placeholder="000.000.000-00" required onkeypress="$(this).mask('000.000.000-00');" autocomplete="off">
+                                        </div>
                                     </div>
                                     <br>
                                     <div class="form-group" style="display: flex;justify-content:end;">

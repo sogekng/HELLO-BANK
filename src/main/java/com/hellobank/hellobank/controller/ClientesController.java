@@ -14,12 +14,16 @@ import org.springframework.ui.Model;
 import com.hellobank.hellobank.model.Cliente;
 import com.hellobank.hellobank.services.IClienteService;
 import org.springframework.stereotype.Controller;
+import com.hellobank.hellobank.model.Transacao;
+import com.hellobank.hellobank.services.ITransacaoService;
 
 @Controller
 public class ClientesController {
     
     @Autowired
     private IClienteService service;
+    @Autowired
+    private ITransacaoService serviceTransferencia;
 
 
     @GetMapping("/clientes")
