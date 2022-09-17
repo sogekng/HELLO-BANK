@@ -24,6 +24,7 @@ public class ClienteController {
     
     @Autowired
     private IClienteService service;
+    
 
     @ApiResponses({
         @ApiResponse(code = 200, message = "OK"),
@@ -65,9 +66,13 @@ public class ClienteController {
     @PostMapping("/clientes")
     public ResponseEntity<Cliente> criarNovo(@RequestBody Cliente novo){
         Cliente res = service.criarNovo(novo);
-        if (res != null){
+        
+        
+
+        if (res != null ){
             return ResponseEntity.ok(novo);
         }
+        
         return ResponseEntity.badRequest().build();
     }
 

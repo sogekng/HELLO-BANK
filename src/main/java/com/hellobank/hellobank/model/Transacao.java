@@ -20,7 +20,7 @@ public class Transacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_transacao")
-    private Integer id_transacao;
+    private Integer id;
 
     @Column(name = "tipo")
     private String tipo;
@@ -54,12 +54,12 @@ public class Transacao {
 
     
 
-    public Integer getId_transacao() {
-        return id_transacao;
+    public Integer getId() {
+        return id;
     }
 
-    public void setId_transacao(Integer id_transacao) {
-        this.id_transacao = id_transacao;
+    public void setId_transacao(Integer id) {
+        this.id = id;
     }
 
     public Conta getIdConta() {
@@ -74,8 +74,8 @@ public class Transacao {
         return dataTransacao;
     }
 
-    public void setDataTransacao(LocalDate data_transacao) {
-        this.dataTransacao = data_transacao;
+    public void setDataTransacao(LocalDate dataTransacao) {
+        this.dataTransacao = dataTransacao;
     }
 
 }

@@ -16,7 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 @Entity
 @Table(name="conta")
 public class Conta{
@@ -24,9 +23,9 @@ public class Conta{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_conta")
-    private Integer id_conta;
+    private Integer id;
 
-    @Column(name="numero", length =20, nullable = false)
+    @Column(name="numero", length =20, nullable = false, unique=true)
     private String numero;
 
     @Column(name="agencia", length=7, nullable = false)
@@ -91,11 +90,11 @@ public class Conta{
         this.cliente = cliente;
     }
 
-    public Integer getId_conta() {
-        return id_conta;
+    public Integer getId() {
+        return id;
     }
 
-    public void setId_conta(Integer id_conta) {
-        this.id_conta = id_conta;
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

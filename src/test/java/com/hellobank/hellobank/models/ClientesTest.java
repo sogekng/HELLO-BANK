@@ -1,5 +1,4 @@
 package com.hellobank.hellobank.models;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
@@ -8,10 +7,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.hellobank.hellobank.model.Cliente;
 
 @SpringBootTest
-class ClinetesTest {
+class ClientesTest {
 
 	@Test
-	void validarPorpiedadesCliente() {
+	void validarPropCliente() {
 		var cliente = new Cliente();
 		cliente.setNome("Pedro");
 
@@ -19,8 +18,7 @@ class ClinetesTest {
 		cliente.setSenha("1234aNt@");
 		cliente.setTelefone("(00) 00000-0000");
 		cliente.setCpf("000.000.00-00");
-		//assertequal é uma função que faz uma validacao sobre um dado
-		;
+		
 		assertEquals("Pedro", cliente.getNome());
 		assertEquals("pedro@teste.com", cliente.getEmail());
 		assertEquals("1234aNt@", cliente.getSenha());

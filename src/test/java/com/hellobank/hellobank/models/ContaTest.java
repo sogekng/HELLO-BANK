@@ -14,7 +14,7 @@ class ContaTest {
 	
 
 	@Test
-	void validarPorpiedadesCliente() {
+	void validarPropCliente() {
 		var conta = new Conta();
 		conta.setNumero("0000000-0");
 

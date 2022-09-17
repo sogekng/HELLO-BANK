@@ -20,15 +20,15 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_cliente")
-    private Integer id_cliente;
+    private Integer id;
 
     @Column(name = "nome", length = 70, nullable = false)
     private String nome;
 
-    @Column(name = "cpf", length = 20, nullable = false)
+    @Column(name = "cpf", length = 20, nullable = false, unique=true)
     private String cpf;
 
-    @Column(name = "email", length = 70, nullable = false)
+    @Column(name = "email", length = 70, nullable = false, unique=true)
     private String email;
 
     @Column(name = "senha", length = 70, nullable = false)
@@ -41,12 +41,12 @@ public class Cliente {
     @JsonIgnoreProperties("cliente")
     private List<Conta> listaContas;
 
-    public Integer getId_cliente() {
-        return id_cliente;
+    public Integer getId() {
+        return id;
     }
 
-    public void setId_cliente(Integer id_cliente) {
-        this.id_cliente = id_cliente;
+    public void setIdCliente(Integer idCliente) {
+        this.id = idCliente;
     }
 
     public String getNome() {
