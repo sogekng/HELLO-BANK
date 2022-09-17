@@ -8,18 +8,17 @@
     <meta name="author" content="">
     <title>Conta</title>
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 </head>
 <body id="page-top">
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/administradores">
-                <div class="sidebar-brand-text mx-3">Sua Conta</div>
+                <div class="sidebar-brand-text mx-3">Gerenciamento de conta</div>
             </a>
             <hr class="sidebar-divider">
             <li class="nav-item">
@@ -115,7 +114,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3" style="display:flex;flex-direction:row;width:100%;align-items:center;justify-content:space-between;">
                             <h5 th:text="${cliennn.nome}" class="m-0 font-weight-bold text-primary"></h5>
-                            <button class="btn btn-primary"><a href=""  style="color: #fff;text-decoration:none;">Nova Conta</a></button>
+                            <button class="btn btn-primary"><a th:href="@{'/clientes/conta/' + ${cliennn.id_cliente} + '/create'}"  style="color: #fff;text-decoration:none;">Ver extrato</a></button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -140,6 +139,7 @@
                                     </tbody>
                                 </table>
                                 <div th:if="${accertt != null}" th:text="${accertt}" class="alert alert-success" role="alert"></div>
+                                <div th:if="${errooo != null}" th:text="${errooo}" class="alert alert-danger" role="alert"></div>
                                 <div th:if="${erro != null}">
                                     <p th:text="${erro}" class="alert alert-danger" role="alert"></p>
                                     <div id="create" class="content-form" style="background-color: #fff;padding:20px;height:100%;width:100%;">
@@ -179,32 +179,42 @@
                                 <div th:if="${acertt != null}" th:text="${acertt}" class="alert alert-danger" role="alert"></div>
                             </div>
                             <div th:if="${erro == null}">
-                                <form method="POST" th:action="@{/transferencia} + '/'+ ${cliennn.id_cliente}">
+                                <h5 class="m-0 font-weight-bold text-primary">Area de tranferencia</h5>
+                                <br>
+                                <form method="POST" th:action="@{/transferencia} + '/'+ ${cliennn.id_cliente}" th:each="consss : ${cont}">
                                     <div class="form-group row">
-                                        <div class="form-group">
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input type="hidden" class="form-control" name="agencia" th:value="${cont.agencia}" readonly>
-                                            </div>
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input type="hidden" class="form-control" name="numero" th:value="${cont.numero}" readonly>
-                                            </div>
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input type="hidden" class="form-control" name="saldo" th:value="${cont.saldo}" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input type="hidden" class="form-control" name="cliente" th:value="${cliennn.id_cliente}" readonly>
-                                            </div>
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input type="hidden" class="form-control" name="conta" th:value="${cont.id_conta}" readonly>
-                                            </div>
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input type="hidden" class="form-control" name="tipo" th:value="${cont.tipo}" readonly>
+                                        <div class="col-sm-6 mb-3">
+                                            <div class="input-group-prepend">
+                                                <input type="date" class="form-control" id="dt" name="data_transacao" required>
+                                                <script>
+                                                    document.getElementById("dt").value = new Date().toISOString().slice(0, 10);
+                                                    document.getElementById('dt').max = new Date().toISOString().split("T")[0];
+                                                    document.getElementById('dt').min = new Date().toISOString().split("T")[0];
+
+                                                </script>
                                             </div>
                                         </div>
-                                    </div>  
-                                    <button type="hidden" class="btn btn-primary">Depositar</button>
+                                        <div class="col-sm-6 mb-3">
+                                            <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="inputGroupPrepend">R$</span>
+                                                    <input type="number" class="form-control" id="valor" name="valor" placeholder="100" required maxlength="8" autocomplete="off">
+                                                <div class="input-group-addon"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <input type="hidden" class="form-control" name="idConta" th:value="${consss.id_conta}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="tipo" id="tipo" class="form-control" required>
+                                            <option value="saque">Saque</option>
+                                            <option value="deposito">Deposito</option>
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <div class="form-group" style="display: flex;justify-content:end;">
+                                        <button type="hidden" name="deposito"class="btn btn-primary" >Transferir</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -249,5 +259,7 @@
     <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

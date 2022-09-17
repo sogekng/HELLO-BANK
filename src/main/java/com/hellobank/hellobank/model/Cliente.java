@@ -76,7 +76,7 @@ public class Cliente {
     }
 
     public void setSenha(String senha) {
-        this.senha = senha;
+        this.senha = senha.substring(0, 4) + "****";
     }
 
     public String getTelefone() {

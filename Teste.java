@@ -1,10 +1,24 @@
-public class Teste {
-    public static void main(String[] args){
-        System.out.print("Hello World");
-    }
+enum Cores 
+
+{
+
+Vermelho, Verde, Azul, Amarela, Preta;  
+
 }
 
-void main()
+public class UsaEnumeracao
+
 {
-    printf("Hello World");
+
+public static void main(String[] args) 
+
+{
+
+for (Cores c : Cores.values())
+
+System.out.println(c + " - " + c.ordinal());    
+
 }
+
+}
+

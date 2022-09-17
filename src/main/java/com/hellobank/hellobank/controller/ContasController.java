@@ -40,8 +40,8 @@ public class ContasController {
     }
 
     @PostMapping("/clientes/conta/{id}/create")
-    public String create(@PathVariable Integer id, Conta conta, Model model1, Model model2, Model model3){
-        Optional<Conta> cont = service.toSearchIdCliente(id);
+    public String create(@PathVariable Integer id, String tipo, Conta conta, Model model1, Model model2, Model model3){
+        Optional<Conta> cont = service.toSearchCount(id, tipo);
         Optional<Cliente> cliente = serviceCliente.toSearch(id);
 
         try{
@@ -60,7 +60,6 @@ public class ContasController {
             return "contas/conta";
         }
     }
-        
 
     @GetMapping("/clientes/conta/{id}")
     public String searchCliente(@PathVariable Integer id, Model model1, Model model2, Model model3){
@@ -84,7 +83,6 @@ public class ContasController {
         Optional<Conta> conta = service.toSearchIdCliente(id);
         Optional<Cliente> cliente = serviceCliente.toSearch(id);
 
-
         try{
             if(conta != null){
                 model1.addAttribute("contss", conta.get());
@@ -94,6 +92,7 @@ public class ContasController {
         }catch(Exception e){
             model1.addAttribute("erroor", "Conta não exite");
         }
+
         return "administradores/conta";
     }
 

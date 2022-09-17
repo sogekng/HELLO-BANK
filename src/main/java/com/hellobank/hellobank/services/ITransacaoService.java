@@ -1,6 +1,8 @@
 package com.hellobank.hellobank.services;
 
 import java.util.ArrayList;
+
+import com.hellobank.hellobank.model.Conta;
 import com.hellobank.hellobank.model.Transacao;
 
 public interface ITransacaoService {
@@ -10,6 +12,4 @@ public interface ITransacaoService {
     public Transacao buscarPorId(Integer id);
     public Transacao criarNovo(Transacao novo);
     public Transacao transferir(Transacao nova, Integer id);
-    
-    
 }

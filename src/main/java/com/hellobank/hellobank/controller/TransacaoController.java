@@ -1,7 +1,6 @@
 package com.hellobank.hellobank.controller;
 
 import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.ui.Model;
 import com.hellobank.hellobank.model.Transacao;
 import com.hellobank.hellobank.services.ITransacaoService;
 
@@ -64,12 +63,15 @@ public class TransacaoController {
     }
 
     @PostMapping("/transferencia/{id}")
-    public ResponseEntity<Transacao> transferencia(@RequestBody Transacao nova, @PathVariable Integer id){
+    public String transferencia(Transacao nova, @PathVariable Integer id, Model model){
+
         Transacao res = service.transferir(nova, id);
         if (res != null){
-            return ResponseEntity.ok(res);
+            model.addAttribute("accertt", "Transferência realizada com sucesso!");
+        }else{
+            model.addAttribute("errooo", "Transferência não realizada!");
         }
-        return ResponseEntity.badRequest().build();
+        return "redirect:/clientes/conta";
     }
 
 }

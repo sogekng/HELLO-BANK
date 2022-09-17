@@ -27,8 +27,18 @@ public class ContaService implements IContaService{
     }
 
     @Override
+    public Optional<Conta> toSearchCount(Integer id_cliente, String tipo) {
+        return dao.findByCount(id_cliente, tipo);
+    }
+
+    @Override
     public Optional<Conta> toSearchIdCliente(Integer id_cliente) {
         return dao.findByIdCliente(id_cliente);
+    }
+
+    @Override
+    public ArrayList<Conta> toListCounts(Integer id_cliente) {
+        return (ArrayList<Conta>) dao.findByIdClienteArray(id_cliente);
     }
     
     @Override
@@ -45,15 +55,5 @@ public class ContaService implements IContaService{
             return dao.findByTipoContaining(palavraChave);
         }
         return null;
-    }
-    
-    @Override
-    public boolean toExistId(Integer id_conta) {
-        return dao.existByCount(id_conta);
-    }
-
-    @Override
-    public boolean toExistType(String tipo) {
-        return dao.existByType(tipo);
     }
 }
