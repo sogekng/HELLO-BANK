@@ -11,24 +11,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.ui.Model;
 import com.hellobank.hellobank.model.Transacao;
+import com.hellobank.hellobank.model.Conta;
+import com.hellobank.hellobank.model.Cliente;
+import com.hellobank.hellobank.services.IContaService;
+import com.hellobank.hellobank.services.IClienteService;
 import com.hellobank.hellobank.services.ITransacaoService;
-
+import java.util.Optional;
 
 
 @RestController
 public class TransacaoController {
     
     @Autowired
-    private ITransacaoService service;
-
-    @GetMapping("/transacao")
-    public ArrayList<Transacao> listarTodos() {
-        return service.listarTodos();
-    }
+    IContaService serviceConta;
+    @Autowired
+    IClienteService serviceCliente;
+    @Autowired
+    ITransacaoService serviceTransacao;
 
     @GetMapping("/transacao/{id}")
     public ResponseEntity<Transacao> buscarPorId(@PathVariable Integer id) {
-        Transacao res = service.buscarPorId(id);
+        Transacao res = serviceTransacao.buscarPorId(id);
         if (res != null) {
             return ResponseEntity.ok(res);
         }
@@ -37,7 +40,7 @@ public class TransacaoController {
 
     @PostMapping("/transacao")
     public ResponseEntity<Transacao> criarNovo(@RequestBody Transacao novo){
-        Transacao res = service.criarNovo(novo);
+        Transacao res = serviceTransacao.criarNovo(novo);
         if (res != null){
             return ResponseEntity.ok(novo);
         }
@@ -46,7 +49,7 @@ public class TransacaoController {
 
     @GetMapping("/transacao/busca")
     public ResponseEntity<ArrayList<Transacao>> buscarPorTipo(@RequestParam(name = "palavraChave") String palavraChave){
-        var res = service.buscarPorTipo(palavraChave);
+        var res = serviceTransacao.buscarPorTipo(palavraChave);
         if (res != null){
             return ResponseEntity.ok(res);
         }
@@ -55,31 +58,11 @@ public class TransacaoController {
 
     @GetMapping("/extrato/{id}")
     public ArrayList<String> extrato(@PathVariable Integer id){
-        ArrayList<String> res = service.extrato(id);
+        ArrayList<String> res = serviceTransacao.extrato(id);
         if (id != null) {
             return res;            
         }
         return null;
-    }
-
-    @PostMapping("/transferencia/{id}")
-    public String transferencia(@PathVariable Integer id, Transacao nova, Model model, Integer idDestino){
-
-        if(nova.getTipo().equals("transferencia")){
-            service.transferir(nova, idDestino);
-        }else{
-            service.criarNovo(nova);
-        }
-
-        return "clientes/conta";
-
-        //Transacao res = service.transferir(nova, id);
-        //if (res != null){
-        //    model.addAttribute("accertt", "Transferência realizada com sucesso!");
-        //}else{
-        //    model.addAttribute("errooo", "Transferência não realizada!");
-        //}
-        //return "clientes/conta";
     }
 
 }

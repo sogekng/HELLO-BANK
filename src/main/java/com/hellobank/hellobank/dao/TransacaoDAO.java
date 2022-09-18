@@ -19,7 +19,4 @@ public interface TransacaoDAO extends CrudRepository<Transacao, Integer> {
     //@Query(value = "SELECT * FROM hellobank.conta where id_cliente = :id_cliente", nativeQuery = true)
     //public String findByCpf(String cpf);
 
-
-
-
 }

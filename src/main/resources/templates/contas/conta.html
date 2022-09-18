@@ -181,22 +181,21 @@
                             <div th:if="${erro == null}">
                                 <h5 class="m-0 font-weight-bold text-primary">Area de tranferencia</h5>
                                 <br>
-                                <form method="POST" th:action="@{/transferir} + '/'+ ${cliennn.id_cliente}" th:each="consss : ${cont}">
+                                <form method="POST" th:action="@{/clientes/conta} + '/'+ ${cliennn.id_cliente} + '/transferir' " th:each="consss : ${cont}">
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3">
                                             <div class="input-group-prepend">
-                                                <input type="date" class="form-control" id="dt" name="data_transacao" required>
+                                                <input type="date" class="form-control" id="dt" name="data_transacao" readonly>
                                                 <script>
-                                                    document.getElementById("dt").value = new Date().toISOString().slice(0, 10);
-                                                    document.getElementById('dt').max = new Date().toISOString().split("T")[0];
-                                                    document.getElementById('dt').min = new Date().toISOString().split("T")[0];
+                                                    date = new Date();
+                                                    document.getElementById("dt").value = date.toISOString().slice(0, 10);
                                                 </script>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 mb-3">
                                             <div class="input-group-prepend">
                                                     <span class="input-group-text" id="inputGroupPrepend">R$</span>
-                                                    <input type="number" class="form-control" id="valor" name="valor" placeholder="100" required maxlength="8" autocomplete="off">
+                                                    <input type="text" class="form-control" id="valor" name="valor" placeholder="100" required maxlength="5" autocomplete="off">
                                                 <div class="input-group-addon"></div>
                                             </div>
                                         </div>
@@ -205,27 +204,60 @@
                                         </div>
                                     </div>
                                     <script>
-                                        if(document.getElementById("tipo").value == "transferencia"){
-                                            document.getElementById("transferencia").style.opacity = 1;
+                                        function select() {
+                                            var transferencia = document.getElementById("transferencia");
+                                            var tipo = document.getElementById("tipo");
+                                            var select = document.getElementById("selecionarTipo");
+                                            var cpf = document.getElementById("cpf");
+                                            var submit = document.getElementById("submit");
+
+                                            if(select.value == -1){
+                                                transferencia.style.display = "none";
+                                                cpf.removeAttribute('required');
+                                                cpf.removeAttribute('name');
+                                                submit.setAttribute('disabled', 'disabled');
+                                            }
+                                            else if(select.value == 0){
+                                                transferencia.style.display = "none";
+                                                tipo.value = "saque";
+                                                cpf.removeAttribute('required');
+                                                cpf.removeAttribute('name');
+                                                submit.removeAttribute('disabled');
+
+                                            }else if(select.value == 1){
+                                                transferencia.style.display = "none";
+                                                tipo.value = "deposito";
+                                                cpf.removeAttribute('required');
+                                                cpf.removeAttribute('name');
+                                                submit.removeAttribute('disabled');
+
+                                            }else if(select.value == 2){
+                                                transferencia.style.display = "block";
+                                                tipo.value = "transferencia";
+                                                cpf.setAttribute('required', 'required');
+                                                cpf.setAttribute('name', 'cpf');
+                                                submit.removeAttribute('disabled');
+                                            }
                                         }
                                     </script>
-                                    <div class="form-group">
-                                        <select name="tipo" id="tipo" class="form-control" required>
-                                            <option value="saque">Saque</option>
-                                            <option value="deposito">Deposito</option>
-                                            <option value="transferencia">Transferencia</option>
-                                        </select>
-                                    </div>
-                                    <div id="transferencia" style="opacity:0;">
-                                        <div class="form-group">
-                                            <label for="cpf_cliente">CPF do Cliente</label>
-                                            <input type="text" class="form-control" id="cpf_cliente" name="cpf_cliente" placeholder="000.000.000-00" required onkeypress="$(this).mask('000.000.000-00');" autocomplete="off">
-                                        </div>
+                                    <input type="hidden" name="tipo" id="tipo">
+                                    <select id="selecionarTipo" class="form-control" onchange="select()" required>
+                                        <option value="-1" selected>Escolha o tipo de transacao</option>
+                                        <option value="0">Saque</option>
+                                        <option value="1">Deposito</option>
+                                        <option value="2">Transferencia</option>
+                                    </select>
+
+                                    <div id="transferencia" class="form-group" style="display: none;">
+                                        <br>
+                                        <label id="label_cpf">CPF a transferir</label>
+                                        <input type="text" class="form-control" id="cpf" placeholder="000.000.000-00" onkeypress="$(this).mask('000.000.000-00');" autocomplete="off">
                                     </div>
                                     <br>
                                     <div class="form-group" style="display: flex;justify-content:end;">
-                                        <button type="hidden" name="deposito"class="btn btn-primary" >Transferir</button>
+                                        <button type="submit" id="submit" class="btn btn-primary" disabled>Transferir</button>
                                     </div>
+                                    <br>
                                 </form>
                             </div>
                         </div>
@@ -270,7 +302,5 @@
     <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

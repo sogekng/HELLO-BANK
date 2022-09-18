@@ -24,6 +24,11 @@ public class ClienteService implements IClienteService {
     }
 
     @Override
+    public Optional<Cliente> toSearchCpf(String cpf) {
+        return dao.findByCpf(cpf);
+    }
+
+    @Override
     public boolean toExistId(Integer id) {
         return dao.existsById(id);
     }

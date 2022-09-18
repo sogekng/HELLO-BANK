@@ -54,7 +54,7 @@ public class LoginController {
         }else if (clien != null) {
             Integer time = remember != null ? 60*60 : 60*60*24;
             CookieService.setCookie(response, "id_cliente", String.valueOf(clien.getId_cliente()), time);
-            return "redirect:/clientes/conta";
+            return "redirect:/clientes/home";
         }
 
         model1.addAttribute("error", "Usuario ou senha incorretas");

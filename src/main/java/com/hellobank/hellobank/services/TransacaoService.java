@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.hellobank.hellobank.dao.ContaDAO;
 import com.hellobank.hellobank.dao.TransacaoDAO;
+import com.hellobank.hellobank.model.Cliente;
 import com.hellobank.hellobank.model.Conta;
 import com.hellobank.hellobank.model.Transacao;
 
@@ -78,11 +79,11 @@ public class TransacaoService implements ITransacaoService {
     }
 
     @Override
-    public Transacao transferir(Transacao nova, Integer id) {
-        if (nova != null && id != null){
+    public Transacao transferir(Transacao nova, Conta contaDestino){
+        if (nova != null && contaDestino != null){
             Conta contaE = daoConta.encontrarPorId(nova.getIdConta().getId_conta());
-            Conta contaF = daoConta.encontrarPorId(id);
-            if ("Poupança".equals(contaE.getTipo())){
+            Conta contaF = contaDestino;
+            if ("Poupanca".equals(contaE.getTipo())){
                 if (nova.getValor() <= contaE.getSaldo()){
                     contaF.setSaldo(contaF.getSaldo() + nova.getValor());
                     contaE.setSaldo(contaE.getSaldo() - nova.getValor());
