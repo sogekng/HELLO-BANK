@@ -1,8 +1,6 @@
 package com.hellobank.hellobank.services;
 
 import java.util.ArrayList;
-
-import com.hellobank.hellobank.model.Cliente;
 import com.hellobank.hellobank.model.Conta;
 import com.hellobank.hellobank.model.Transacao;
 

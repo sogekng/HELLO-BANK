@@ -2,7 +2,6 @@ package com.hellobank.hellobank.services;
 
 import java.util.ArrayList;
 import com.hellobank.hellobank.model.Conta;
-import com.hellobank.hellobank.model.Cliente;
 import java.util.Optional;
 
 public interface IContaService {

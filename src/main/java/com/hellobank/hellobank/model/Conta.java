@@ -1,7 +1,5 @@
 package com.hellobank.hellobank.model;
 
-
-
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,13 +12,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.util.Random;
 
 @Entity
 @Table(name = "conta")
 public class Conta{
-
-    //Random gerador = new Random(19700621);
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
