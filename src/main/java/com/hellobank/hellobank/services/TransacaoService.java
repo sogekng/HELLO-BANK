@@ -71,9 +71,9 @@ public class TransacaoService implements ITransacaoService {
     }
 
     @Override
-    public ArrayList<String> extrato(Integer id) {
+    public ArrayList<Transacao> extrato(Integer id) {
         if (id != null){
-            return (ArrayList<String>)dao.findByConsulta(id);
+            return (ArrayList<Transacao>)dao.findByConsulta(id);
         }
         return null;
     }

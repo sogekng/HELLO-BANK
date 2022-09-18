@@ -1,8 +1,6 @@
 package com.hellobank.hellobank.controller;
 
-import java.io.UnsupportedEncodingException;
 import java.io.IOException;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,12 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.hellobank.hellobank.model.Administrador;
 import com.hellobank.hellobank.model.Cliente;
-import com.hellobank.hellobank.model.Conta;
 import com.hellobank.hellobank.services.CookieService;
 import com.hellobank.hellobank.services.IAdministradorService;
 import com.hellobank.hellobank.services.IClienteService;
-import com.hellobank.hellobank.services.IContaService;
-import java.util.Optional;
+
 
 @Controller
 public class LoginController {
@@ -25,15 +21,16 @@ public class LoginController {
     private IAdministradorService serviceAdmin;
     @Autowired
     private IClienteService serviceCliente;
-    @Autowired
-    private IContaService serviceConta;
 
     @GetMapping("/forgotPassword")
     public String forgotPassword(){
         return "login/forgot-password";
     }
 
-    
+    @GetMapping("/")
+    public String home(){
+        return "login/login";
+    }
 
     @GetMapping("/login")
     public String login(){
@@ -43,13 +40,14 @@ public class LoginController {
     @PostMapping("/logon")
     public String logon(Model model1, Model model2, Administrador administrador, Cliente cliente, String remember, HttpServletResponse response) throws IOException{
         Cliente clien = this.serviceCliente.toExistLogin(cliente.getCpf(), cliente.getSenha());
-        //Administrador admin = this.serviceAdmin.toExistLogin(administrador.getCpf(), administrador.getSenha());
-        if(serviceAdmin.toExistLogin(administrador.getCpf(), administrador.getSenha())){
+        Administrador admin = this.serviceAdmin.toExistLogin(administrador.getCpf(), administrador.getSenha());
+        
+        if(admin != null){
             Integer time = remember != null ? 60*60 : 60*60*24;
-            CookieService.setCookie(response, "nome", String.valueOf(administrador.getNome()), time);
+            CookieService.setCookie(response, "nome_admin", admin.getNome(), time);
             model1.addAttribute("admin", serviceAdmin.listarTodos());
             model2.addAttribute("clien", serviceCliente.listarTodos());
-            return "home/homeAdmin";
+            return "redirect:/administradores/home";
 
         }else if (clien != null) {
             Integer time = remember != null ? 60*60 : 60*60*24;

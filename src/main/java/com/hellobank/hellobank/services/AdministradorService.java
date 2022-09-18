@@ -54,7 +54,7 @@ public class AdministradorService implements IAdministradorService {
     }
 
     @Override
-    public boolean toExistLogin(String cpf, String senha) {
+    public Administrador toExistLogin(String cpf, String senha) {
         return dao.existByLogin(cpf, senha);
     }
 }

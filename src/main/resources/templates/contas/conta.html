@@ -29,7 +29,7 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/clientes/conta">Home</a>
+                        <a class="collapse-item" href="/clientes/home">Home</a>
                     </div>
                 </div>
             </li>
@@ -114,7 +114,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3" style="display:flex;flex-direction:row;width:100%;align-items:center;justify-content:space-between;">
                             <h5 th:text="${cliennn.nome}" class="m-0 font-weight-bold text-primary"></h5>
-                            <button class="btn btn-primary"><a th:href="@{'/clientes/conta/' + ${cliennn.id_cliente} + '/create'}"  style="color: #fff;text-decoration:none;">Ver extrato</a></button>
+                            <button class="btn btn-primary"><a th:href="@{'/clientes/conta/' + ${cont.id_conta} + '/extrato'}"  style="color: #fff;text-decoration:none;">Ver extrato</a></button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -187,15 +187,27 @@
                                             <div class="input-group-prepend">
                                                 <input type="date" class="form-control" id="dt" name="data_transacao" readonly>
                                                 <script>
-                                                    date = new Date();
-                                                    document.getElementById("dt").value = date.toISOString().slice(0, 10);
+                                                    var data = new Date();
+                                                    var dia = data.getDate();
+                                                    var mes = data.getMonth() + 1;
+                                                    var ano = data.getFullYear();
+
+                                                    if (dia < 10) {
+                                                        dia = "0" + dia;
+                                                    }else if(mes < 10){
+                                                        mes = "0" + mes;
+                                                    }
+
+                                                    var dataFormatada = ano + "-" + mes + "-" + dia;
+                                                    console.log(dataFormatada);
+                                                    document.getElementById("dt").value = dataFormatada;
                                                 </script>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 mb-3">
                                             <div class="input-group-prepend">
                                                     <span class="input-group-text" id="inputGroupPrepend">R$</span>
-                                                    <input type="text" class="form-control" id="valor" name="valor" placeholder="100" required maxlength="5" autocomplete="off">
+                                                    <input type="number" class="form-control" id="valor" name="valor" placeholder="100" required maxlength="5" autocomplete="off">
                                                 <div class="input-group-addon"></div>
                                             </div>
                                         </div>

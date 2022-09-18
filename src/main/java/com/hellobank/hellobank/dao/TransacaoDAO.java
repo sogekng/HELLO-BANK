@@ -13,8 +13,8 @@ public interface TransacaoDAO extends CrudRepository<Transacao, Integer> {
     public ArrayList<Transacao>findByConsulta(@Param("idConta") Integer idConta);*/
     
 
-    @Query(value = "SELECT id_transacao, tipo, valor, data_transacao FROM Transacao WHERE id_conta = ?1", nativeQuery = true)
-    public ArrayList<String> findByConsulta(Integer id);
+    @Query(value = "SELECT * FROM hellobank.transacao WHERE id_conta = :id", nativeQuery = true)
+    public ArrayList<Transacao> findByConsulta(Integer id);
 
     //@Query(value = "SELECT * FROM hellobank.conta where id_cliente = :id_cliente", nativeQuery = true)
     //public String findByCpf(String cpf);

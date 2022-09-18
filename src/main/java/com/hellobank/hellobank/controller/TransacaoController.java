@@ -1,22 +1,14 @@
 package com.hellobank.hellobank.controller;
 
 import java.util.ArrayList;
+import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import com.hellobank.hellobank.model.Transacao;
-import com.hellobank.hellobank.model.Conta;
-import com.hellobank.hellobank.model.Cliente;
 import com.hellobank.hellobank.services.IContaService;
 import com.hellobank.hellobank.services.IClienteService;
 import com.hellobank.hellobank.services.ITransacaoService;
-import java.util.Optional;
 
 
 @RestController
@@ -54,15 +46,6 @@ public class TransacaoController {
             return ResponseEntity.ok(res);
         }
         return ResponseEntity.badRequest().build();
-    }
-
-    @GetMapping("/extrato/{id}")
-    public ArrayList<String> extrato(@PathVariable Integer id){
-        ArrayList<String> res = serviceTransacao.extrato(id);
-        if (id != null) {
-            return res;            
-        }
-        return null;
     }
 
 }
