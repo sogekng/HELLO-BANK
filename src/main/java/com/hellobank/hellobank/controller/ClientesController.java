@@ -31,6 +31,9 @@ public class ClientesController {
     public String conta_create(Model model1, Model model2, HttpServletRequest request) throws UnsupportedEncodingException{
         String idCliente = CookieService.getCookie(request, "id_cliente");
         Optional<Cliente> cliente = serviceCliente.toSearch(Integer.parseInt(idCliente));
+        Optional<Conta> conta = serviceConta.toSearchIdCliente(Integer.parseInt(idCliente));
+
+        model1.addAttribute("consstt", conta.get());
         model2.addAttribute("cliennt", cliente.get());
         return "clientes/home";
     }
