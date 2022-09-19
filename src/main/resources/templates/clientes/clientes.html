@@ -26,14 +26,14 @@
                             <span class="text">Home</span>
                         </a>
 
-                        <a href="/clientes" class="btn btn-primary btn-icon-split">
+                        <a href="/administradores/clientes" class="btn btn-primary btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-users"></i>
                             </span>
                             <span class="text">Usuários</span>
                         </a>
 
-                        <a href="/administradores" class="btn btn-primary btn-icon-split">
+                        <a href="/administradores/administradores" class="btn btn-primary btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-user-tie"></i>
                             </span>
@@ -103,7 +103,7 @@
                                             <td th:text="${clientes.cpf}"></td>
                                             <td th:text="${clientes.senha}"></td>
                                             <td>
-                                                <button class="btn btn-primary"><a href="#edite" style="color:#fff;text-decoration:none;" th:href="@{'/administrador/conta/' + ${clientes.id_cliente}}">Ver conta</a></button>
+                                                <button class="btn btn-primary"><a href="#edite" style="color:#fff;text-decoration:none;" th:href="@{'/administradores/clientes/conta/' + ${clientes.id_cliente}}">Ver conta</a></button>
                                             </td>
                                         </tr>
                                     </tbody>

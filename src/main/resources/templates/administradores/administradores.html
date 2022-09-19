@@ -27,14 +27,14 @@
                             <span class="text">Home</span>
                         </a>
 
-                        <a href="/clientes" class="btn btn-primary btn-icon-split">
+                        <a href="/administradores/clientes" class="btn btn-primary btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-users"></i>
                             </span>
                             <span class="text">Usuários</span>
                         </a>
 
-                        <a href="/administradores" class="btn btn-primary btn-icon-split">
+                        <a href="/administradores/administradores" class="btn btn-primary btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-user-tie"></i>
                             </span>
@@ -105,7 +105,7 @@
                                             <td th:text="${administrador.cpf}"></td>
                                             <td th:text="${administrador.senha}"></td>
                                             <td>
-                                                <button class="btn btn-primary"><a href="#edite" style="color:#fff;text-decoration:none;" th:href="@{'/administradores/' + ${administrador.id}}">Editar</a></button>
+                                                <button class="btn btn-primary"><a href="#edite" style="color:#fff;text-decoration:none;" th:href="@{'/administradores/administradores/' + ${administrador.id}}">Editar</a></button>
                                                 <button class="btn btn-primary"><a style="color:#fff;text-decoration:none;" data-toggle="modal" data-target="#excluir">Excluir</a></button>                                      
                                             </td>
                                             <div class="modal fade" id="excluir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
@@ -119,7 +119,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                                            <a class="btn btn-primary" th:href="@{'/administradores/delete/' + ${administrador.id}}" style="background-color: #4edfb3;">Excluir</a>
+                                                            <a class="btn btn-primary" th:href="@{'/administradores/administradores/' + ${administrador.id} + '/delete'}" style="background-color: #4edfb3;">Excluir</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -130,7 +130,7 @@
                                 <div id="create" class="content-form" style="background-color: #27293d;padding:20px;height:100%;width:100%;">
                                     <h6 class="m-0 font-weight-bold text-primary">Adicionar Administrador</h6>
                                     <br>
-                                    <form action="/administradores/create" method="POST" id="create">
+                                    <form action="/administradores/administradores/create" method="POST" id="create">
                                         <div class="form-group">
                                             <label for="nome">Nome</label>
                                             <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome" autocomplete="off" required>
@@ -147,6 +147,16 @@
                                         <div th:if="${ac != null}" th:text="${ac}" class="alert alert-success" role="alert"></div>
                                         <button type="submit" class="btn btn-primary">Cadastrar</button>
                                     </form>
+                                    <script th:if="${ac != null}">
+                                        setTimeout(function(){
+                                            window.location.href = "/administradores/administradores";
+                                          }, 5000);
+                                    </script>
+                                    <script th:if="${er != null}">
+                                        setTimeout(function(){
+                                            window.location.href = "/administradores/administradores";
+                                          }, 5000);
+                                    </script>
                                 </div>
                             </div>
                         </div>

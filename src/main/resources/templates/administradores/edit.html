@@ -28,14 +28,14 @@
                             <span class="text">Home</span>
                         </a>
 
-                        <a href="/clientes" class="btn btn-primary btn-icon-split">
+                        <a href="/administradores/clientes" class="btn btn-primary btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-users"></i>
                             </span>
                             <span class="text">Usuários</span>
                         </a>
 
-                        <a href="/administradores" class="btn btn-primary btn-icon-split">
+                        <a href="/administradores/administradores" class="btn btn-primary btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-user-tie"></i>
                             </span>
@@ -106,10 +106,10 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div id="edite" class="content-form" style="background-color: #fff;padding:20px;height:100%;width:100%;">
+                                <div id="edite" class="content-form" style="background-color: #27293d;padding:20px;height:100%;width:100%;">
                                     <h6 class="m-0 font-weight-bold text-primary">Editar Administrador</h6>
                                     <br>
-                                    <form method="POST" th:action="@{'/administradores/' +  ${administrador.id} + '/update'}">
+                                    <form method="POST" th:action="@{'/administradores/administradores/' +  ${administrador.id} + '/update'}">
                                         <div class="form-group">
                                             <label for="nome">Nome</label>
                                             <input type="text" name="nome" class="form-control" th:value="${administrador.nome}" id="nome" placeholder="Nome" autocomplete="off" required>

@@ -27,13 +27,6 @@ public class ClientesController {
     @Autowired
     ITransacaoService serviceTransacao;
 
-    @GetMapping("/clientes")
-    public String clientes(Model model){
-        model.addAttribute("cliente", serviceCliente.listarTodos());
-
-        return "clientes/clientes";
-    }
-
     @GetMapping("/clientes/home")
     public String conta_create(Model model1, Model model2, HttpServletRequest request) throws UnsupportedEncodingException{
         String idCliente = CookieService.getCookie(request, "id_cliente");
