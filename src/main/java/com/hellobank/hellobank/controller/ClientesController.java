@@ -27,18 +27,15 @@ public class ClientesController {
     @Autowired
     ITransacaoService serviceTransacao;
 
-    @GetMapping("/clientes")
-    public String clientes(Model model){
-        model.addAttribute("cliente", serviceCliente.listarTodos());
-
-        return "clientes/clientes";
-    }
-
     @GetMapping("/clientes/home")
-    public String conta_create(Model model1, Model model2, HttpServletRequest request) throws UnsupportedEncodingException{
+    public String conta_create(Model model1, Model model2, Model model3, HttpServletRequest request) throws UnsupportedEncodingException{
         String idCliente = CookieService.getCookie(request, "id_cliente");
         Optional<Cliente> cliente = serviceCliente.toSearch(Integer.parseInt(idCliente));
+        Optional<Conta> conta = serviceConta.toSearchIdCliente(Integer.parseInt(idCliente));
+
+        model1.addAttribute("consstt", conta.get());
         model2.addAttribute("cliennt", cliente.get());
+        model3.addAttribute("transf", serviceTransacao.extrato(conta.get().getId_conta()));
         return "clientes/home";
     }
 
@@ -51,33 +48,35 @@ public class ClientesController {
             if(conta != null){
                 model1.addAttribute("cont", conta.get());
                 model2.addAttribute("cliennn", cliente.get());
+                return "contas/conta";
             }
         }catch(Exception e){
             model1.addAttribute("erro", "Conta não existe");
-            model2.addAttribute("cliennn", cliente.get());
+            model2.addAttribute("cliennt", cliente.get());
         }
-        return "contas/conta";
+        return "clientes/home";
     }
 
     @PostMapping("/clientes/conta/{id}/create")
     public String create(@PathVariable Integer id, String tipo, Conta conta, Model model1, Model model2, Model model3){
-        Optional<Conta> cont = serviceConta.toSearchCount(id, tipo);
+        Optional<Conta> cont = serviceConta.toSearchIdCliente(id);
         Optional<Cliente> cliente = serviceCliente.toSearch(id);
 
         try{
             if(cont.isPresent()){
-                model1.addAttribute("cont", cont.get());
-                model2.addAttribute("cliennn", cliente.get());
-                return "contas/conta";
+                model1.addAttribute("erro", "Conta já existe");
+                model2.addAttribute("cliennt", cliente.get());
+                return "clientes/home";
             }else{
                 serviceConta.toCreate(conta);
-                model1.addAttribute("accertt", "Conta criada com sucesso!");
-                model2.addAttribute("cont", conta);
-                model3.addAttribute("cliennn", cliente.get());
-                return "contas/conta";
+                model2.addAttribute("cliennt", cliente.get());
+                return "clientes/home";
             }
         }catch(Exception e){
-            return "contas/conta";
+            model1.addAttribute("cont", conta);
+            model2.addAttribute("cliennt", cliente.get());
+            model3.addAttribute("erro", "Erro ao criar");
+            return "clientes/home";
         }
     }
 
@@ -116,8 +115,17 @@ public class ClientesController {
 
                     if(contaCliente.get() != null){
                         Optional<Conta> contaDestino = serviceConta.toSearchIdCliente(contaCliente.get().getId_cliente());
-                        serviceTransacao.transferir(nova, contaDestino.get());
-                        model1.addAttribute("accertt", "Transferência realizada com sucesso!");
+                        try{
+                            if(contaDestino.get() != null){
+                                serviceTransacao.transferir(nova, contaDestino.get());
+                                model1.addAttribute("accertt", "Transferência realizada com sucesso!");
+                            }
+                        }catch(Exception e){
+                            model1.addAttribute("cont", conta.get());
+                            model2.addAttribute("cliennn", cliente.get());
+                            model3.addAttribute("errooo", "Conta não existe");
+                                return "contas/conta";
+                        }                  
                     }else{
                         model1.addAttribute("errooo", "Cliente não existe");
                         model2.addAttribute("cont", conta.get());
@@ -148,11 +156,14 @@ public class ClientesController {
     }
 
     @GetMapping("/clientes/conta/{id}/extrato")
-    public String extrato(@PathVariable Integer id, Model model1, Model model2){
+    public String extrato(@PathVariable Integer id, Model model1, Model model2, Model model3){
         if (id != null) {
+            Integer cont = serviceConta.toSearchIdClienteForAccount(id);
             Optional<Conta> conta = serviceConta.toSearch(id);
+            Optional<Cliente> cliente = serviceCliente.toSearch(cont);
             model1.addAttribute("transferencias", serviceTransacao.extrato(id));
-            model2.addAttribute("contts", conta.get().getId_conta());
+            model2.addAttribute("cont", conta.get());
+            model3.addAttribute("cliennn", cliente.get());
             return "transferencias/transferencia";
         }
         return "transferencias/transferencia";

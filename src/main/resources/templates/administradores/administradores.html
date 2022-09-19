@@ -16,68 +16,31 @@
 </head>
 <body id="page-top">
     <div id="wrapper">
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/administradores">
-                <div class="sidebar-brand-text mx-3">Administradores</div>
-            </a>
-            <hr class="sidebar-divider">
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/administradores/home">Home</a>
-                        <a class="collapse-item" href="/administradores">Administradores</a>
-                        <a class="collapse-item" href="/clientes">Clientes</a>
-                        <a class="collapse-item" href="/login">Login</a>
-                        <a class="collapse-item" href="/register">Register</a>
-                    </div>
-                </div>
-            </li>
-            <br>
-            <hr class="sidebar-divider">
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTables"
-                    aria-expanded="true" aria-controls="collapseTables">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span>
-                </a>
-                <div id="collapseTables" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/administradores">Administradores</a>
-                        <a class="collapse-item" href="/clientes">Clientes</a>
-                    </div>
-                </div>
-            </li>
-            <br>
-            <hr class="sidebar-divider d-none d-md-block">
-            <br>
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-        </ul>
         <div id="content-wrapper" class="d-flex flex-column">
-            <div id="content">
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+            <div id="content" style="background: #23b287;">
+                <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow" style="display: flex;height: 4.375rem;justify-content: center;">
+                    <div class="menu">
+                        <a href="/administradores/home" class="btn btn-primary btn-icon-split">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-home"></i>
+                            </span>
+                            <span class="text">Home</span>
+                        </a>
+
+                        <a href="/administradores/clientes" class="btn btn-primary btn-icon-split">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-users"></i>
+                            </span>
+                            <span class="text">Usuários</span>
+                        </a>
+
+                        <a href="/administradores/administradores" class="btn btn-primary btn-icon-split">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-user-tie"></i>
+                            </span>
+                            <span class="text">Funcionários</span>
+                        </a>
+                    </div>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
@@ -142,7 +105,7 @@
                                             <td th:text="${administrador.cpf}"></td>
                                             <td th:text="${administrador.senha}"></td>
                                             <td>
-                                                <button class="btn btn-primary"><a href="#edite" style="color:#fff;text-decoration:none;" th:href="@{'/administradores/' + ${administrador.id}}">Editar</a></button>
+                                                <button class="btn btn-primary"><a href="#edite" style="color:#fff;text-decoration:none;" th:href="@{'/administradores/administradores/' + ${administrador.id}}">Editar</a></button>
                                                 <button class="btn btn-primary"><a style="color:#fff;text-decoration:none;" data-toggle="modal" data-target="#excluir">Excluir</a></button>                                      
                                             </td>
                                             <div class="modal fade" id="excluir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
@@ -156,7 +119,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                                            <a class="btn btn-primary" th:href="@{'/administradores/delete/' + ${administrador.id}}">Excluir</a>
+                                                            <a class="btn btn-primary" th:href="@{'/administradores/administradores/' + ${administrador.id} + '/delete'}" style="background-color: #4edfb3;">Excluir</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -164,10 +127,10 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div id="create" class="content-form" style="background-color: #fff;padding:20px;height:100%;width:100%;">
+                                <div id="create" class="content-form" style="background-color: #27293d;padding:20px;height:100%;width:100%;">
                                     <h6 class="m-0 font-weight-bold text-primary">Adicionar Administrador</h6>
                                     <br>
-                                    <form action="/administradores/create" method="POST" id="create">
+                                    <form action="/administradores/administradores/create" method="POST" id="create">
                                         <div class="form-group">
                                             <label for="nome">Nome</label>
                                             <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome" autocomplete="off" required>
@@ -184,6 +147,16 @@
                                         <div th:if="${ac != null}" th:text="${ac}" class="alert alert-success" role="alert"></div>
                                         <button type="submit" class="btn btn-primary">Cadastrar</button>
                                     </form>
+                                    <script th:if="${ac != null}">
+                                        setTimeout(function(){
+                                            window.location.href = "/administradores/administradores";
+                                          }, 5000);
+                                    </script>
+                                    <script th:if="${er != null}">
+                                        setTimeout(function(){
+                                            window.location.href = "/administradores/administradores";
+                                          }, 5000);
+                                    </script>
                                 </div>
                             </div>
                         </div>
@@ -191,7 +164,7 @@
                     <br>
                 </div>
             </div>
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer bg-dark">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Your Website 2022</span>
@@ -215,7 +188,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="/logout">Logout</a>
+                    <a class="btn btn-primary" href="/logout" style="background-color: #4edfb3;">Logout</a>
                 </div>
             </div>
         </div>

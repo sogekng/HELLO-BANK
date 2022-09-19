@@ -28,13 +28,6 @@ public class AdministradoresController {
     @Autowired
     private IContaService serviceConta;
 
-    @GetMapping("/administradores")
-    public String administrador(Model model){
-        model.addAttribute("administradores", serviceAdministrador.listarTodos());
-
-        return "administradores/administradores";
-    }
-
     @GetMapping("/administradores/home")
     public String conta_create(Model model1, Model model2, Model model3, HttpServletRequest request) throws UnsupportedEncodingException{
         String nomeAdmin = CookieService.getCookie(request, "nome_admin");
@@ -44,7 +37,21 @@ public class AdministradoresController {
         return "administradores/home";
     }
 
-    @PostMapping("/administradores/create")
+    @GetMapping("/administradores/administradores")
+    public String administrador(Model model){
+        model.addAttribute("administradores", serviceAdministrador.listarTodos());
+
+        return "administradores/administradores";
+    }
+
+    @GetMapping("/administradores/clientes")
+    public String clientes(Model model){
+        model.addAttribute("cliente", serviceCliente.listarTodos());
+
+        return "clientes/clientes";
+    }
+
+    @PostMapping("/administradores/administradores/create")
     public String create(Administrador administrador, Model model1, Model model2){
         if(serviceAdministrador.toExistCpf(administrador.getCpf())){
             model1.addAttribute("er", "Credenciais já cadastradas");
@@ -58,7 +65,7 @@ public class AdministradoresController {
         }
     }
 
-    @GetMapping("/administradores/{id}")
+    @GetMapping("/administradores/administradores/{id}")
     public String search(@PathVariable Integer id, Model model){
         Optional<Administrador> admin = serviceAdministrador.toSearch(id);
         
@@ -71,7 +78,7 @@ public class AdministradoresController {
         return "administradores/edit";
     }
 
-    @GetMapping("/administrador/conta/{id}")
+    @GetMapping("/administradores/clientes/conta/{id}")
     public String searchAdmin(@PathVariable Integer id, Model model1, Model model2){
         Optional<Conta> conta = serviceConta.toSearchIdCliente(id);
         Optional<Cliente> cliente = serviceCliente.toSearch(id);
@@ -89,21 +96,21 @@ public class AdministradoresController {
         return "administradores/conta";
     }
 
-    @PostMapping("/administradores/{id}/update")
+    @PostMapping("/administradores/administradores/{id}/update")
     public String update(@PathVariable Integer id, Administrador administrador){
         if(!serviceAdministrador.toExistId(id)){
-            return "redirect:/administradores";
+            return "redirect:/administradores/administradores";
         }
 
         serviceAdministrador.toUpdate(administrador);
 
-        return "redirect:/administradores";
+        return "redirect:/administradores/administradores";
     }
 
-    @GetMapping("/administradores/delete/{id}")
+    @GetMapping("/administradores/administradores/{id}/delete")
     public String delete(@PathVariable Integer id){
         serviceAdministrador.toDelete(id);
-        return "redirect:/administradores";
+        return "redirect:/administradores/administradores";
     }
     
 }

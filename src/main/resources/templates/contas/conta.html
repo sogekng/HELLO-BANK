@@ -13,64 +13,58 @@
     <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
-<body id="page-top">
-    <div id="wrapper">
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/administradores">
-                <div class="sidebar-brand-text mx-3">Gerenciamento de conta</div>
-            </a>
-            <hr class="sidebar-divider">
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/clientes/home">Home</a>
-                    </div>
-                </div>
-            </li>
-            <br>
-            <hr class="sidebar-divider">
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTables"
-                    aria-expanded="true" aria-controls="collapseTables">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span>
-                </a>
-                <div id="collapseTables" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                    </div>
-                </div>
-            </li>
-            <br>
-            <hr class="sidebar-divider d-none d-md-block">
-            <br>
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-        </ul>
+<body id="page-top" th:each="cons : ${cont}">
+    <div id="wrapper" style="height:100vh">
         <div id="content-wrapper" class="d-flex flex-column">
-            <div id="content">
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
+            <div id="content" style="background: #23b287;">
+                <nav class="navbar navbar-expand navbar-light bg-dark topbar static-top shadow" style="justify-content:space-around;padding-bottom: 0;">
+                    <button class="btn btn-primary" style="position: absolute;left: 0;margin: 20px;top: 0;"><a href="/clientes/home"  style="color: #fff;text-decoration:none;">Home</a></button>
+                    <div class="navbar-brand text-white" style="display:flex;flex-direction:column;justify-content:start;align-items:center;">
+                        <h3 th:text="${cliennn.nome}" class="m-0 font-weight-bold text-primary"></h3>
+                        <div class="dropdown no-arrow" style="display:flex;flex-direction:row;width:100%;">
+                            <div style="margin: 10px;">
+                                <h6 class="m-0 font-weight-bold text-primary">Agencia </h6>
+                                <h5 class="m-0 font-weight-bold text-primary" th:text="${cons.agencia}"></h5>
+                            </div>
+                            <div style="margin: 10px;">
+                                <h6 class="m-0 font-weight-bold text-primary">Numero</h6>
+                                <h5 class="m-0 font-weight-bold text-primary" th:text="${cons.numero}"></h5>
+                            </div>
+                            <div style="margin: 10px;display:flex;align-items:center;justify-content:center;">
+                                <p class="text-primary" style="margin:auto;">-</p>
+                                <h5 class="m-0 font-weight-bold text-primary" th:text="${cons.tipo}"></h5>
                             </div>
                         </div>
-                    </form>
+                    </div>
+                    <div class="navbar-brand text-white" style="display:flex;flex-direction:row;justify-content:center;align-items:center;">
+                        <h1 class="m-0 font-weight-bold text-gray-dark">R$</h1>
+                        <h2 class="m-3 font-weight-bold text-white" th:text="${cons.saldo}" style="display:flex;align-items:center;font-size:70px" id="value"></h2>
+                        <script>
+                            function animateValue(obj, start, end, duration) {
+                                let startTimestamp = null;
+                                const step = (timestamp) => {
+                                  if (!startTimestamp) startTimestamp = timestamp;
+                                  const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                                  obj.innerHTML = Math.floor(progress * (end - start) + start);
+                                  if (progress < 1) {
+                                    window.requestAnimationFrame(step);
+                                  }
+                                };
+                                window.requestAnimationFrame(step);
+                              }
+            
+                            const obj = document.getElementById("value");
+                            var value = document.getElementById("value").innerHTML;
+                            
+                            animateValue(obj, 0, value, 800);
+
+                            function timeHref(link){
+                                setTimeout(function(){
+                                    window.location.href = link;
+                                }, 1000);
+                            }
+                        </script>
+                    </div>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
@@ -110,174 +104,132 @@
                         </li>
                     </ul>
                 </nav>
-                <div class="container-fluid">
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3" style="display:flex;flex-direction:row;width:100%;align-items:center;justify-content:space-between;">
-                            <h5 th:text="${cliennn.nome}" class="m-0 font-weight-bold text-primary"></h5>
-                            <button class="btn btn-primary"><a th:if="${cont != null}" th:href="@{'/clientes/conta/' + ${cont.id_conta} + '/extrato'}"  style="color: #fff;text-decoration:none;">Ver extrato</a></button>
+                <div class="container-fluid" style="width:100%;display:flex;flex-direction:row;justify-content:center;">
+                    <div class="card shadow mt-5 mb-5" style="border: none;margin:10px;">
+                        <div class="card-header py-3" style="display:flex;flex-direction:row;align-items:center;justify-content:space-between;width: 60vw;">
+                            <h4 class="m-0 font-weight-bold text-primary">Area de tranferencia</h4>
+                            <button class="btn btn-primary"><a th:if="${cont != null}" th:href="@{'/clientes/conta/' + ${cons.id_conta} + '/extrato'}"  style="color: #fff;text-decoration:none;">Ver extrato</a></button>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>NUMERO</th>
-                                            <th>AGENCIA</th>
-                                            <th>TIPO</th>
-                                            <th>SALDO</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr th:each="cons : ${cont}">
-                                            <td th:text="${cons.id_conta}"></td>
-                                            <td th:text="${cons.numero}"></td>
-                                            <td th:text="${cons.agencia}"></td>
-                                            <td th:text="${cons.tipo}"></td>
-                                            <td th:text="${cons.saldo}"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div th:if="${accertt != null}" th:text="${accertt}" class="alert alert-success" role="alert"></div>
-                                <div th:if="${errooo != null}" th:text="${errooo}" class="alert alert-danger" role="alert"></div>
-                                <div th:if="${erro != null}">
-                                    <p th:text="${erro}" class="alert alert-danger" role="alert"></p>
-                                    <div id="create" class="content-form" style="background-color: #fff;padding:20px;height:100%;width:100%;">
-                                        <h6 class="m-0 font-weight-bold text-primary">Crie sua conta</h6>
-                                        <br>
-                                        <form role="form" th:action="@{/clientes/conta} + '/'+ ${cliennn.id_cliente} + '/create' " method="POST">        
-                                            <div class="form-group row">
-                                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                                    <label for="agencia">Agencia</label>
-                                                    <input type="text" class="form-control" id="agencia" name="agencia" value="0001" placeholder="Agencia" readonly>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <label for="numero">Numero</label>
-                                                    <input type="text" class="form-control" id="numero" name="numero" placeholder="Numero" readonly>
-                                                    <script>
-                                                        var numero = String(789475 + Math.floor(Math.random() * 10000)) + "-" + String(Math.floor(Math.random() * 10));
-                                                        document.getElementById("numero").value = numero;
-                                                    </script>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input type="hidden" class="form-control" id="saldo" name="saldo" value="0.0" placeholder="Saldo" readonly>
-                                            </div>
-                                            <div class="form-group">
-                                                <select name="tipo" id="tipo" class="form-control" required>
-                                                    <option value="Corrente">Corrente</option>
-                                                    <option value="Poupanca">Poupança</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="hidden" class="form-control" name="cliente" th:value="${cliennn.id_cliente}" readonly>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">Criar</button>
-                                        </form>           
+                        <div class="card-body" style="display: flex;justify-content:center;">
+                            <div style="width:70%;">
+                            <form method="POST" th:action="@{/clientes/conta} + '/'+ ${cliennn.id_cliente} + '/transferir' " th:each="consss : ${cont}">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3">
+                                        <div class="input-group-prepend">
+                                            <input type="hidden" class="form-control" id="dt" name="data_transacao" readonly>
+                                            <script>
+                                                var data = new Date();
+                                                var dia = data.getDate();
+                                                var mes = data.getMonth() + 1;
+                                                var ano = data.getFullYear();
+
+                                                if (dia < 10) {
+                                                    dia = "0" + dia;
+                                                }else if(mes < 10){
+                                                    mes = "0" + mes;
+                                                }
+
+                                                var dataFormatada = ano + "-" + mes + "-" + dia;
+                                                console.log(dataFormatada);
+                                                document.getElementById("dt").value = dataFormatada;
+                                            </script>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="hidden" class="form-control" name="idConta" th:value="${consss.id_conta}" readonly>
                                     </div>
                                 </div>
-                                <div th:if="${acertt != null}" th:text="${acertt}" class="alert alert-danger" role="alert"></div>
-                            </div>
-                            <div th:if="${erro == null}">
-                                <h5 class="m-0 font-weight-bold text-primary">Area de tranferencia</h5>
-                                <br>
-                                <form method="POST" th:action="@{/clientes/conta} + '/'+ ${cliennn.id_cliente} + '/transferir' " th:each="consss : ${cont}">
-                                    <div class="form-group row">
-                                        <div class="col-sm-6 mb-3">
-                                            <div class="input-group-prepend">
-                                                <input type="date" class="form-control" id="dt" name="data_transacao" readonly>
-                                                <script>
-                                                    var data = new Date();
-                                                    var dia = data.getDate();
-                                                    var mes = data.getMonth() + 1;
-                                                    var ano = data.getFullYear();
+                                <script>
+                                    function select() {
+                                        var transferencia = document.getElementById("transferencia");
+                                        var tipo = document.getElementById("tipo");
+                                        var select = document.getElementById("selecionarTipo");
+                                        var cpf = document.getElementById("cpf");
+                                        var submit = document.getElementById("submit");
 
-                                                    if (dia < 10) {
-                                                        dia = "0" + dia;
-                                                    }else if(mes < 10){
-                                                        mes = "0" + mes;
-                                                    }
-
-                                                    var dataFormatada = ano + "-" + mes + "-" + dia;
-                                                    console.log(dataFormatada);
-                                                    document.getElementById("dt").value = dataFormatada;
-                                                </script>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 mb-3">
-                                            <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="inputGroupPrepend">R$</span>
-                                                    <input type="number" class="form-control" id="valor" name="valor" placeholder="100" required maxlength="5" autocomplete="off">
-                                                <div class="input-group-addon"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="hidden" class="form-control" name="idConta" th:value="${consss.id_conta}" readonly>
-                                        </div>
-                                    </div>
-                                    <script>
-                                        function select() {
-                                            var transferencia = document.getElementById("transferencia");
-                                            var tipo = document.getElementById("tipo");
-                                            var select = document.getElementById("selecionarTipo");
-                                            var cpf = document.getElementById("cpf");
-                                            var submit = document.getElementById("submit");
-
-                                            if(select.value == -1){
-                                                transferencia.style.display = "none";
-                                                cpf.removeAttribute('required');
-                                                cpf.removeAttribute('name');
-                                                submit.setAttribute('disabled', 'disabled');
-                                            }
-                                            else if(select.value == 0){
-                                                transferencia.style.display = "none";
-                                                tipo.value = "saque";
-                                                cpf.removeAttribute('required');
-                                                cpf.removeAttribute('name');
-                                                submit.removeAttribute('disabled');
-
-                                            }else if(select.value == 1){
-                                                transferencia.style.display = "none";
-                                                tipo.value = "deposito";
-                                                cpf.removeAttribute('required');
-                                                cpf.removeAttribute('name');
-                                                submit.removeAttribute('disabled');
-
-                                            }else if(select.value == 2){
-                                                transferencia.style.display = "block";
-                                                tipo.value = "transferencia";
-                                                cpf.setAttribute('required', 'required');
-                                                cpf.setAttribute('name', 'cpf');
-                                                submit.removeAttribute('disabled');
-                                            }
+                                        if(select.value == -1){
+                                            transferencia.style.display = "none";
+                                            cpf.removeAttribute('required');
+                                            cpf.removeAttribute('name');
+                                            submit.setAttribute('disabled', 'disabled');
+                                            submit.innerHTML = "Selecione uma opção";
                                         }
-                                    </script>
-                                    <input type="hidden" name="tipo" id="tipo">
-                                    <select id="selecionarTipo" class="form-control" onchange="select()" required>
-                                        <option value="-1" selected>Escolha o tipo de transacao</option>
-                                        <option value="0">Saque</option>
-                                        <option value="1">Deposito</option>
-                                        <option value="2">Transferencia</option>
-                                    </select>
+                                        else if(select.value == 0){
+                                            transferencia.style.display = "none";
+                                            tipo.value = "saque";
+                                            cpf.removeAttribute('required');
+                                            cpf.removeAttribute('name');
+                                            submit.removeAttribute('disabled');
+                                            submit.innerHTML = "Sacar";
+                                        }else if(select.value == 1){
+                                            transferencia.style.display = "none";
+                                            tipo.value = "deposito";
+                                            cpf.removeAttribute('required');
+                                            cpf.removeAttribute('name');
+                                            submit.removeAttribute('disabled');
+                                            submit.innerHTML = "Depositar";
 
-                                    <div id="transferencia" class="form-group" style="display: none;">
-                                        <br>
-                                        <label id="label_cpf">CPF a transferir</label>
-                                        <input type="text" class="form-control" id="cpf" placeholder="000.000.000-00" onkeypress="$(this).mask('000.000.000-00');" autocomplete="off">
-                                    </div>
+                                        }else if(select.value == 2){
+                                            transferencia.style.display = "block";
+                                            tipo.value = "transferencia";
+                                            cpf.setAttribute('required', 'required');
+                                            cpf.setAttribute('name', 'cpf');
+                                            submit.removeAttribute('disabled');
+                                            submit.innerHTML = "Transferir";
+                                        }
+                                    }
+                                </script>
+                                <input type="hidden" name="tipo" id="tipo">
+                                <div class="input-group-prepend">
+                                    <input type="number" class="form-control" id="valor" name="valor" placeholder="R$: 0" required maxlength="5" autocomplete="off">
+                                    <div class="input-group-addon"></div>
+                                </div>
+                                <br>
+                                <select id="selecionarTipo" class="form-control" onchange="select()" required>
+                                    <option value="-1" selected class="text-dark">Escolha o tipo de transacao</option>
+                                    <option value="0" class="text-dark">Saque</option>
+                                    <option value="1" class="text-dark">Deposito</option>
+                                    <option value="2" class="text-dark">Transferencia</option>
+                                </select>
+                                <div id="transferencia" class="form-group" style="display: none;">
                                     <br>
-                                    <div class="form-group" style="display: flex;justify-content:end;">
-                                        <button type="submit" id="submit" class="btn btn-primary" disabled>Transferir</button>
-                                    </div>
-                                    <br>
-                                </form>
+                                    <label id="label_cpf">CPF a transferir</label>
+                                    <input type="text" class="form-control" id="cpf" placeholder="000.000.000-00" onkeypress="$(this).mask('000.000.000-00');" autocomplete="off">
+                                </div>
+                                <br>
+                                <div th:if="${errooo != null}" class="alert alert-danger hidden" role="alert" th:text="${errooo}">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div th:if="${accertt != null}" class="alert alert-success hidden" role="alert" th:text="${accertt}">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <script th:if="${accertt != null}" th:inline="javascript">
+                                    /*<![CDATA[*/
+                                        var id = /*[[${cliennn.id_cliente}]]*/ 'default';
+                                    /*]]>*/
+                                    setTimeout(function(){
+                                        window.location.href = "/clientes/conta/" + id;
+                                      }, 5000);
+                                </script>
+                                <script th:if="${errooo != null}" th:inline="javascript">
+                                    /*<![CDATA[*/
+                                        var id = /*[[${cliennn.id_cliente}]]*/ 'default';
+                                    /*]]>*/
+                                    setTimeout(function(){
+                                        window.location.href = "/clientes/conta/" + id;
+                                      }, 5000);
+                                </script>
+                                <div class="form-group" style="display: flex;justify-content:end;">
+                                    <button type="submit" id="submit" class="btn btn-primary" disabled>Selecione uma opção</button>
+                                </div>
+                                <br>
+                            </form>
                             </div>
                         </div>
                     </div>
-                    <br>
                 </div>
             </div>
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer bg-dark">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Your Website 2022</span>
@@ -301,7 +253,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="/logout">Logout</a>
+                    <a class="btn btn-primary" href="/logout" style="background-color: #4edfb3;">Logout</a>
                 </div>
             </div>
         </div>
@@ -312,7 +264,132 @@
     <script src="/js/sb-admin-2.min.js"></script>
     <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="/js/datatables-demo.js"></script>
     <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="../assets/js/core/jquery.min.js"></script>
+    <script src="../assets/js/core/popper.min.js"></script>
+    <script src="../assets/js/core/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    <script src="../assets/js/plugins/chartjs.min.js"></script>
+    <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+    <script src="../assets/js/black-dashboard.min.js?v=1.0.0"></script>
+    <script src="../assets/demo/demo.js"></script>
+    <script>
+    $(document).ready(function() {
+      $().ready(function() {
+        $sidebar = $('.sidebar');
+        $navbar = $('.navbar');
+        $main_panel = $('.main-panel');
+        $full_page = $('.full-page');
+        $sidebar_responsive = $('body > .navbar-collapse');
+        sidebar_mini_active = true;
+        white_color = false;
+        window_width = $(window).width();
+        fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+        $('.fixed-plugin a').click(function(event) {
+          if ($(this).hasClass('switch-trigger')) {
+            if (event.stopPropagation) {
+              event.stopPropagation();
+            } else if (window.event) {
+              window.event.cancelBubble = true;
+            }
+          }
+        });
+
+        $('.fixed-plugin .background-color span').click(function() {
+          $(this).siblings().removeClass('active');
+          $(this).addClass('active');
+
+          var new_color = $(this).data('color');
+
+          if ($sidebar.length != 0) {
+            $sidebar.attr('data', new_color);
+          }
+
+          if ($main_panel.length != 0) {
+            $main_panel.attr('data', new_color);
+          }
+
+          if ($full_page.length != 0) {
+            $full_page.attr('filter-color', new_color);
+          }
+
+          if ($sidebar_responsive.length != 0) {
+            $sidebar_responsive.attr('data', new_color);
+          }
+        });
+
+        $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function() {
+          var $btn = $(this);
+
+          if (sidebar_mini_active == true) {
+            $('body').removeClass('sidebar-mini');
+            sidebar_mini_active = false;
+            blackDashboard.showSidebarMessage('Sidebar mini deactivated...');
+          } else {
+            $('body').addClass('sidebar-mini');
+            sidebar_mini_active = true;
+            blackDashboard.showSidebarMessage('Sidebar mini activated...');
+          }
+          var simulateWindowResize = setInterval(function() {
+            window.dispatchEvent(new Event('resize'));
+          }, 180);
+
+          setTimeout(function() {
+            clearInterval(simulateWindowResize);
+          }, 1000);
+        });
+
+        $('.switch-change-color input').on("switchChange.bootstrapSwitch", function() {
+          var $btn = $(this);
+
+          if (white_color == true) {
+
+            $('body').addClass('change-background');
+            setTimeout(function() {
+              $('body').removeClass('change-background');
+              $('body').removeClass('white-content');
+            }, 900);
+            white_color = false;
+          } else {
+
+            $('body').addClass('change-background');
+            setTimeout(function() {
+              $('body').removeClass('change-background');
+              $('body').addClass('white-content');
+            }, 900);
+
+            white_color = true;
+          }
+
+
+        });
+
+        $('.light-badge').click(function() {
+          $('body').addClass('white-content');
+        });
+
+        $('.dark-badge').click(function() {
+          $('body').removeClass('white-content');
+        });
+      });
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+      demo.initDashboardPageCharts();
+
+    });
+    </script>
+    <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+    <script>
+    window.TrackJS &&
+      TrackJS.install({
+        token: "ee6fab19c5a04ac1a32a645abde4613a",
+        application: "black-dashboard-free"
+      });
+    </script>
 </body>
 </html>
