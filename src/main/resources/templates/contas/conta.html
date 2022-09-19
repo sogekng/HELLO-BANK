@@ -152,6 +152,7 @@
                                             cpf.removeAttribute('required');
                                             cpf.removeAttribute('name');
                                             submit.setAttribute('disabled', 'disabled');
+                                            submit.innerHTML = "Selecione uma opção";
                                         }
                                         else if(select.value == 0){
                                             transferencia.style.display = "none";
@@ -159,13 +160,14 @@
                                             cpf.removeAttribute('required');
                                             cpf.removeAttribute('name');
                                             submit.removeAttribute('disabled');
-
+                                            submit.innerHTML = "Sacar";
                                         }else if(select.value == 1){
                                             transferencia.style.display = "none";
                                             tipo.value = "deposito";
                                             cpf.removeAttribute('required');
                                             cpf.removeAttribute('name');
                                             submit.removeAttribute('disabled');
+                                            submit.innerHTML = "Depositar";
 
                                         }else if(select.value == 2){
                                             transferencia.style.display = "block";
@@ -173,6 +175,7 @@
                                             cpf.setAttribute('required', 'required');
                                             cpf.setAttribute('name', 'cpf');
                                             submit.removeAttribute('disabled');
+                                            submit.innerHTML = "Transferir";
                                         }
                                     }
                                 </script>
@@ -217,7 +220,7 @@
                                       }, 5000);
                                 </script>
                                 <div class="form-group" style="display: flex;justify-content:end;">
-                                    <button type="submit" id="submit" class="btn btn-primary" disabled>Transferir</button>
+                                    <button type="submit" id="submit" class="btn btn-primary" disabled>Selecione uma opção</button>
                                 </div>
                                 <br>
                             </form>
