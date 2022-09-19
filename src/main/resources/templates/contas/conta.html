@@ -114,7 +114,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3" style="display:flex;flex-direction:row;width:100%;align-items:center;justify-content:space-between;">
                             <h5 th:text="${cliennn.nome}" class="m-0 font-weight-bold text-primary"></h5>
-                            <button class="btn btn-primary"><a th:href="@{'/clientes/conta/' + ${cont.id_conta} + '/extrato'}"  style="color: #fff;text-decoration:none;">Ver extrato</a></button>
+                            <button class="btn btn-primary"><a th:if="${cont != null}" th:href="@{'/clientes/conta/' + ${cont.id_conta} + '/extrato'}"  style="color: #fff;text-decoration:none;">Ver extrato</a></button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
