@@ -28,13 +28,14 @@ public class ClientesController {
     ITransacaoService serviceTransacao;
 
     @GetMapping("/clientes/home")
-    public String conta_create(Model model1, Model model2, HttpServletRequest request) throws UnsupportedEncodingException{
+    public String conta_create(Model model1, Model model2, Model model3, HttpServletRequest request) throws UnsupportedEncodingException{
         String idCliente = CookieService.getCookie(request, "id_cliente");
         Optional<Cliente> cliente = serviceCliente.toSearch(Integer.parseInt(idCliente));
         Optional<Conta> conta = serviceConta.toSearchIdCliente(Integer.parseInt(idCliente));
 
         model1.addAttribute("consstt", conta.get());
         model2.addAttribute("cliennt", cliente.get());
+        model3.addAttribute("transf", serviceTransacao.extrato(conta.get().getId_conta()));
         return "clientes/home";
     }
 
