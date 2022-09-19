@@ -25,13 +25,13 @@ public class ContaService implements IContaService{
     }
 
     @Override
-    public Optional<Conta> toSearchCount(Integer id_cliente, String tipo) {
-        return dao.findByCount(id_cliente, tipo);
+    public Optional<Conta> toSearchIdCliente(Integer id_cliente) {
+        return dao.findByIdCliente(id_cliente);
     }
 
     @Override
-    public Optional<Conta> toSearchIdCliente(Integer id_cliente) {
-        return dao.findByIdCliente(id_cliente);
+    public Integer toSearchIdClienteForAccount(Integer id_conta) {
+        return dao.findByIdClienteForAccount(id_conta);
     }
 
     @Override

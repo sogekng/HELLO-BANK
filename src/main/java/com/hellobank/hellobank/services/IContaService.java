@@ -9,7 +9,7 @@ public interface IContaService {
     public ArrayList<Conta> listarTodos();
     public ArrayList<Conta> toListCounts(Integer id_cliente);
     public Optional<Conta> toSearch(Integer id);
-    public Optional<Conta> toSearchCount(Integer id_cliente, String tipo);
     public Optional<Conta> toSearchIdCliente(Integer id_cliente);
+    public Integer toSearchIdClienteForAccount(Integer id_conta);
     public ArrayList<Conta> buscarPorTipo(String palavraChave);
 }

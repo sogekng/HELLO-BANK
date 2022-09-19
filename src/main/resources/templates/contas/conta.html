@@ -16,8 +16,9 @@
 <body id="page-top" th:each="cons : ${cont}">
     <div id="wrapper">
         <div id="content-wrapper" class="d-flex flex-column">
-            <div id="content">
-                <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow" style="justify-content:space-around;">
+            <div id="content" style="background: #23b287;">
+                <nav class="navbar navbar-expand navbar-light bg-dark topbar static-top shadow" style="justify-content:space-around;padding-bottom: 0;">
+                    <button class="btn btn-primary" style="position: absolute;left: 0;margin: 20px;top: 0;"><a href="/clientes/home"  style="color: #fff;text-decoration:none;">Home</a></button>
                     <div class="navbar-brand text-white" style="display:flex;flex-direction:column;justify-content:start;align-items:center;">
                         <h3 th:text="${cliennn.nome}" class="m-0 font-weight-bold text-primary"></h3>
                         <div class="dropdown no-arrow" style="display:flex;flex-direction:row;width:100%;">
@@ -103,141 +104,123 @@
                         </li>
                     </ul>
                 </nav>
-                <div class="container-fluid" style="display:flex;flex-direction:column;">
-                    <div class="row">
-                        <h6 class="m-0 font-weight-bold text-primary">Transferir</h6>
-                    </div>
-                    <div class="row">
-                        <h6 class="m-0 font-weight-bold text-primary">Extrato</h6>
-                    </div>
-                    <div class="row">
-                        <h6 class="m-0 font-weight-bold text-primary">Cartões</h6>
-                    </div>
-                </div>
                 <div class="container-fluid" style="width:100%;display:flex;flex-direction:row;justify-content:center;">
-                    <div class="card shadow mb-4" style="border: none;margin:10px;">
-                        <div class="card-header py-3" style="display:flex;flex-direction:row;width:100%;align-items:center;justify-content:space-between;width: 40vw;">
+                    <div class="card shadow mt-5 mb-5" style="border: none;margin:10px;">
+                        <div class="card-header py-3" style="display:flex;flex-direction:row;align-items:center;justify-content:space-between;width: 60vw;">
                             <h4 class="m-0 font-weight-bold text-primary">Area de tranferencia</h4>
-                            <div th:if="${accertt == true}" class="alert alert-success" role="alert"></div>
-                            <button class="btn btn-primary"><a th:href="@{'/clientes/conta/' + ${cont.id_conta} + '/extrato'}"  style="color: #fff;text-decoration:none;">Ver extrato</a></button>
+                            <button class="btn btn-primary"><a th:if="${cont != null}" th:href="@{'/clientes/conta/' + ${cons.id_conta} + '/extrato'}"  style="color: #fff;text-decoration:none;">Ver extrato</a></button>
                         </div>
                         <div class="card-body" style="display: flex;justify-content:center;">
-                            <div th:if="${erro == null}" style="width:70%;">
-                                <br>
-                                <form method="POST" th:action="@{/clientes/conta} + '/'+ ${cliennn.id_cliente} + '/transferir' " th:each="consss : ${cont}">
-                                    <div class="form-group row">
-                                        <div class="col-sm-6 mb-3">
-                                            <div class="input-group-prepend">
-                                                <input type="hidden" class="form-control" id="dt" name="data_transacao" readonly>
-                                                <script>
-                                                    var data = new Date();
-                                                    var dia = data.getDate();
-                                                    var mes = data.getMonth() + 1;
-                                                    var ano = data.getFullYear();
+                            <div style="width:70%;">
+                            <form method="POST" th:action="@{/clientes/conta} + '/'+ ${cliennn.id_cliente} + '/transferir' " th:each="consss : ${cont}">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3">
+                                        <div class="input-group-prepend">
+                                            <input type="hidden" class="form-control" id="dt" name="data_transacao" readonly>
+                                            <script>
+                                                var data = new Date();
+                                                var dia = data.getDate();
+                                                var mes = data.getMonth() + 1;
+                                                var ano = data.getFullYear();
 
-                                                    if (dia < 10) {
-                                                        dia = "0" + dia;
-                                                    }else if(mes < 10){
-                                                        mes = "0" + mes;
-                                                    }
+                                                if (dia < 10) {
+                                                    dia = "0" + dia;
+                                                }else if(mes < 10){
+                                                    mes = "0" + mes;
+                                                }
 
-                                                    var dataFormatada = ano + "-" + mes + "-" + dia;
-                                                    console.log(dataFormatada);
-                                                    document.getElementById("dt").value = dataFormatada;
-                                                </script>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="hidden" class="form-control" name="idConta" th:value="${consss.id_conta}" readonly>
+                                                var dataFormatada = ano + "-" + mes + "-" + dia;
+                                                console.log(dataFormatada);
+                                                document.getElementById("dt").value = dataFormatada;
+                                            </script>
                                         </div>
                                     </div>
-                                    <script>
-                                        function select() {
-                                            var transferencia = document.getElementById("transferencia");
-                                            var tipo = document.getElementById("tipo");
-                                            var select = document.getElementById("selecionarTipo");
-                                            var cpf = document.getElementById("cpf");
-                                            var submit = document.getElementById("submit");
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="hidden" class="form-control" name="idConta" th:value="${consss.id_conta}" readonly>
+                                    </div>
+                                </div>
+                                <script>
+                                    function select() {
+                                        var transferencia = document.getElementById("transferencia");
+                                        var tipo = document.getElementById("tipo");
+                                        var select = document.getElementById("selecionarTipo");
+                                        var cpf = document.getElementById("cpf");
+                                        var submit = document.getElementById("submit");
 
-                                            if(select.value == -1){
-                                                transferencia.style.display = "none";
-                                                cpf.removeAttribute('required');
-                                                cpf.removeAttribute('name');
-                                                submit.setAttribute('disabled', 'disabled');
-                                            }
-                                            else if(select.value == 0){
-                                                transferencia.style.display = "none";
-                                                tipo.value = "saque";
-                                                cpf.removeAttribute('required');
-                                                cpf.removeAttribute('name');
-                                                submit.removeAttribute('disabled');
-
-                                            }else if(select.value == 1){
-                                                transferencia.style.display = "none";
-                                                tipo.value = "deposito";
-                                                cpf.removeAttribute('required');
-                                                cpf.removeAttribute('name');
-                                                submit.removeAttribute('disabled');
-
-                                            }else if(select.value == 2){
-                                                transferencia.style.display = "block";
-                                                tipo.value = "transferencia";
-                                                cpf.setAttribute('required', 'required');
-                                                cpf.setAttribute('name', 'cpf');
-                                                submit.removeAttribute('disabled');
-                                            }
+                                        if(select.value == -1){
+                                            transferencia.style.display = "none";
+                                            cpf.removeAttribute('required');
+                                            cpf.removeAttribute('name');
+                                            submit.setAttribute('disabled', 'disabled');
                                         }
-                                    </script>
-                                    <input type="hidden" name="tipo" id="tipo">
-                                    <div class="input-group-prepend">
-                                        <input type="number" class="form-control" id="valor" name="valor" placeholder="R$: 100" required maxlength="5" autocomplete="off">
-                                        <div class="input-group-addon"></div>
-                                    </div>
+                                        else if(select.value == 0){
+                                            transferencia.style.display = "none";
+                                            tipo.value = "saque";
+                                            cpf.removeAttribute('required');
+                                            cpf.removeAttribute('name');
+                                            submit.removeAttribute('disabled');
+
+                                        }else if(select.value == 1){
+                                            transferencia.style.display = "none";
+                                            tipo.value = "deposito";
+                                            cpf.removeAttribute('required');
+                                            cpf.removeAttribute('name');
+                                            submit.removeAttribute('disabled');
+
+                                        }else if(select.value == 2){
+                                            transferencia.style.display = "block";
+                                            tipo.value = "transferencia";
+                                            cpf.setAttribute('required', 'required');
+                                            cpf.setAttribute('name', 'cpf');
+                                            submit.removeAttribute('disabled');
+                                        }
+                                    }
+                                </script>
+                                <input type="hidden" name="tipo" id="tipo">
+                                <div class="input-group-prepend">
+                                    <input type="number" class="form-control" id="valor" name="valor" placeholder="R$: 100" required maxlength="5" autocomplete="off">
+                                    <div class="input-group-addon"></div>
+                                </div>
+                                <br>
+                                <select id="selecionarTipo" class="form-control" onchange="select()" required>
+                                    <option value="-1" selected class="text-dark">Escolha o tipo de transacao</option>
+                                    <option value="0" class="text-dark">Saque</option>
+                                    <option value="1" class="text-dark">Deposito</option>
+                                    <option value="2" class="text-dark">Transferencia</option>
+                                </select>
+                                <div id="transferencia" class="form-group" style="display: none;">
                                     <br>
-                                    <select id="selecionarTipo" class="form-control" onchange="select()" required>
-                                        <option value="-1" selected>Escolha o tipo de transacao</option>
-                                        <option value="0">Saque</option>
-                                        <option value="1">Deposito</option>
-                                        <option value="2">Transferencia</option>
-                                    </select>
-                                    <div id="transferencia" class="form-group" style="display: none;">
-                                        <br>
-                                        <label id="label_cpf">CPF a transferir</label>
-                                        <input type="text" class="form-control" id="cpf" placeholder="000.000.000-00" onkeypress="$(this).mask('000.000.000-00');" autocomplete="off">
-                                    </div>
-                                    <br>
-                                    <div class="form-group" style="display: flex;justify-content:end;">
-                                        <button type="submit" id="submit" class="btn btn-primary" disabled>Transferir</button>
-                                    </div>
-                                    <br>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="card shadow mb-4" style="border: none;margin:10px;">
-                        <div class="card-header py-3" style="display:flex;flex-direction:row;width:100%;align-items:center;justify-content:space-between;width: 40vw;">
-                            <h4 class="m-0 font-weight-bold text-primary">Transferencias</h4>
-                            <!--<button class="btn btn-primary"><a th:href="@{'/clientes/conta/' + ${contts}}" style="color: #fff;text-decoration:none;">Ver conta</a></button>-->
-                        </div>
-                        <div class="card-body" style="display: flex;justify-content:center;">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTableCliente" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>DATA TRANSACAO</th>
-                                            <th>TIPO</th>
-                                            <th>VALOR</th>                        
-                                    </thead>
-                                    <tbody>
-                                        <tr th:each="transferencia : ${transferencias}">
-                                            <td th:text="${transferencia.id_transacao}"></td>
-                                            <td th:text="${transferencia.data_transacao}"></td>
-                                            <td th:text="${transferencia.tipo}"></td>
-                                            <td th:text="${transferencia.valor}"></td>
-                                        </tr>
-                                </table>
+                                    <label id="label_cpf">CPF a transferir</label>
+                                    <input type="text" class="form-control" id="cpf" placeholder="000.000.000-00" onkeypress="$(this).mask('000.000.000-00');" autocomplete="off">
+                                </div>
+                                <br>
+                                <div th:if="${errooo != null}" class="alert alert-danger hidden" role="alert" th:text="${errooo}">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div th:if="${accertt != null}" class="alert alert-success hidden" role="alert" th:text="${accertt}">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <script th:if="${accertt != null}" th:inline="javascript">
+                                    /*<![CDATA[*/
+                                        var id = /*[[${cliennn.id_cliente}]]*/ 'default';
+                                    /*]]>*/
+                                    setTimeout(function(){
+                                        window.location.href = "/clientes/conta/" + id;
+                                      }, 5000);
+                                </script>
+                                <script th:if="${errooo != null}" th:inline="javascript">
+                                    /*<![CDATA[*/
+                                        var id = /*[[${cliennn.id_cliente}]]*/ 'default';
+                                    /*]]>*/
+                                    setTimeout(function(){
+                                        window.location.href = "/clientes/conta/" + id;
+                                      }, 5000);
+                                </script>
+                                <div class="form-group" style="display: flex;justify-content:end;">
+                                    <button type="submit" id="submit" class="btn btn-primary" disabled>Transferir</button>
+                                </div>
+                                <br>
+                            </form>
                             </div>
                         </div>
                     </div>
@@ -281,5 +264,129 @@
     <script src="/js/datatables-demo.js"></script>
     <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="../assets/js/core/jquery.min.js"></script>
+    <script src="../assets/js/core/popper.min.js"></script>
+    <script src="../assets/js/core/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    <script src="../assets/js/plugins/chartjs.min.js"></script>
+    <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+    <script src="../assets/js/black-dashboard.min.js?v=1.0.0"></script>
+    <script src="../assets/demo/demo.js"></script>
+    <script>
+    $(document).ready(function() {
+      $().ready(function() {
+        $sidebar = $('.sidebar');
+        $navbar = $('.navbar');
+        $main_panel = $('.main-panel');
+        $full_page = $('.full-page');
+        $sidebar_responsive = $('body > .navbar-collapse');
+        sidebar_mini_active = true;
+        white_color = false;
+        window_width = $(window).width();
+        fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+        $('.fixed-plugin a').click(function(event) {
+          if ($(this).hasClass('switch-trigger')) {
+            if (event.stopPropagation) {
+              event.stopPropagation();
+            } else if (window.event) {
+              window.event.cancelBubble = true;
+            }
+          }
+        });
+
+        $('.fixed-plugin .background-color span').click(function() {
+          $(this).siblings().removeClass('active');
+          $(this).addClass('active');
+
+          var new_color = $(this).data('color');
+
+          if ($sidebar.length != 0) {
+            $sidebar.attr('data', new_color);
+          }
+
+          if ($main_panel.length != 0) {
+            $main_panel.attr('data', new_color);
+          }
+
+          if ($full_page.length != 0) {
+            $full_page.attr('filter-color', new_color);
+          }
+
+          if ($sidebar_responsive.length != 0) {
+            $sidebar_responsive.attr('data', new_color);
+          }
+        });
+
+        $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function() {
+          var $btn = $(this);
+
+          if (sidebar_mini_active == true) {
+            $('body').removeClass('sidebar-mini');
+            sidebar_mini_active = false;
+            blackDashboard.showSidebarMessage('Sidebar mini deactivated...');
+          } else {
+            $('body').addClass('sidebar-mini');
+            sidebar_mini_active = true;
+            blackDashboard.showSidebarMessage('Sidebar mini activated...');
+          }
+          var simulateWindowResize = setInterval(function() {
+            window.dispatchEvent(new Event('resize'));
+          }, 180);
+
+          setTimeout(function() {
+            clearInterval(simulateWindowResize);
+          }, 1000);
+        });
+
+        $('.switch-change-color input').on("switchChange.bootstrapSwitch", function() {
+          var $btn = $(this);
+
+          if (white_color == true) {
+
+            $('body').addClass('change-background');
+            setTimeout(function() {
+              $('body').removeClass('change-background');
+              $('body').removeClass('white-content');
+            }, 900);
+            white_color = false;
+          } else {
+
+            $('body').addClass('change-background');
+            setTimeout(function() {
+              $('body').removeClass('change-background');
+              $('body').addClass('white-content');
+            }, 900);
+
+            white_color = true;
+          }
+
+
+        });
+
+        $('.light-badge').click(function() {
+          $('body').addClass('white-content');
+        });
+
+        $('.dark-badge').click(function() {
+          $('body').removeClass('white-content');
+        });
+      });
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+      demo.initDashboardPageCharts();
+
+    });
+    </script>
+    <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+    <script>
+    window.TrackJS &&
+      TrackJS.install({
+        token: "ee6fab19c5a04ac1a32a645abde4613a",
+        application: "black-dashboard-free"
+      });
+    </script>
 </body>
 </html>
