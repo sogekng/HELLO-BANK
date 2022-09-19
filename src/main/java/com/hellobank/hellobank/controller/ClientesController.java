@@ -126,13 +126,13 @@ public class ClientesController {
                     }
                 }
             }else{
+                if(nova.getValor() > conta.get().getSaldo()){
+                    model1.addAttribute("cont", conta.get());
+                    model2.addAttribute("cliennn", cliente.get());
+                    model3.addAttribute("errooo", "Saldo insuficiente");
+                    return "contas/conta";
+                }
                 if(nova.getTipo().equals("saque")){
-                    if(nova.getValor() > conta.get().getSaldo()){
-                        model1.addAttribute("cont", conta.get());
-                        model2.addAttribute("cliennn", cliente.get());
-                        model3.addAttribute("errooo", "Saldo insuficiente");
-                        return "contas/conta";
-                    }
                     serviceTransacao.criarNovo(nova);
                     model1.addAttribute("accertt", "Saque realizada com sucesso!");
                 }else if("deposito".equals("deposito")){

@@ -18,7 +18,7 @@
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/administradores">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" style="width: 100%;" href="/administradores">
                 <div class="sidebar-brand-text mx-3">Administradores</div>
             </a>
             <hr class="sidebar-divider">
@@ -29,7 +29,7 @@
                     <span>Pages</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
+                    <div class="bg-dark py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/administradores/home">Home</a>
                         <a class="collapse-item" href="/administradores">Administradores</a>
                         <a class="collapse-item" href="/clientes">Clientes</a>
@@ -47,7 +47,7 @@
                     <span>Tables</span>
                 </a>
                 <div id="collapseTables" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
+                    <div class="bg-dark py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/administradores">Administradores</a>
                         <a class="collapse-item" href="/clientes">Clientes</a>
                     </div>
@@ -62,7 +62,7 @@
         </ul>
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow">
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
@@ -156,7 +156,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                                            <a class="btn btn-primary" th:href="@{'/administradores/delete/' + ${administrador.id}}">Excluir</a>
+                                                            <a class="btn btn-primary" th:href="@{'/administradores/delete/' + ${administrador.id}}" style="background-color: #4edfb3;">Excluir</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -164,7 +164,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div id="create" class="content-form" style="background-color: #fff;padding:20px;height:100%;width:100%;">
+                                <div id="create" class="content-form" style="background-color: #27293d;padding:20px;height:100%;width:100%;">
                                     <h6 class="m-0 font-weight-bold text-primary">Adicionar Administrador</h6>
                                     <br>
                                     <form action="/administradores/create" method="POST" id="create">
@@ -191,7 +191,7 @@
                     <br>
                 </div>
             </div>
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer bg-dark">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Your Website 2022</span>
@@ -215,7 +215,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="/logout">Logout</a>
+                    <a class="btn btn-primary" href="/logout" style="background-color: #4edfb3;">Logout</a>
                 </div>
             </div>
         </div>

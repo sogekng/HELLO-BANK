@@ -13,8 +13,8 @@
         rel="stylesheet">
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
-<body class="bg-gradient-primary">
-    <div class="container">
+<body class="bg-gradient-primary" id="body-image">
+    <div class="container" style="background-color: #00000087;align-items:center;">
         <div class="row justify-content-center">
             <div class="col-xl-10 col-lg-12 col-md-9">
                 <div class="card o-hidden border-0 shadow-lg my-5">
@@ -23,9 +23,9 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Login</h1>
+                                        <h1 class="h4 text-white mb-4">Login</h1>
                                     </div>
-                                    <form class="user" action="/logon" method="POST">
+                                    <form class="user" action="/logon" method="POST" autocomplete="off">
                                         <div class="form-group">
                                             <input type="text" name="cpf" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp" placeholder="000.000.000-00" required onkeypress="$(this).mask('000.000.000-00');" autocomplete="off">

@@ -15,63 +15,13 @@
     <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
-    <div id="wrapper">
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/administradores">
-                <div class="sidebar-brand-text mx-3">Sua Conta</div>
-            </a>
-            <hr class="sidebar-divider">
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/clientes/conta">Home</a>
-                    </div>
-                </div>
-            </li>
-            <br>
-            <hr class="sidebar-divider">
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTables"
-                    aria-expanded="true" aria-controls="collapseTables">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span>
-                </a>
-                <div id="collapseTables" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                    </div>
-                </div>
-            </li>
-            <br>
-            <hr class="sidebar-divider d-none d-md-block">
-            <br>
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-        </ul>
+    <div id="wrapper" style="height: 100%;">
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow">
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
@@ -116,7 +66,7 @@
                         <div class="card-header py-3" style="display:flex;flex-direction:row;width:100%;align-items:center;justify-content:space-between;">
                             <h5 th:text="${cliennt.nome}" class="m-0 font-weight-bold text-primary"></h5>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="background-color: #27293d;">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -147,7 +97,7 @@
                     <br>
                 </div>
             </div>
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer bg-dark">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Your Website 2022</span>
@@ -171,7 +121,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="/logout">Logout</a>
+                    <a class="btn btn-primary" href="/logout" style="background-color: #4edfb3;">Logout</a>
                 </div>
             </div>
         </div>

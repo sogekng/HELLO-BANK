@@ -13,7 +13,7 @@
         rel="stylesheet">
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
-<body id="page-top">
+<body id="page-top" style="width: 100%;">
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -28,7 +28,7 @@
                     <span>Pages</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
+                    <div class="bg-dark py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/administradores/home">Home</a>
                         <a class="collapse-item" href="/administradores">Administradores</a>
                         <a class="collapse-item" href="/clientes">Clientes</a>
@@ -46,7 +46,7 @@
                     <span>Tables</span>
                 </a>
                 <div id="collapseTables" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
+                    <div class="bg-dark py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/administradores">Administradores</a>
                         <a class="collapse-item" href="/clientes">Clientes</a>
                     </div>
@@ -61,7 +61,7 @@
         </ul>
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="display:flex;align-items:center;">
+                <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow" style="display:flex;align-items:center;">
                     <h4 class="m-0 font-weight-bold text-primary">Seja Bem-Vindo(a) <span th:text="${nome_administrador}" style="align-items:center;display: contents;"></span></h4>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown no-arrow d-sm-none">
@@ -108,7 +108,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">Administradores</h6>
                             <button class="btn btn-primary"><a href="/administradores" style="color: #fff;text-decoration:none;">Ver tabela</a></button>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="background-color: #27293d;">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -138,7 +138,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">Clientes</h6>
                             <button class="btn btn-primary"><a href="/clientes" style="color: #fff;text-decoration:none;">Ver tabela</a></button>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="background-color: #27293d;">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTableCliente" width="100%" cellspacing="0">
                                     <thead>
@@ -166,7 +166,7 @@
                     </div>
                 </div>
             </div>
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer bg-dark">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Your Website 2022</span>
@@ -190,7 +190,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="/logout">Logout</a>
+                    <a class="btn btn-primary" href="/logout" style="background-color: #4edfb3;">Logout</a>
                 </div>
             </div>
         </div>
