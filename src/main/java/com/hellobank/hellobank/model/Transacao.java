@@ -28,6 +28,9 @@ public class Transacao {
 
     @Column(name = "valor", length = 70, nullable = false)
     private Double valor;
+    
+    @Column(name = "status", length = 70, nullable = false)
+    private String status;
 
     @Column(name = "data_transacao", length = 20, nullable = false)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -44,6 +47,14 @@ public class Transacao {
 
     public void setValor(Double valor) {
         this.valor = valor;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getTipo() {
@@ -80,7 +91,5 @@ public class Transacao {
         this.data_transacao = data_transacao;
     }
 
-    
-    
     
 }

@@ -162,7 +162,7 @@
                     </button>
                 </div>
                 <div class="container-fluid">
-                    <div class="card shadow mb-4" style="border:none;margin: 40px auto;width: 50vw;height: 70vh;">
+                    <div class="card shadow mb-4" style="border:none;margin: 40px auto;width: 50vw;height: 50vh;">
                         <div class="card-header py-3" style="display:flex;flex-direction:row;align-items:center;justify-content:space-between;width: 100%;">
                             <h4 class="m-0 font-weight-bold text-primary">Transferencias</h4>
                         </div>
@@ -181,7 +181,8 @@
                                             <td th:text="${transff.id_transacao}"></td>
                                             <td th:text="${transff.data_transacao}"></td>
                                             <td th:text="${transff.tipo}"></td>
-                                            <td th:text="${transff.valor}"></td>
+                                            <td th:if="${transff.status == 'Positivo'}" th:text="${transff.valor}" style="color:#23b287;"></td>
+                                            <td th:if="${transff.status == 'Negativo'}" th:text="${transff.valor}" style="color:brown;"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -320,12 +321,12 @@
             </div>
         </div>
     </div>
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/jquery.easing.min.js"></script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="/js/sb-admin-2.min.js"></script>
-    <script src="/js/jquery.dataTables.min.js"></script>
-    <script src="/jsdatatables/dataTables.bootstrap4.min.js"></script>
+    <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="/js/datatables-demo.js"></script>
     <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>

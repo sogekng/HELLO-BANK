@@ -102,6 +102,7 @@ public class ClientesController {
             return "contas/conta";
         }
         if (nova != null){
+            
             if(nova.getTipo().equals("transferencia")){
                 if(nova.getValor() > conta.get().getSaldo()){
                     model1.addAttribute("cont", conta.get());
@@ -119,6 +120,8 @@ public class ClientesController {
                                 if(contaDestino.get() != null){
                                     serviceTransacao.transferir(nova, contaDestino.get());
                                     model1.addAttribute("accertt", "Transferência realizada com sucesso!");
+                                    model2.addAttribute("cont", conta.get());
+                                    model3.addAttribute("cliennn", cliente.get());
                                     return "contas/conta";
                                 }else{
                                     model1.addAttribute("cont", conta.get());
@@ -127,6 +130,9 @@ public class ClientesController {
                                     return "contas/conta";
                                 }
                             }catch(Exception e){
+                                model1.addAttribute("cont", conta.get());
+                                model2.addAttribute("cliennn", cliente.get());
+                                model3.addAttribute("errooo", "Erro ao transferir");
                                 return "contas/conta";
                             }
                         }         
@@ -145,9 +151,11 @@ public class ClientesController {
                         model3.addAttribute("errooo", "Saldo insuficiente");
                         return "contas/conta";
                     }
+                    nova.setStatus("Negativo");
                     serviceTransacao.criarNovo(nova);
                     model1.addAttribute("accertt", "Saque realizada com sucesso!");
                 }else if("deposito".equals("deposito")){
+                    nova.setStatus("Positivo");
                     serviceTransacao.criarNovo(nova);
                     model1.addAttribute("accertt", "Depósito realizado com sucesso!");
                 }

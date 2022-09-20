@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Transacao</title>
+    <title>Transferencia</title>
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
 </head>
 <body id="page-top" th:each="cons : ${cont}">
     <div id="wrapper" style="height:100vh;">
@@ -118,14 +118,15 @@
                                             <th>ID</th>
                                             <th>DATA TRANSACAO</th>
                                             <th>TIPO</th>
-                                            <th>VALOR</th>                        
+                                            <th>VALOR</th>                    
                                     </thead>
                                     <tbody>
                                         <tr th:each="transferencia : ${transferencias}">
                                             <td th:text="${transferencia.id_transacao}"></td>
                                             <td th:text="${transferencia.data_transacao}"></td>
                                             <td th:text="${transferencia.tipo}"></td>
-                                            <td th:text="${transferencia.valor}"></td>
+                                            <td th:if="${transferencia.status == 'Positivo'}" th:text="${transferencia.valor}" style="color:#23b287;"></td>
+                                            <td th:if="${transferencia.status == 'Negativo'}" th:text="${transferencia.valor}" style="color:brown;"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -168,13 +169,12 @@
             </div>
         </div>
     </div>
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/jquery.easing.min.js"></script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="/js/sb-admin-2.min.js"></script>
-    <script src="/js/jquery.dataTables.min.js"></script>
-    <script src="/jsdatatables/dataTables.bootstrap4.min.js"></script>
-    <script src="/js/datatables-demo.js"></script>
+    <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 </body>
