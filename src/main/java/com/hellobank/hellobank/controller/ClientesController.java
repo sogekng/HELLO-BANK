@@ -31,11 +31,14 @@ public class ClientesController {
     public String conta_create(Model model1, Model model2, Model model3, HttpServletRequest request) throws UnsupportedEncodingException{
         String idCliente = CookieService.getCookie(request, "id_cliente");
         Optional<Cliente> cliente = serviceCliente.toSearch(Integer.parseInt(idCliente));
-        //Optional<Conta> conta = serviceConta.toSearchIdCliente(Integer.parseInt(idCliente));
+        Optional<Conta> conta = serviceConta.toSearchIdCliente(Integer.parseInt(idCliente));
+        
+        if(conta.isPresent()){
+            model1.addAttribute("consstt", conta.get());
+            model2.addAttribute("transf", serviceTransacao.extrato(conta.get().getId_conta()));
+        }
 
-        //model1.addAttribute("consstt", conta.get());
-        model2.addAttribute("cliennt", cliente.get());
-        //model3.addAttribute("transf", serviceTransacao.extrato(conta.get().getId_conta()));
+        model3.addAttribute("cliennt", cliente.get());
         return "clientes/home";
     }
 
@@ -119,12 +122,15 @@ public class ClientesController {
                             if(contaDestino.get() != null){
                                 serviceTransacao.transferir(nova, contaDestino.get());
                                 model1.addAttribute("accertt", "Transferência realizada com sucesso!");
+                                return "contas/conta";
+                            }else{
+                                model1.addAttribute("cont", conta.get());
+                                model2.addAttribute("cliennn", cliente.get());
+                                model3.addAttribute("errooo", "Conta não existe");
+                                return "contas/conta";
                             }
                         }catch(Exception e){
-                            model1.addAttribute("cont", conta.get());
-                            model2.addAttribute("cliennn", cliente.get());
-                            model3.addAttribute("errooo", "Conta não existe");
-                                return "contas/conta";
+                            return "contas/conta";
                         }                  
                     }else{
                         model1.addAttribute("errooo", "Cliente não existe");
