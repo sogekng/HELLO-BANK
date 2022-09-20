@@ -1,14 +1,10 @@
 package com.hellobank.hellobank.dao;
 
 import java.util.ArrayList;
-
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
 import com.hellobank.hellobank.model.Conta;
-import com.hellobank.hellobank.model.Cliente;
 import java.util.Optional;
 
 @Repository
