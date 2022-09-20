@@ -150,15 +150,15 @@
                         </li>
                     </ul>
                 </nav>
-                <div th:if="${consstt != null}">
+                <div th:if="${consstt != null}" style="justify-content: center;display: flex;margin-top: 30px;">
                     <button class="btn btn-primary" style="background-color: #000000ba">
-                        <a href="#" data-toggle="modal" data-target="#depositarModal">Depositar</a>   
+                        <a href="#" data-toggle="modal" data-target="#transferenciaModal" onclick="select('deposito')">Depositar</a>   
                     </button>
                     <button class="btn btn-primary" style="background-color: #000000ba">
-                        <a href="#" data-toggle="modal" data-target="#sacarModal">Sacar</a> 
+                        <a href="#" data-toggle="modal" data-target="#transferenciaModal" onclick="select('saque')">Sacar</a> 
                     </button>
                     <button class="btn btn-primary" style="background-color: #000000ba">
-                        <a href="#" data-toggle="modal" data-target="#transferirModal">Transferir</a>
+                        <a href="#" data-toggle="modal" data-target="#transferenciaModal" onclick="select('transferencia')">Transferir</a>
                     </button>
                 </div>
                 <div class="container-fluid">
@@ -202,13 +202,13 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-    <div class="modal fade" id="depositarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="transferenciaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document" style="height: 30vh;width: 100vw;">
-            <div class="modal-content" style="height: 100%;padding:30px;" th:each="consssst : ${consstt}">   
+        <div class="modal-dialog" id="content-modal" role="document" style="height: 30vh;width: 100vw;">
+            <div class="modal-content" style="height: 100%;padding:30px;display:flex;justify-content:center;" th:each="consssst : ${consstt}">   
                 <div id="depositar">
-                    <h4 class="m-0 font-weight-bold text-primary" id="text">Deposito</h4>
-                    <form method="POST" th:action="@{/clientes/conta} + '/'+ ${c.id_cliente} + '/transferir' ">
+                    <h4 class="m-0 font-weight-bold text-primary" id="title-modal"></h4>
+                    <form method="POST" th:action="@{/clientes/conta} + '/'+ ${c.id_cliente} + '/transferir'">
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3">
                                 <div class="input-group-prepend">
@@ -218,13 +218,13 @@
                                         var dia = data.getDate();
                                         var mes = data.getMonth() + 1;
                                         var ano = data.getFullYear();
-            
+
                                         if (dia < 10) {
                                             dia = "0" + dia;
                                         }else if(mes < 10){
                                             mes = "0" + mes;
                                         }
-            
+
                                         var dataFormatada = ano + "-" + mes + "-" + dia;
                                         console.log(dataFormatada);
                                         document.getElementById("dt").value = dataFormatada;
@@ -235,82 +235,66 @@
                                 <input type="hidden" class="form-control" name="idConta" th:value="${consssst.id_conta}" readonly>
                             </div>
                         </div>
-                        <input type="hidden" name="tipo" id="tipo" value="deposito">
+                        <script>
+                            function select(id) {
+                                var transferencia = document.getElementById("transferencia");
+                                var tipo = document.getElementById("tipo");
+                                var select = document.getElementById("selecionarTipo");
+                                var cpf = document.getElementById("cpf");
+                                var submit = document.getElementById("submit");
+                                var content = document.getElementById("content-modal");
+                                var title = document.getElementById("title-modal");
+
+                                if(id == "saque"){
+                                    transferencia.style.display = "none";
+                                    tipo.value = "saque";
+                                    cpf.removeAttribute('required');
+                                    cpf.removeAttribute('name');
+                                    submit.removeAttribute('disabled');
+                                    submit.innerHTML = "Sacar";
+                                    content.style.height = "30vh";
+                                    title.innerHTML = "Saque";
+                                }else if(id == "deposito"){
+                                    transferencia.style.display = "none";
+                                    tipo.value = "deposito";
+                                    cpf.removeAttribute('required');
+                                    cpf.removeAttribute('name');
+                                    submit.removeAttribute('disabled');
+                                    submit.innerHTML = "Depositar";
+                                    content.style.height = "30vh";
+                                    title.innerHTML = "Deposito";
+                                }else if(id == "transferencia"){
+                                    transferencia.style.display = "block";
+                                    tipo.value = "transferencia";
+                                    cpf.setAttribute('required', 'required');
+                                    cpf.setAttribute('name', 'cpf');
+                                    submit.removeAttribute('disabled');
+                                    submit.innerHTML = "Transferir";
+                                    content.style.height = "45vh";
+                                    title.innerHTML = "Transferencia";
+                                }
+                            }
+                        </script>
+                        <input type="hidden" name="tipo" id="tipo">
                         <div class="input-group-prepend">
                             <input type="number" class="form-control" id="valor" name="valor" placeholder="R$: 0" required maxlength="5" autocomplete="off">
                             <div class="input-group-addon"></div>
                         </div>
                         <br>
-                        <div class="form-group" style="display: flex;justify-content:end;">
-                            <button type="submit" id="submit" class="btn btn-primary">Depositar</button>
-                        </div>
-                        <br>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="sacarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document" style="height: 30vh;width: 100vw;">
-            <div class="modal-content" style="height: 100%;padding:30px;" th:each="consssst : ${consstt}">   
-                <div id="sacar">
-                    <h4 class="m-0 font-weight-bold text-primary" id="text">Saque</h4>
-                    <form method="POST" th:action="@{/clientes/conta} + '/'+ ${c.id_cliente} + '/transferir' ">
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3">
-                                <div class="input-group-prepend">
-                                    <input type="hidden" class="form-control" id="dt" name="data_transacao" readonly>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input type="hidden" class="form-control" name="idConta" th:value="${consssst.id_conta}" readonly>
-                            </div>
-                        </div>
-                        <input type="hidden" name="tipo" id="tipo" value="saque">
-                        <div class="input-group-prepend">
-                            <input type="number" class="form-control" id="valor" name="valor" placeholder="R$: 0" required maxlength="5" autocomplete="off">
-                            <div class="input-group-addon"></div>
-                        </div>
-                        <br>
-                        <div class="form-group" style="display: flex;justify-content:end;">
-                            <button type="submit" id="submit" class="btn btn-primary">Sacar</button>
-                        </div>
-                        <br>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="transferirModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document" style="height: 50vh;width: 100vw;">
-            <div class="modal-content" style="height: 100%;padding:30px;" th:each="consssst : ${consstt}">   
-                <div id="transferir">
-                    <h4 class="m-0 font-weight-bold text-primary" id="text">Transferencia</h4>
-                    <form method="POST" th:action="@{/clientes/conta} + '/'+ ${c.id_cliente} + '/transferir' ">
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3">
-                                
-                            </div>
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input type="hidden" class="form-control" name="idConta" th:value="${consssst.id_conta}" readonly>
-                            </div>
-                        </div>
-                        <input type="hidden" name="tipo" id="tipo" value="transferencia">
-                        <div class="input-group-prepend">
-                            <input type="number" class="form-control" id="valor" name="valor" placeholder="R$: 0" required maxlength="5" autocomplete="off">
-                            <div class="input-group-addon"></div>
-                        </div>
-                        <br>
-                        <div id="transferencia" class="form-group">
+                        <div id="transferencia" class="form-group" style="display: none;">
                             <br>
                             <label id="label_cpf">CPF a transferir</label>
                             <input type="text" class="form-control" id="cpf" placeholder="000.000.000-00" onkeypress="$(this).mask('000.000.000-00');" autocomplete="off">
                         </div>
                         <br>
+                        <div th:if="${errooo != null}" class="alert alert-danger hidden" role="alert" th:text="${errooo}">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div th:if="${accertt != null}" class="alert alert-success hidden" role="alert" th:text="${accertt}">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
                         <div class="form-group" style="display: flex;justify-content:end;">
-                            <button type="submit" id="submit" class="btn btn-primary">Transferir</button>
+                            <button type="submit" id="submit" class="btn btn-primary">Selecione uma opção</button>
                         </div>
                         <br>
                     </form>

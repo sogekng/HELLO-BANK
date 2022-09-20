@@ -119,7 +119,7 @@ public class ClientesController {
                                 if(contaDestino.get() != null){
                                     serviceTransacao.transferir(nova, contaDestino.get());
                                     model1.addAttribute("accertt", "Transferência realizada com sucesso!");
-                                    //model2.addAttribute("saldo", "+");
+                                    return "contas/conta";
                                 }else{
                                     model1.addAttribute("cont", conta.get());
                                     model2.addAttribute("cliennn", cliente.get());

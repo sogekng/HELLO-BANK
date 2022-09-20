@@ -77,22 +77,15 @@ public class TransacaoService implements ITransacaoService {
 
     @Override
     public Transacao transferir(Transacao nova, Conta contaDestino){
-        Transacao nova2 = new Transacao();
         if (nova != null && contaDestino != null){
             Conta contaE = daoConta.encontrarPorId(nova.getIdConta().getId_conta());
             Conta contaF = contaDestino;
-            nova2.setIdConta(contaDestino);
-            nova2.setTipo(nova.getTipo());
-            nova2.setValor(nova.getValor());
-            nova2.setData_transacao(nova.getData_transacao());
 
             if ("Poupanca".equals(contaE.getTipo())){
                 if (nova.getValor() <= contaE.getSaldo()){
                     contaF.setSaldo(contaF.getSaldo() + nova.getValor());
                     contaE.setSaldo(contaE.getSaldo() - nova.getValor());
-                    dao.save(nova);
-                    dao.save(nova2);
-                    return nova;
+                    return dao.save(nova);
                 } else {
                     return null;
                 }
@@ -100,9 +93,7 @@ public class TransacaoService implements ITransacaoService {
                 if (nova.getValor() <= contaE.getSaldo() + 1000.00){
                     contaF.setSaldo(contaF.getSaldo() + nova.getValor());
                     contaE.setSaldo(contaE.getSaldo() - nova.getValor());
-                    dao.save(nova);
-                    dao.save(nova2);
-                    return nova;
+                    return dao.save(nova);
                 } else {
                     return null;
                 }
