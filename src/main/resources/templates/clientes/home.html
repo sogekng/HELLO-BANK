@@ -23,7 +23,7 @@
                 <br>
                 <p th:text="${erro}" class="alert alert-danger" role="alert"></p>
                 <br>
-                <form role="form" th:action="@{/clientes/conta} + '/'+ ${c.id_cliente} + '/create' " method="POST">        
+                <form role="form" id="form" th:action="@{/clientes/conta} + '/'+ ${c.id_cliente} + '/create' " method="POST">        
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label for="agencia">Agencia</label>
@@ -50,7 +50,7 @@
                     <div class="form-group">
                         <input type="hidden" class="form-control" name="cliente" th:value="${c.id_cliente}" readonly>
                     </div>
-                    <button type="submit" class="btn btn-primary">Criar</button>
+                    <button type="submit" id="submitBtn" class="btn btn-primary">Criar</button>
                 </form>           
             </div>
         </div>
@@ -328,5 +328,6 @@
     <script src="/js/datatables-demo.js"></script>
     <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="/js/spinner.js"></script>
 </body>
 </html>
