@@ -207,7 +207,7 @@
         <div class="modal-dialog" id="content-modal" role="document" style="height: 30vh;width: 100vw;">
             <div class="modal-content" style="height: 100%;padding:30px;display:flex;justify-content:center;" th:each="consssst : ${consstt}">   
                 <div id="depositar">
-                    <h4 class="m-0 font-weight-bold text-primary" id="title-modal"></h4>
+                    <h4 class="m-0 font-weight-bold text-primary" id="title-modal" ></h4>
                     <form method="POST" th:action="@{/clientes/conta} + '/'+ ${c.id_cliente} + '/transferir'">
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3">
@@ -252,7 +252,7 @@
                                     cpf.removeAttribute('name');
                                     submit.removeAttribute('disabled');
                                     submit.innerHTML = "Sacar";
-                                    content.style.height = "30vh";
+                                    content.style.height = "35vh";
                                     title.innerHTML = "Saque";
                                 }else if(id == "deposito"){
                                     transferencia.style.display = "none";
@@ -261,7 +261,7 @@
                                     cpf.removeAttribute('name');
                                     submit.removeAttribute('disabled');
                                     submit.innerHTML = "Depositar";
-                                    content.style.height = "30vh";
+                                    content.style.height = "35vh";
                                     title.innerHTML = "Deposito";
                                 }else if(id == "transferencia"){
                                     transferencia.style.display = "block";
@@ -270,13 +270,14 @@
                                     cpf.setAttribute('name', 'cpf');
                                     submit.removeAttribute('disabled');
                                     submit.innerHTML = "Transferir";
-                                    content.style.height = "45vh";
+                                    content.style.height = "50vh";
                                     title.innerHTML = "Transferencia";
                                 }
                             }
                         </script>
                         <input type="hidden" name="tipo" id="tipo">
-                        <div class="input-group-prepend">
+                        <div class="input-group-prepend" style="display: flex;flex-direction:column;"> 
+                            <label for="valor">Valor</label>
                             <input type="number" class="form-control" id="valor" name="valor" placeholder="R$: 0" required maxlength="5" autocomplete="off">
                             <div class="input-group-addon"></div>
                         </div>
