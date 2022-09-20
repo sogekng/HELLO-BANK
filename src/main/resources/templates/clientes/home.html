@@ -14,10 +14,10 @@
 </head>
 <body id="page-top" th:each="c : ${cliennt}">
     <div th:if="${erro != null}">
-        <button class="close" type="button" data-dismiss="criarConta" aria-label="Close">
-            <span aria-hidden="true">×</span>
-        </button>
         <div id="criarConta" style="position:absolute;z-index:5;background: #000000ba;;width: 100%;height: 100%;display:flex;">
+            <button class="close" type="button" data-dismiss="criarConta" aria-label="Close">
+                <span aria-hidden="true" style="color: white;">x</span>
+            </button>
             <div id="create" class="content-form" style="background-color: #27293d;padding:20px;height:60%;width:60%;margin:auto;">
                 <h6 class="m-0 font-weight-bold text-primary">Crie sua conta</h6>
                 <br>
@@ -150,40 +150,35 @@
                         </li>
                     </ul>
                 </nav>
+                <script>
+                    function clickTransferencia(id){
+                        if(id == "depositoClick"){
+                            document.getElementById("deposito").style.display = "block";
+                            document.getElementById("sacar").style.display = "none";
+                            document.getElementById("transferir").style.display = "none";
+                        }else if(id == "saqueClick"){
+                            document.getElementById("deposito").style.display = "none";
+                            document.getElementById("sacar").style.display = "block";
+                            document.getElementById("transferir").style.display = "none";
+                        }else if(id == "transferenciaClick"){
+                            document.getElementById("deposito").style.display = "none";
+                            document.getElementById("sacar").style.display = "none";
+                            document.getElementById("transferir").style.display = "block";
+                        }
+                    }
+                </script>
+                <div th:if="${consstt != null}">
+                    <button class="btn btn-primary" style="background-color: #000000ba">
+                        <a href="#" data-toggle="modal" data-target="#depositarModal">Depositar</a>   
+                    </button>
+                    <button class="btn btn-primary" style="background-color: #000000ba">
+                        <a href="#" data-toggle="modal" data-target="#sacarModal">Sacar</a> 
+                    </button>
+                    <button class="btn btn-primary" style="background-color: #000000ba">
+                        <a href="#" data-toggle="modal" data-target="#transferirModal">Transferir</a>
+                    </button>
+                </div>
                 <div class="container-fluid">
-                    <!--<div class="card shadow mb-4">
-                    <div class="card-header py-3" style="display:flex;flex-direction:row;width:100%;align-items:center;justify-content:space-between;">
-                            <h5 th:text="${c.nome}" class="m-0 font-weight-bold text-primary"></h5>
-                        </div>
-                        <div class="card-body" style="background-color: #27293d;">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>NOME</th>
-                                            <th>CPF</th>
-                                            <th>SENHA</th>
-                                            <th>AÇÕES</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td th:text="${c.id_cliente}"></td>
-                                            <td th:text="${c.nome}"></td>
-                                            <td th:text="${c.cpf}"></td>
-                                            <td th:text="${c.senha}"></td>
-                                            <td>
-                                                <button class="btn btn-primary"><a href="#edite" style="color:#fff;text-decoration:none;" th:href="@{'/clientes/conta/' + ${c.id_cliente}}">Ver conta</a></button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                
-                            </div>
-                        </div>
-                        
-                    </div>-->
                     <div class="card shadow mb-4" style="border:none;margin: 40px auto;width: 50vw;height: 70vh;">
                         <div class="card-header py-3" style="display:flex;flex-direction:row;align-items:center;justify-content:space-between;width: 100%;">
                             <h4 class="m-0 font-weight-bold text-primary">Transferencias</h4>
@@ -224,18 +219,134 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
+    <div class="modal fade" id="depositarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document" style="height: 30vh;width: 100vw;">
+            <div class="modal-content" style="height: 100%;padding:30px;" th:each="consssst : ${consstt}">   
+                <div id="depositar">
+                    <h4 class="m-0 font-weight-bold text-primary" id="text">Deposito</h4>
+                    <form method="POST" th:action="@{/clientes/conta} + '/'+ ${c.id_cliente} + '/transferir' ">
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3">
+                                <div class="input-group-prepend">
+                                    <input type="hidden" class="form-control" id="dt" name="data_transacao" readonly>
+                                    <script>
+                                        var data = new Date();
+                                        var dia = data.getDate();
+                                        var mes = data.getMonth() + 1;
+                                        var ano = data.getFullYear();
+            
+                                        if (dia < 10) {
+                                            dia = "0" + dia;
+                                        }else if(mes < 10){
+                                            mes = "0" + mes;
+                                        }
+            
+                                        var dataFormatada = ano + "-" + mes + "-" + dia;
+                                        console.log(dataFormatada);
+                                        document.getElementById("dt").value = dataFormatada;
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="hidden" class="form-control" name="idConta" th:value="${consssst.id_conta}" readonly>
+                            </div>
+                        </div>
+                        <input type="hidden" name="tipo" id="tipo" value="deposito">
+                        <div class="input-group-prepend">
+                            <input type="number" class="form-control" id="valor" name="valor" placeholder="R$: 0" required maxlength="5" autocomplete="off">
+                            <div class="input-group-addon"></div>
+                        </div>
+                        <br>
+                        <div class="form-group" style="display: flex;justify-content:end;">
+                            <button type="submit" id="submit" class="btn btn-primary">Depositar</button>
+                        </div>
+                        <br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="sacarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document" style="height: 30vh;width: 100vw;">
+            <div class="modal-content" style="height: 100%;padding:30px;" th:each="consssst : ${consstt}">   
+                <div id="sacar">
+                    <h4 class="m-0 font-weight-bold text-primary" id="text">Saque</h4>
+                    <form method="POST" th:action="@{/clientes/conta} + '/'+ ${c.id_cliente} + '/transferir' ">
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3">
+                                <div class="input-group-prepend">
+                                    <input type="hidden" class="form-control" id="dt" name="data_transacao" readonly>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="hidden" class="form-control" name="idConta" th:value="${consssst.id_conta}" readonly>
+                            </div>
+                        </div>
+                        <input type="hidden" name="tipo" id="tipo" value="saque">
+                        <div class="input-group-prepend">
+                            <input type="number" class="form-control" id="valor" name="valor" placeholder="R$: 0" required maxlength="5" autocomplete="off">
+                            <div class="input-group-addon"></div>
+                        </div>
+                        <br>
+                        <div class="form-group" style="display: flex;justify-content:end;">
+                            <button type="submit" id="submit" class="btn btn-primary">Sacar</button>
+                        </div>
+                        <br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="transferirModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document" style="height: 50vh;width: 100vw;">
+            <div class="modal-content" style="height: 100%;padding:30px;" th:each="consssst : ${consstt}">   
+                <div id="transferir">
+                    <h4 class="m-0 font-weight-bold text-primary" id="text">Transferencia</h4>
+                    <form method="POST" th:action="@{/clientes/conta} + '/'+ ${c.id_cliente} + '/transferir' ">
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3">
+                                
+                            </div>
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="hidden" class="form-control" name="idConta" th:value="${consssst.id_conta}" readonly>
+                            </div>
+                        </div>
+                        <input type="hidden" name="tipo" id="tipo" value="transferencia">
+                        <div class="input-group-prepend">
+                            <input type="number" class="form-control" id="valor" name="valor" placeholder="R$: 0" required maxlength="5" autocomplete="off">
+                            <div class="input-group-addon"></div>
+                        </div>
+                        <br>
+                        <div id="transferencia" class="form-group">
+                            <br>
+                            <label id="label_cpf">CPF a transferir</label>
+                            <input type="text" class="form-control" id="cpf" placeholder="000.000.000-00" onkeypress="$(this).mask('000.000.000-00');" autocomplete="off">
+                        </div>
+                        <br>
+                        <div class="form-group" style="display: flex;justify-content:end;">
+                            <button type="submit" id="submit" class="btn btn-primary">Transferir</button>
+                        </div>
+                        <br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tem certeza?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <button class="close" type="button" data-dismiss="depositar" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="depositar">Cancel</button>
                     <a class="btn btn-primary" href="/logout" style="background-color: #4edfb3;">Logout</a>
                 </div>
             </div>
