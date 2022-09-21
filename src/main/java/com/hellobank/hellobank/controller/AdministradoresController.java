@@ -28,8 +28,8 @@ public class AdministradoresController {
     @Autowired
     private IContaService serviceConta;
 
-    @GetMapping("/administradores/homePageAdministrador")
-    public String conta_create(Model model1, Model model2, Model model3, HttpServletRequest request) throws UnsupportedEncodingException{
+    @GetMapping("/administradores")
+    public String administradores_home(Model model1, Model model2, Model model3, HttpServletRequest request) throws UnsupportedEncodingException{
         String nomeAdmin = CookieService.getCookie(request, "nome_admin");
         model1.addAttribute("clien", serviceCliente.listarTodos());
         model2.addAttribute("admin", serviceAdministrador.listarTodos());
