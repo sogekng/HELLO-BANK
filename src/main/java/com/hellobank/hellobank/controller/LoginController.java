@@ -44,7 +44,7 @@ public class LoginController {
 
         }else if (clien != null) {
             //model.addAttribute("cliennt", clien);
-            return "clientes/home";
+            return "redirect:/clientes/home";
         }
 
         model.addAttribute("error", "Usuario ou senha incorretas");
