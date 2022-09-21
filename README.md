@@ -20,7 +20,7 @@
 <p>Nós recebemos o desafio de desenvolver um banco fictício, e precisamos construir uma API para gerenciar transações, onde o sistema deve permitir o cadastro de novos clientes, incluso com dados pessoais e dados para contato.</p>
 <br>
  <h2>📄 Sobre as entregas do projeto</h2>
- ✔️ Metodologias Ágeis: Kanban com todas as tarefas organizadas e responsáveis definidos; <br>
+ ✔️ Metodologias Ágeis: Kanban com todas as tarefas organizadas e responsáveis definidos <br>
  ✔️ Front-end: Interface realizada com as seguintes tecnologias: HTML5, CSS3, e JavaScript; <br>
  ✔️ Back-end: Cadastrar, listar, atualizar, deleter clientes e fornecer histórico de transação entre contas;  <br>
  ✔️ Banco de Dados: Tabelas bem estruturadas e populadas com valores para testes.  <br>
@@ -64,14 +64,12 @@
 <h2>🛠️ Desenvolvimento </h2>
 <h4> 
 ✔️ Metodologias Ágeis: Para ter uma melhor produtividade no desenvolvimento do projeto HelloBank foi utilizado a metologia ágil Kabam. Dessa forma, para melhor organização o projeto foi fragmentado em quatro quadros, sendo que cada quadro tinha a seguinte sequência: backlog onde foi passado a história(descrição) e as nossas metas para completar as tarefas sinalizas, to do(a fazer) as tarefas que precisam ser comprimidas, doing(em andamento) as tarefas que já estão sendo desenvolvidas e done(finalizado) as tarefas que foram compridas, visto que, para cada projeto foi proposto um prazo de entrega e após isso foi feito reuniões para avilar cada etapa finalizada.
+ <a href="https://trello.com/invite/b/Q8ArmMrg/fd81bdbe615ef997709eae259b60b281/hello-banck-back-end" alt="aqui" /> Clique aqui para visualizar os cards.
+ </a>
 <br>
 <br>
 <br>
-<img src="https://user-images.githubusercontent.com/102381119/191536345-acf9e860-1c01-4797-aa2f-fb5dc9407ef7.jpeg" width="750" height="400" />
-<br>
-<br>
-<br>
-<img src="https://user-images.githubusercontent.com/102381119/191530922-4acccc88-860b-4a23-a350-ce0a60a47cd5.jpeg" width="750" height="400" />
+<img src="https://user-images.githubusercontent.com/73142478/191612600-b83f6fec-b6af-4470-89de-bb37817071df.jpeg" width="750" height="400" />
 <br>
 <br>
 <br>
@@ -84,17 +82,26 @@
 <br>
 ✔️ Endpoints
 
+* CADSTRO DE CLIENTES
+<img src="https://user-images.githubusercontent.com/73142478/191625978-d0a7dd99-6f44-46f6-9769-caeebdfe15a0.jpeg" width="750" height="400" />
 <br>
 <br>
 
-<h2>💻 Tecnologias Utilizadas: <h2>
-  📍 <a href="https://html.com/">HTML</a> <br>
-  📍 <a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS">CSS</a> <br>
-  📍 <a href="https://www.javascript.com">JavaScript</a> <br>
-  📍 <a href="https://getbootstrap.com/">BootStrap</a> <br>
-  📍 <a href="https://www.java.com">Java</a> <br>
-  📍 <a href="https://spring.io/projects/spring-boot">Spring Boot</a> <br>
-  📍 <a href="https://www.thymeleaf.org/">Thymeleaf</a> <br>
+* LISTAGEM DE CLIENTES / DELETAR CLIENTES
+<img src="https://user-images.githubusercontent.com/73142478/191625707-09e8270d-afdd-456f-9e16-26f114fddd05.jpeg" width="750" height="400" />
+<br>
+<br>
+
+* ATUALIZAÇÃO DE CLIENTES
+<img src="https://user-images.githubusercontent.com/73142478/191625699-6ffa0e4b-233d-437b-8893-2af07f473137.jpeg" width="750" height="400" />
+<br>
+<br>
+
+* HISTÓRICO DE TRANSAÇÃO ENTRE CONTAS
+<img src="https://user-images.githubusercontent.com/73142478/191625704-d9284052-d71c-4cb9-952c-cc502de114c2.jpeg" width="750" height="400" />
+<br>
+<br>
+
 
 <h2>🏆 DevTeam: </h2>
 
