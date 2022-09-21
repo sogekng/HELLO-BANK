@@ -53,13 +53,13 @@
 <br>
 
 <h2>💻 Tecnologias Utilizadas: <h2>
-   <a href="https://html.com/">HTML</a> <br>
-   <a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS">CSS</a> <br>
-   <a href="https://www.javascript.com">JavaScript</a> <br>
-   <a href="https://getbootstrap.com/">BootStrap</a> <br>
-   <a href="https://www.java.com">Java</a> <br>
-   <a href="https://spring.io/projects/spring-boot">Spring Boot</a> <br>
-   <a href="https://www.thymeleaf.org/">Thymeleaf</a> <br>
+  📍 <a href="https://html.com/">HTML</a> <br>
+  📍 <a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS">CSS</a> <br>
+  📍 <a href="https://www.javascript.com">JavaScript</a> <br>
+  📍 <a href="https://getbootstrap.com/">BootStrap</a> <br>
+  📍 <a href="https://www.java.com">Java</a> <br>
+  📍 <a href="https://spring.io/projects/spring-boot">Spring Boot</a> <br>
+  📍 <a href="https://www.thymeleaf.org/">Thymeleaf</a> <br>
 
    
   
