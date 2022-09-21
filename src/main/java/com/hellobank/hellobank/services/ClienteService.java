@@ -62,7 +62,8 @@ public class ClienteService implements IClienteService {
     @Override
     public Cliente toUpdate(Cliente novoCliente) {
         if (novoCliente.getId_cliente() != null && novoCliente != null) {
-            return dao.updateCliente(novoCliente.getNome(), novoCliente.getCpf(), novoCliente.getTelefone(), novoCliente.getEmail(), novoCliente.getSenha(), novoCliente.getId_cliente());
+            dao.updateCliente(novoCliente.getCpf(), novoCliente.getEmail(), novoCliente.getNome(), novoCliente.getSenha(), novoCliente.getTelefone(), novoCliente.getId_cliente());
+            return novoCliente;
         }
         return null;
     }

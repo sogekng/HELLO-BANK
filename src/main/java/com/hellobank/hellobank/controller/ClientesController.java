@@ -200,7 +200,6 @@ public class ClientesController {
         return "redirect:/clientes";
     }
 
-
     @GetMapping("/clientes/conta/{id}/edit")
     public String edit(@PathVariable Integer id, Model model){
         Optional<Cliente> cliente = serviceCliente.toSearch(id);
@@ -210,9 +209,6 @@ public class ClientesController {
 
     @PostMapping("/clientes/conta/{id}/update")
     public String update(@PathVariable Integer id, Model model, Cliente cliente){
-        //Optional<Cliente> cliente1 = serviceCliente.toSearch(id);
-        //Optional<Conta> conta = serviceConta.toSearchIdCliente(id);
-
         
         if(!serviceCliente.toExistId(id)){
             return "redirect:/clientes/home";
@@ -220,13 +216,7 @@ public class ClientesController {
 
         cliente.setId_cliente(id);
         serviceCliente.toUpdate(cliente);
-
-        //if(conta.isPresent()){
-        //    model.addAttribute("consstt", conta.get());
-        //    model.addAttribute("transf", serviceTransacao.extrato(conta.get().getId_conta()));
-        //}
-//
-        //model.addAttribute("cliennt", cliente1.get());
-        return "redirect:/home";
+        return "redirect:/clientes/home";
     }
+    
 }

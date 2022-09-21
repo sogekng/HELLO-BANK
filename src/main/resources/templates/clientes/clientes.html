@@ -13,7 +13,7 @@
     <link href="/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
-    <div id="wrapper">
+    <div id="wrapper" style="height: 100vh;">
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content" style="background: #23b287;">
                 <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow" style="display: flex;height: 4.375rem;justify-content: center;">
@@ -106,8 +106,25 @@
                                             <td th:text="${clientes.telefone}"></td>
                                             <td th:text="${clientes.senha}"></td>
                                             <td>
-                                                <button class="btn btn-primary"><a href="#edite" style="color:#fff;text-decoration:none;" th:href="@{'/administradores/clientes/conta/' + ${clientes.id_cliente}}">Ver conta</a></button>
+                                                <button class="btn btn-primary"><a style="color:#fff;text-decoration:none;" th:href="@{'/administradores/clientes/conta/' + ${clientes.id_cliente}}">Ver dados</a></button>
+                                                <button class="btn btn-primary"><a style="color:#fff;text-decoration:none;" data-toggle="modal" data-target="#excluir">Excluir</a></button>
                                             </td>
+                                            <div class="modal fade" id="excluir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Tem certeza?</h5>
+                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                                            <a class="btn btn-primary" th:href="@{'/administradores/clientes/' + ${clientes.id_cliente} + '/delete'}" style="background-color: #4edfb3;">Excluir</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </tr>
                                     </tbody>
                                     <div th:if="${erroo != null}" th:text="${erroo}" class="alert alert-danger" role="alert"></div>

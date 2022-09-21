@@ -108,9 +108,14 @@ public class AdministradoresController {
     }
 
     @GetMapping("/administradores/administradores/{id}/delete")
-    public String delete(@PathVariable Integer id){
+    public String deleteAdministradores(@PathVariable Integer id){
         serviceAdministrador.toDelete(id);
         return "redirect:/administradores/administradores";
     }
     
+    @GetMapping("/administradores/clientes/{id}/delete")
+    public String deleteClientes(@PathVariable Integer id){
+        serviceCliente.excluirCadastro(id);
+        return "redirect:/administradores/clientes";
+    }
 }
