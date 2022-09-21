@@ -33,15 +33,15 @@ public class LoginController {
     }
 
     @PostMapping("/logon")
-    public String logon(Model model1, Model model2, Administrador administrador, Cliente cliente, String remember, HttpServletResponse response) throws IOException{
+    public String logon(Model model, Administrador administrador, Cliente cliente, String remember, HttpServletResponse response) throws IOException{
         Cliente clien = this.serviceCliente.toExistLogin(cliente.getCpf(), cliente.getSenha());
         Administrador admin = this.serviceAdmin.toExistLogin(administrador.getCpf(), administrador.getSenha());
         
         if(admin != null){
             Integer time = remember != null ? 60*60 : 60*60*24;
             CookieService.setCookie(response, "nome_admin", admin.getNome(), time);
-            model1.addAttribute("admin", serviceAdmin.listarTodos());
-            model2.addAttribute("clien", serviceCliente.listarTodos());
+            model.addAttribute("admin", serviceAdmin.listarTodos());
+            model.addAttribute("clien", serviceCliente.listarTodos());
             return "redirect:/administradores";
 
         }else if (clien != null) {
@@ -50,7 +50,7 @@ public class LoginController {
             return "redirect:/clientes";
         }
 
-        model1.addAttribute("error", "Usuario ou senha incorretas");
+        model.addAttribute("error", "Usuario ou senha incorretas");
         return "login/login";
     }
 
