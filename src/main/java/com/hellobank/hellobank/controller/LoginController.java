@@ -33,31 +33,26 @@ public class LoginController {
     }
 
     @PostMapping("/logon")
-    public String logon(Model model, Administrador administrador, Cliente cliente, String remember){ // HttpServletResponse response) throws IOException{
-        //Cliente clien = this.serviceCliente.toExistLogin(cliente.getCpf(), cliente.getSenha());
-        //Administrador admin = this.serviceAdmin.toExistLogin(administrador.getCpf(), administrador.getSenha());
-        //
-        //if(admin != null){
-        //    Integer time = remember != null ? 60*60 : 60*60*24;
-        //    CookieService.setCookie(response, "nome_admin", admin.getNome(), time);
-        //    model.addAttribute("admin", serviceAdmin.listarTodos());
-        //    model.addAttribute("clien", serviceCliente.listarTodos());
-        //    return "redirect:/administradores/home";
-//
-        //}else if (clien != null) {
-        //    Integer time = remember != null ? 60*60 : 60*60*24;
-        //    CookieService.setCookie(response, "id_cliente", String.valueOf(clien.getId_cliente()), time);
-        //    return "redirect:/clientes/home";
-        //}
-//
-        //model.addAttribute("error", "Usuario ou senha incorretas");
+    public String logon(Model model, Administrador administrador, Cliente cliente, String remember){
+        Cliente clien = this.serviceCliente.toExistLogin(cliente.getCpf(), cliente.getSenha());
+        Administrador admin = this.serviceAdmin.toExistLogin(administrador.getCpf(), administrador.getSenha());
+        
+        if(admin != null){
+            model.addAttribute("admin", serviceAdmin.listarTodos());
+            model.addAttribute("clien", serviceCliente.listarTodos());
+            return "administradores/home";
+
+        }else if (clien != null) {
+            model.addAttribute("cliennt", clien);
+            return "clientes/home";
+        }
+
+        model.addAttribute("error", "Usuario ou senha incorretas");
         return "redirect:/clientes/home";
     }
 
     @GetMapping("/logout")
-    public String logout(HttpServletResponse response) throws IOException{
-        CookieService.setCookie(response, "id", "", 0);
-        CookieService.setCookie(response, "nome", "", 0);
+    public String logout(){
         return "redirect:/login";
     }
 }
