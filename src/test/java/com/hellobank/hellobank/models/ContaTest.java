@@ -11,7 +11,7 @@ import com.hellobank.hellobank.model.Conta;
 class ContaTest {
     @Test
 	void validarPorpiedadesCliente() {
-		var conta = new Conta();
+		Conta conta = new Conta();
 		conta.setNumero("0000000-0");
 
 		conta.setAgencia("0000");
@@ -28,13 +28,13 @@ class ContaTest {
 	}
 	@Test
 	void aoSetarNumeroGerarAgenciaVazia() {
-		var conta = new Conta();
+		Conta conta = new Conta();
 		//quando eu seto um número eu preencho uma agencia
 		conta.setNumero("0000000-0");
 		assertEquals("0000", conta.getAgencia());
 	}
 	void aoSetarNumeroNaoGerarAgenciaNaoVazia() {
-		var conta = new Conta();
+		Conta conta = new Conta();
 		conta.setAgencia("2332");
 		conta.setNumero("0847246-7");
 		assertEquals("2332", conta.getAgencia());

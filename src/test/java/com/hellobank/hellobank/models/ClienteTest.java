@@ -12,7 +12,7 @@ class ClienteTest {
 
 	@Test
 	void validarPropCliente() {
-		var cliente = new Cliente();
+		Cliente cliente = new Cliente();
 		cliente.setNome("Pedro");
 		
 		cliente.setEmail("pedro@teste.com");
@@ -34,7 +34,7 @@ class ClienteTest {
 
 	@Test
 	void ValidarNome(){
-		var cliente = new Cliente();
+		Cliente cliente = new Cliente();
 		cliente.setNome("Pedro");
 		assertEquals("Pedro", cliente.getNome());
 		
