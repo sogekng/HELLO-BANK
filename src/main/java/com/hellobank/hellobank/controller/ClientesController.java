@@ -2,7 +2,6 @@ package com.hellobank.hellobank.controller;
 
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import com.hellobank.hellobank.services.IClienteService;
