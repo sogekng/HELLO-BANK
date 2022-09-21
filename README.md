@@ -26,6 +26,41 @@
  ✔️ Banco de Dados: Tabelas bem estruturadas e populadas com valores para testes.  <br>
 </h4>
 
+<h2>💻 Tecnologias necessárias para executar o projeto: <h2>
+<br>
+
+  <tr>
+    <td align="center">
+    <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white"/>
+    <td align="center">
+    <img src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white"/>
+    <td align="center">
+    <img  src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"/>
+    <td align="center">
+    <img src="https://tm.ibxk.com.br/2022/06/01/01090719586019.jpg?ims=1120x420" width="100" height="50" />
+    <td align="center">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-plain-wordmark.svg" width="80" height="50"/>
+   
+
+  <tr>
+   <td align="center">
+   <img  src="https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white">
+    <td align="center">
+   <img  src="https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white">
+   <td align="center">  
+   <img src="https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white">
+    <td align="center">  
+   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+     <td align="center">  
+   <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white">
+   <td align="center">  
+   <img src="https://img.shields.io/badge/Visual_Studio-5C2D91?style=for-the-badge&logo=visual%20studio&logoColor=white">   
+  
+ </tr>
+
+</table>
+
+
 <h2>🛠️ Desenvolvimento </h2>
 <h4> 
 ✔️ Metodologias Ágeis: Para ter uma melhor produtividade no desenvolvimento do projeto HelloBank foi utilizado a metologia ágil Kabam. Dessa forma, para melhor organização o projeto foi fragmentado em quatro quadros, sendo que cada quadro tinha a seguinte sequência: backlog onde foi passado a história(descrição) e as nossas metas para completar as tarefas sinalizas, to do(a fazer) as tarefas que precisam ser comprimidas, doing(em andamento) as tarefas que já estão sendo desenvolvidas e done(finalizado) as tarefas que foram compridas, visto que, para cada projeto foi proposto um prazo de entrega e após isso foi feito reuniões para avilar cada etapa finalizada.
