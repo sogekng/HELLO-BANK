@@ -6,15 +6,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletResponse;
+ 
 
 @RestController
-public class OthersController implements ErrorController{
+public class OthersController implements ErrorController {
 
     @RequestMapping("/error")
     public ModelAndView handleError(HttpServletResponse response)
     {
         ModelAndView modelAndView = new ModelAndView();
-
+ 
         if (response.getStatus() == HttpStatus.NOT_FOUND.value()) {
             modelAndView.setViewName("error-404");
         }
@@ -27,6 +28,7 @@ public class OthersController implements ErrorController{
         else {
             modelAndView.setViewName("error");
         }
+ 
         return modelAndView;
     }
 }

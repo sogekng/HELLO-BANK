@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import com.hellobank.hellobank.model.Cliente;
 import java.util.Optional;
-
 import javax.transaction.Transactional;
 
 public interface ClienteDAO extends CrudRepository<Cliente, Integer> {
