@@ -29,11 +29,11 @@ public class AdministradoresController {
     private IContaService serviceConta;
 
     @GetMapping("/administradores/home")
-    public String conta_create(Model model1, Model model2, Model model3, HttpServletRequest request) throws UnsupportedEncodingException{
+    public String conta_create(Model model, HttpServletRequest request) throws UnsupportedEncodingException{
         String nomeAdmin = CookieService.getCookie(request, "nome_admin");
-        model1.addAttribute("clien", serviceCliente.listarTodos());
-        model2.addAttribute("admin", serviceAdministrador.listarTodos());
-        model3.addAttribute("nome_administrador", nomeAdmin);
+        model.addAttribute("clien", serviceCliente.listarTodos());
+        model.addAttribute("admin", serviceAdministrador.listarTodos());
+        model.addAttribute("nome_administrador", nomeAdmin);
         return "administradores/home";
     }
 
@@ -52,15 +52,15 @@ public class AdministradoresController {
     }
 
     @PostMapping("/administradores/administradores/create")
-    public String create(Administrador administrador, Model model1, Model model2){
+    public String create(Administrador administrador, Model model){
         if(serviceAdministrador.toExistCpf(administrador.getCpf())){
-            model1.addAttribute("er", "Credenciais já cadastradas");
-            model2.addAttribute("administradores", serviceAdministrador.listarTodos());
+            model.addAttribute("er", "Credenciais já cadastradas");
+            model.addAttribute("administradores", serviceAdministrador.listarTodos());
             return "administradores/administradores";
         }else{
             serviceAdministrador.toCreate(administrador);
-            model1.addAttribute("ac", "Credenciais cadastradas com sucesso!");
-            model2.addAttribute("administradores", serviceAdministrador.listarTodos());
+            model.addAttribute("ac", "Credenciais cadastradas com sucesso!");
+            model.addAttribute("administradores", serviceAdministrador.listarTodos());
             return "administradores/administradores";
         }
     }
@@ -79,18 +79,18 @@ public class AdministradoresController {
     }
 
     @GetMapping("/administradores/clientes/conta/{id}")
-    public String searchAdmin(@PathVariable Integer id, Model model1, Model model2){
+    public String searchAdmin(@PathVariable Integer id, Model model){
         Optional<Conta> conta = serviceConta.toSearchIdCliente(id);
         Optional<Cliente> cliente = serviceCliente.toSearch(id);
 
         try{
             if(conta != null){
-                model1.addAttribute("contss", conta.get());
-                model2.addAttribute("clienn", cliente.get());
+                model.addAttribute("contss", conta.get());
+                model.addAttribute("clienn", cliente.get());
                 return "administradores/conta";
             }
         }catch(Exception e){
-            model1.addAttribute("erroor", "Conta não exite");
+            model.addAttribute("erroor", "Conta não exite");
         }
 
         return "administradores/conta";
