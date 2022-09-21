@@ -48,7 +48,7 @@ public class LoginController {
         }
 
         model.addAttribute("error", "Usuario ou senha incorretas");
-        return "redirect:/clientes/home";
+        return "redirect:/login";
     }
 
     @GetMapping("/logout")

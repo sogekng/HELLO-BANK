@@ -28,12 +28,12 @@ public class AdministradoresController {
     @Autowired
     private IContaService serviceConta;
 
-    @GetMapping("/administradores/home")
-    public String conta_create(Model model){
-        model.addAttribute("clien", serviceCliente.listarTodos());
-        model.addAttribute("admin", serviceAdministrador.listarTodos());
-        return "administradores/home";
-    }
+    //@GetMapping("/administradores/home")
+    //public String conta_create(Model model){
+    //    model.addAttribute("clien", serviceCliente.listarTodos());
+    //    model.addAttribute("admin", serviceAdministrador.listarTodos());
+    //    return "administradores/home";
+    //}
 
     @GetMapping("/administradores/administradores")
     public String administrador(Model model){
