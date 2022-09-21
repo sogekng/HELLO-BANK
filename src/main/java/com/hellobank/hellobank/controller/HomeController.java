@@ -9,12 +9,12 @@ public class HomeController {
 
     @GetMapping("/")
     public String index(){
-        return "/home/index";
+        return "/home/home";
     }
 
     @GetMapping("/home")
     public String home_index(){
-        return "home/index";
+        return "home/home";
     }
 
     @GetMapping("/sobre")
