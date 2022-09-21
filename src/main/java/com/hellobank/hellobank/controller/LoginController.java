@@ -40,11 +40,11 @@ public class LoginController {
         if(admin != null){
             model.addAttribute("admin", serviceAdmin.listarTodos());
             model.addAttribute("clien", serviceCliente.listarTodos());
-            return "redirect:administradores/home";
+            return "redirect:/administradores/home";
 
         }else if (clien != null) {
             model.addAttribute("cliennt", clien);
-            return "redirect:clientes/home";
+            return "redirect:/clientes/home";
         }
 
         model.addAttribute("error", "Usuario ou senha incorretas");
