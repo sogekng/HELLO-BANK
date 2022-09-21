@@ -1,12 +1,24 @@
 package com.hellobank.hellobank.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class HomeController {
 
+    @GetMapping("/")
+    public String index(){
+        return "/home/index";
+    }
 
+    @GetMapping("/home")
+    public String home(){
+        return "home/index";
+    }
 
+    @GetMapping("/sobre")
+    public String sobre(){
+        return "home/sobre";
+    }
 }
