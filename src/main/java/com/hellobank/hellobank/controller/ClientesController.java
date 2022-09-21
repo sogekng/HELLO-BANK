@@ -26,10 +26,10 @@ public class ClientesController {
     @Autowired
     ITransacaoService serviceTransacao;
     
-    //@GetMapping("/clientes/home")
-    //public String conta_create(Model model){
-    //    return "clientes/home";
-    //}
+    @GetMapping("/clientes/home")
+    public String conta_create(Model model){
+        return "clientes/home";
+    }
 
     @GetMapping("/clientes/conta/{id}")
     public String searchCliente(@PathVariable Integer id, Model model1, Model model2, Model model3){
