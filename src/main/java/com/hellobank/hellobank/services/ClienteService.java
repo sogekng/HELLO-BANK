@@ -54,7 +54,7 @@ public class ClienteService implements IClienteService {
     @Override
     public Cliente atualizarDados(Cliente dados) {
         if (dados.getId_cliente() != null && dados != null) {
-            return dao.save(dados);
+        return dao.save(dados);
         }
         return null;
     }
