@@ -2,6 +2,7 @@ package com.hellobank.hellobank.controller;
 
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import com.hellobank.hellobank.services.IClienteService;
@@ -25,9 +26,19 @@ public class ClientesController {
     IClienteService serviceCliente;
     @Autowired
     ITransacaoService serviceTransacao;
-    
+
     @GetMapping("/clientes/home")
-    public String conta_home(Model model){
+    public String conta_create(Model model1, Model model2, Model model3, HttpServletRequest request) throws UnsupportedEncodingException{
+        String idCliente = CookieService.getCookie(request, "id_cliente");
+        Optional<Cliente> cliente = serviceCliente.toSearch(Integer.parseInt(idCliente));
+        Optional<Conta> conta = serviceConta.toSearchIdCliente(Integer.parseInt(idCliente));
+        
+        if(conta.isPresent()){
+            model1.addAttribute("consstt", conta.get());
+            model2.addAttribute("transf", serviceTransacao.extrato(conta.get().getId_conta()));
+        }
+
+        model3.addAttribute("cliennt", cliente.get());
         return "clientes/home";
     }
 

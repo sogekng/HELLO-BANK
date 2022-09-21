@@ -16,7 +16,6 @@ public class CookieService {
     cookie.setMaxAge(segundos);
     cookie.setHttpOnly(true);
     cookie.setSecure(true);
-    cookie.setPath("/");
     response.addCookie(cookie);
   }
 
