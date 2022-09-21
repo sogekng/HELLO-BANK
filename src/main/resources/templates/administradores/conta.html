@@ -13,9 +13,9 @@
     <link href="/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
-    <div id="wrapper">
+    <div id="wrapper" style="height: 100vh;">
         <div id="content-wrapper" class="d-flex flex-column">
-            <div id="content" style="background: #23b287;"></div><div id="content">
+            <div id="content" style="background: #23b287;">
                 <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow" style="display: flex;height: 4.375rem;justify-content: center;">
                     <div class="menu">
                         <a href="/administradores/home" class="btn btn-primary btn-icon-split">
@@ -78,10 +78,10 @@
                         </li>
                     </ul>
                 </nav>
-                <div class="container-fluid">
-                    <div class="card shadow mb-4">
+                <div class="container-fluid" style="width:90%;height:79vh;padding: 0rem!important;display: flex;margin: auto;justify-content: center;align-items: center;flex-direction: column-reverse;">
+                    <div class="card shadow mb-4" style="height:50%;">
                         <div class="card-header py-3" style="display:flex;flex-direction:row;width:100%;align-items:center;justify-content:space-between;">
-                            <h6 class="m-0 font-weight-bold text-primary">Conta</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Conta do cliente</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -111,6 +111,39 @@
                         </div>
                     </div>
                     <br>
+                    <div class="card shadow mb-4" style="height:50%;">
+                        <div class="card-header py-3" style="display:flex;flex-direction:row;width:100%;align-items:center;justify-content:space-between;">
+                            <h6 class="m-0 font-weight-bold text-primary">Dados do cliente</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>NOME</th>
+                                            <th>EMAIL</th>
+                                            <th>CPF</th>
+                                            <th>TELEFONE</th>
+                                            <th>SENHA</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="cli : ${clienn}">
+                                            <td th:text="${cli.id_cliente}"></td>
+                                            <td th:text="${cli.nome}"></td>
+                                            <td th:text="${cli.email}"></td>
+                                            <td th:text="${cli.cpf}"></td>
+                                            <td th:text="${cli.telefone}"></td>
+                                            <td th:text="${cli.senha}"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div th:if="${erroor != null}" th:text="${erroor}" class="alert alert-danger" role="alert"></div>
+                                <div th:if="${acer != null}" th:text="${acer}" class="alert alert-danger" role="alert"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <footer class="sticky-footer bg-dark">

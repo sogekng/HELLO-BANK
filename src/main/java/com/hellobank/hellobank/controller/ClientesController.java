@@ -200,18 +200,23 @@ public class ClientesController {
         return "redirect:/clientes";
     }
 
-    @PutMapping("/clientes/update")
-    public ResponseEntity<Cliente> atualizarCadastro(@RequestBody Cliente dados){
-        Cliente res = serviceCliente.atualizarDados(dados);
-        if (res != null){
-            return ResponseEntity.ok(dados);
-        }
-        return ResponseEntity.badRequest().build();
+    @GetMapping("/clientes/conta/{id}/edit")
+    public String edit(@PathVariable Integer id, Model model){
+        Optional<Cliente> cliente = serviceCliente.toSearch(id);
+        model.addAttribute("clientee", cliente.get());
+        return "clientes/edit";
     }
 
-    @DeleteMapping("/clientes/{id}")
-    public ResponseEntity<Cliente> excluirCadastro(@PathVariable Integer id){
-        serviceCliente.excluirCadastro(id);
-        return ResponseEntity.ok(null);
+    @PostMapping("/clientes/conta/{id}/update")
+    public String update(@PathVariable Integer id, Model model, Cliente cliente){
+        
+        if(!serviceCliente.toExistId(id)){
+            return "redirect:/clientes/home";
+        }
+
+        cliente.setId_cliente(id);
+        serviceCliente.toUpdate(cliente);
+        return "redirect:/clientes/home";
     }
+    
 }
