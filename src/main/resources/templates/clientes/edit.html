@@ -12,7 +12,7 @@
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
-<body id="page-top">
+<body id="page-top" th:each="clin : ${clientee}">
     <div id="wrapper">
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content" style="background: #23b287;">
@@ -81,7 +81,7 @@
                 <div class="container-fluid">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Clientes</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Cliente</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -94,27 +94,50 @@
                                             <th>CPF</th>
                                             <th>TELEFONE</th>
                                             <th>SENHA</th>
-                                            <th>AÇÕES</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="clientes : ${cliente}">
-                                            <td th:text="${clientes.id_cliente}"></td>
-                                            <td th:text="${clientes.nome}"></td>
-                                            <td th:text="${clientes.email}"></td>
-                                            <td th:text="${clientes.cpf}"></td>
-                                            <td th:text="${clientes.telefone}"></td>
-                                            <td th:text="${clientes.senha}"></td>
-                                            <td>
-                                                <button class="btn btn-primary"><a href="#edite" style="color:#fff;text-decoration:none;" th:href="@{'/administradores/clientes/conta/' + ${clientes.id_cliente}}">Ver conta</a></button>
-                                            </td>
+                                        <tr>
+                                            <td th:text="${clin.id_cliente}"></td>
+                                            <td th:text="${clin.nome}"></td>
+                                            <td th:text="${clin.email}"></td>
+                                            <td th:text="${clin.cpf}"></td>
+                                            <td th:text="${clin.telefone}"></td>
+                                            <td th:text="${clin.senha}"></td>
                                         </tr>
                                     </tbody>
-                                    <div th:if="${erroo != null}" th:text="${erroo}" class="alert alert-danger" role="alert"></div>
                                 </table>
+                                <div id="edite" class="content-form" style="background-color: #27293d;padding:20px;height:100%;width:100%;">
+                                    <h6 class="m-0 font-weight-bold text-primary">Editar suas informações</h6>
+                                    <br>
+                                    <form method="POST" th:action="@{'/clientes/conta/' +  ${clin.id_cliente} + '/update'}">
+                                        <div class="form-group">
+                                            <label for="nome">Nome</label>
+                                            <input type="text" name="nome" class="form-control" th:value="${clin.nome}" id="nome" placeholder="Nome" autocomplete="off" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="email" name="email" class="form-control" th:value="${clin.email}" id="email" placeholder="Email" autocomplete="off" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cpf">CPF</label>
+                                            <input type="text" name="cpf" class="form-control" th:value="${clin.cpf}" id="cpf" placeholder="000.000.000-00" required onkeypress="$(this).mask('000.000.000-00');" autocomplete="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="telefone">Telefone</label>
+                                            <input type="text" name="telefone" class="form-control" th:value="${clin.telefone}" id="telefone" placeholder="(00) 00000-0000" required onkeypress="$(this).mask('(00) 00000-0000');" autocomplete="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="senha">Senha</label>
+                                            <input type="password" name="senha" class="form-control" th:value="${clin.senha}" id="senha" placeholder="Senha" autocomplete="off" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <br>
                 </div>
             </div>
             <footer class="sticky-footer bg-dark">
@@ -152,7 +175,6 @@
     <script src="/js/sb-admin-2.min.js"></script>
     <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    <script src="/js/datatables-demo.js"></script>
     <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
     <script src="/js/spinner.js"></script>

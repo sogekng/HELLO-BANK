@@ -60,6 +60,14 @@ public class ClienteService implements IClienteService {
     }
 
     @Override
+    public Cliente toUpdate(Cliente novoCliente) {
+        if (novoCliente.getId_cliente() != null && novoCliente != null) {
+            return dao.updateCliente(novoCliente.getNome(), novoCliente.getCpf(), novoCliente.getTelefone(), novoCliente.getEmail(), novoCliente.getSenha(), novoCliente.getId_cliente());
+        }
+        return null;
+    }
+
+    @Override
     public void excluirCadastro(Integer id) {
         dao.deleteById(id);
     }
