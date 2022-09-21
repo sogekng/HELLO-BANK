@@ -35,7 +35,7 @@ public class ClientesController {
         if(conta.isPresent()){
             model1.addAttribute("consstt", conta.get());
             model2.addAttribute("transf", serviceTransacao.extrato(conta.get().getId_conta()));
-        }
+       }
 
         model3.addAttribute("cliennt", cliente.get());
         return "clientes/home";
