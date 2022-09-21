@@ -104,24 +104,8 @@
                                             <td th:text="${administrador.senha}"></td>
                                             <td>
                                                 <button class="btn btn-primary"><a href="#edite" style="color:#fff;text-decoration:none;" th:href="@{'/administradores/administradores/' + ${administrador.id}}">Editar</a></button>
-                                                <button class="btn btn-primary"><a style="color:#fff;text-decoration:none;" data-toggle="modal" data-target="#excluir">Excluir</a></button>                                      
+                                                <button class="btn btn-primary"><a style="color:#fff;text-decoration:none;" th:onclick="'if(confirm(\'Confirma ?\')) { window.location.href = \'' + @{/administradores/administradores/{id}(id=${administrador.id})} + '/delete\' } '">Excluir</button>                                  
                                             </td>
-                                            <div class="modal fade" id="excluir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Tem certeza?</h5>
-                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">×</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                                            <a class="btn btn-primary" th:href="@{'/administradores/administradores/' + ${administrador.id} + '/delete'}" style="background-color: #4edfb3;">Excluir</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </tr>
                                     </tbody>
                                 </table>
