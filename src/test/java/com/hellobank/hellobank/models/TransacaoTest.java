@@ -14,7 +14,7 @@ import com.hellobank.hellobank.model.Transacao;
 class TransacaoTest {
     @Test
 	void validarPorpiedadesTransacao() {
-		var transacao = new Transacao();
+		Transacao transacao = new Transacao();
 		LocalDate dt = LocalDate.from(ZonedDateTime.now());
 		transacao.setData_transacao(dt);
 
