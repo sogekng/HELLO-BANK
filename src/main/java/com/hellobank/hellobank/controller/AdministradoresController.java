@@ -34,7 +34,7 @@ public class AdministradoresController {
         model1.addAttribute("clien", serviceCliente.listarTodos());
         model2.addAttribute("admin", serviceAdministrador.listarTodos());
         model3.addAttribute("nome_administrador", nomeAdmin);
-        return "administradores/homeAdministrador";
+        return "administradores/index";
     }
 
     @GetMapping("/administradores/administradores")

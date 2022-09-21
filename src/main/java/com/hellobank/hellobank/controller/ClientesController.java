@@ -39,7 +39,7 @@ public class ClientesController {
         }
 
         model3.addAttribute("cliennt", cliente.get());
-        return "clientes/homeCliente";
+        return "clientes/index";
     }
 
     @GetMapping("/clientes/conta/{id}")

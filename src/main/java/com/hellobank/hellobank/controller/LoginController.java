@@ -42,12 +42,12 @@ public class LoginController {
             CookieService.setCookie(response, "nome_admin", admin.getNome(), time);
             model1.addAttribute("admin", serviceAdmin.listarTodos());
             model2.addAttribute("clien", serviceCliente.listarTodos());
-            return "administradores";
+            return "redirect:/administradores";
 
         }else if (clien != null) {
             Integer time = remember != null ? 60*60 : 60*60*24;
             CookieService.setCookie(response, "id_cliente", String.valueOf(clien.getId_cliente()), time);
-            return "clientes";
+            return "redirect:/clientes";
         }
 
         model1.addAttribute("error", "Usuario ou senha incorretas");
