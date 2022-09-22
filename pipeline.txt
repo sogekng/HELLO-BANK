@@ -1,0 +1,63 @@
+pipeline {
+    agent any
+
+    
+    stages {
+        stage('Git-clone') {
+            steps {
+                git url: "https://github.com/sogekng/HELLO-BANK.git", branch: "deploy"
+                
+            }
+        }
+        
+        stage('Clean') {
+            steps {
+                sh "mvn clean"
+               
+            }
+        }
+         stage('Build') {
+            steps {
+                sh "mvn package -Dmaven.test.skip"
+            }
+        }
+         stage('Test') {
+            steps {
+               
+                sh "USER=\"admin\" PASSWORD=\"1234hellobank\" HOST=\"rds-hellobank.c9oyx2pl1fax.us-east-1.rds.amazonaws.com\" DATABASE=\"hellobank\" mvn test"
+            }
+        }
+        
+        stage('Preper-Dockerfile') {
+            steps {
+                sh "echo 'FROM openjdk:11-jdk' > Dockerfile"
+                sh "echo 'COPY target/*.jar app.jar' >> Dockerfile"
+                sh "echo 'ENTRYPOINT [\"java\",\"-jar\",\"/app.jar\"]' >> Dockerfile"
+                
+            }
+        }
+        stage('Build-Docker-Image') {
+            steps {
+                sh " docker build -t java-web ."
+                
+                
+            }
+        }
+        
+       
+        stage('Deploy') {
+            steps {
+                sh "export USER=\"admin\""
+                sh "export PASSWORD=\"1234hellobank\""
+                sh "export HOST=\"rds-hellobank.c9oyx2pl1fax.us-east-1.rds.amazonaws.com\""
+                sh "export DATABASE=\"hellobank\""
+               
+                sh " docker rm  java-web-prod --force"
+                sh "USER=\"admin\" PASSWORD=\"1234hellobank\" HOST=\"rds-hellobank.c9oyx2pl1fax.us-east-1.rds.amazonaws.com\" DATABASE=\"hellobank\" docker run -d -e USER -e PASSWORD -e HOST -e DATABASE -p 8082:8080  --name java-web-prod java-web"
+                
+                
+            }
+        }
+        
+    }
+}

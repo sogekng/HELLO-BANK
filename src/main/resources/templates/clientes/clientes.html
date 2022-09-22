@@ -26,7 +26,7 @@
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
+                                aria-labelledby="searchDropdown" >
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
                                         <input type="text" class="form-control bg-light border-0 small"
@@ -49,8 +49,8 @@
                                     src="/img/undraw_profile.svg">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                aria-labelledby="userDropdown" style="background: #23b287;border-radius:10px">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" style="background: transparent;color: white;">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -58,14 +58,14 @@
                         </li>
                     </ul>
                 </nav>
-                <div class="container-fluid">
-                    <div class="card shadow mb-4">
+                <div class="container-fluid" id="container-fluid">
+                    <div class="card shadow mb-4" id="card-clientes">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Clientes</h6>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="border:none;">
+                            <div class="table-responsive" id="table-clientes">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="border:none;display:block;">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -99,7 +99,7 @@
                     </div>
                 </div>
             </div>
-            <footer class="sticky-footer bg-dark">
+            <footer class="sticky-footer bg-dark" id="footer">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Hellobank 2022</span>

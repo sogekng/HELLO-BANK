@@ -23,7 +23,7 @@ public class AdministradoresController {
 
     @Autowired
     private IAdministradorService serviceAdministrador;
-
+    
     @Autowired
     private IClienteService serviceCliente;
 

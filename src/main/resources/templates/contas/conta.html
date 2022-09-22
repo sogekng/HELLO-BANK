@@ -18,27 +18,27 @@
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content" style="background: #23b287;">
                 <nav class="navbar navbar-expand navbar-light bg-dark topbar static-top shadow" style="justify-content:space-around;padding-bottom: 0;">
-                    <button class="btn btn-primary" style="position:absolute;top:0;right:50px;margin:20px;"><a href="#edite" style="color:#fff;text-decoration:none;" th:href="@{'/clientes/conta/' + ${cliennn.id_cliente} + '/edit'}">Editar</a></button>
+                    <button class="btn btn-primary" style="position:absolute;top:0;" id="btn-conta"><a href="#edite" style="color:#fff;text-decoration:none;" th:href="@{'/clientes/conta/' + ${cliennn.id_cliente} + '/edit'}">Editar</a></button>
                     <div class="navbar-brand text-white" style="display:flex;flex-direction:column;justify-content:start;align-items:center;">
-                        <h3 th:text="${cliennn.nome}" class="m-0 font-weight-bold text-primary"></h3>
+                        <h3 th:text="${cliennn.nome}" class="m-0 font-weight-bold text-primary" id="title"></h3>
                         <div class="dropdown no-arrow" style="display:flex;flex-direction:row;width:100%;">
                             <div style="margin: 10px;">
-                                <h6 class="m-0 font-weight-bold text-primary">Agencia </h6>
-                                <h5 class="m-0 font-weight-bold text-primary" th:text="${cons.agencia}"></h5>
+                                <h6 class="m-0 font-weight-bold text-primary" id="letras-cima">Agencia </h6>
+                                <h5 class="m-0 font-weight-bold text-primary" th:text="${cons.agencia}" id="letras-baixo"></h5>
                             </div>
                             <div style="margin: 10px;">
-                                <h6 class="m-0 font-weight-bold text-primary">Numero</h6>
-                                <h5 class="m-0 font-weight-bold text-primary" th:text="${cons.numero}"></h5>
+                                <h6 class="m-0 font-weight-bold text-primary" id="letras-cima">Numero</h6>
+                                <h5 class="m-0 font-weight-bold text-primary" th:text="${cons.numero}" id="letras-baixo"></h5>
                             </div>
                             <div style="margin: 10px;display:flex;align-items:center;justify-content:center;">
-                                <p class="text-primary" style="margin:auto;">-</p>
-                                <h5 class="m-0 font-weight-bold text-primary" th:text="${cons.tipo}"></h5>
+                                <p class="text-primary" style="margin:auto;" id="letras-baixo">-</p>
+                                <h5 class="m-0 font-weight-bold text-primary" th:text="${cons.tipo}" id="letras-baixo"></h5>
                             </div>
                         </div>
                     </div>
                     <div class="navbar-brand text-white" style="display:flex;flex-direction:row;justify-content:center;align-items:center;">
-                        <h1 class="m-0 font-weight-bold text-gray-dark">R$</h1>
-                        <h2 class="m-3 font-weight-bold text-white" th:text="${cons.saldo}" style="display:flex;align-items:center;font-size:70px" id="value"></h2>
+                        <h1 class="m-0 font-weight-bold text-gray-dark" id="cifrao">R$</h1>
+                        <h2 class="m-3 font-weight-bold text-white" th:text="${cons.saldo}" style="display:flex;align-items:center;" id="value"></h2>
                         <script>
                             function animateValue(obj, start, end, duration) {
                                 let startTimestamp = null;
@@ -95,8 +95,8 @@
                                     src="/img/undraw_profile.svg">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                aria-labelledby="userDropdown" style="background: #23b287;border-radius:10px">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" style="background: transparent;color: white;">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -104,15 +104,15 @@
                         </li>
                     </ul>
                 </nav>
-                <div class="container-fluid" style="width:100%;display:flex;flex-direction:row;justify-content:center;">
-                    <div class="card shadow mt-5 mb-5" style="border: none;margin:10px;">
-                        <div class="card-header py-3" style="display:flex;flex-direction:row;align-items:center;justify-content:space-between;width: 60vw;">
-                            <h4 class="m-0 font-weight-bold text-primary">Area de transações</h4>
+                <div class="container-fluid" id="container-fluid" style="width:100%;display:flex;flex-direction:row;justify-content:center;">
+                    <div class="card shadow mt-5 mb-5" id="card-conta" style="border: none;margin:10px;">
+                        <div class="card-header py-3" style="display:flex;flex-direction:row;align-items:center;justify-content:space-between;" id="cad-header-conta">
+                            <h4 class="m-0 font-weight-bold text-primary" id="title">Area de transações</h4>
                             <button class="btn btn-primary"><a th:if="${cont != null}" th:href="@{'/clientes/conta/' + ${cons.id_conta} + '/extrato'}"  style="color: #fff;text-decoration:none;">Ver extrato</a></button>
                         </div>
                         <div class="card-body" style="display: flex;justify-content:center;">
                             <div style="width:70%;">
-                            <form method="POST" th:action="@{/clientes/conta} + '/'+ ${cliennn.id_cliente} + '/transferir' " th:each="consss : ${cont}">
+                            <form method="POST" id="form-conta" th:action="@{/clientes/conta} + '/'+ ${cliennn.id_cliente} + '/transferir' " th:each="consss : ${cont}">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3">
                                         <div class="input-group-prepend">
@@ -213,7 +213,7 @@
                     </div>
                 </div>
             </div>
-            <footer class="sticky-footer bg-dark">
+            <footer class="sticky-footer bg-dark" id="footer">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Hellobank 2022</span>

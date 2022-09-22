@@ -41,13 +41,13 @@ public class ClientesController {
 
         try{
             if(conta != null){
-                model.addAttribute("cont", conta.get());
-                model.addAttribute("cliennn", cliente.get());
+                model1.addAttribute("cont", conta.get());
+                model2.addAttribute("cliennn", cliente.get());
                 return "contas/conta";
             }
         }catch(Exception e){
-            model.addAttribute("erro", "Conta não existe");
-            model.addAttribute("cliennt", cliente.get());
+            model1.addAttribute("erro", "Conta não existe");
+            model2.addAttribute("cliennt", cliente.get());
         }
         return "clientes/home";
     }
@@ -55,23 +55,16 @@ public class ClientesController {
     @PostMapping("/clientes/conta/{id}/create")
     public String create(@PathVariable Integer id, String tipo, Conta conta, Model model){
         Optional<Conta> cont = serviceConta.toSearchIdCliente(id);
-        Optional<Cliente> cliente = serviceCliente.toSearch(id);
-
+        
         try{
             if(cont.isPresent()){
-                model.addAttribute("erro", "Conta já existe");
-                model.addAttribute("cliennt", cliente.get());
-                return "clientes/conta";
+                return "redirect:/clientes/conta/" + id;
             }else{
                 serviceConta.toCreate(conta);
-                model.addAttribute("cliennt", cliente.get());
-                return "clientes/conta";
+                return "redirect:/clientes/conta/" + id;
             }
         }catch(Exception e){
-            model.addAttribute("cont", conta);
-            model.addAttribute("cliennt", cliente.get());
-            model.addAttribute("erro", "Erro ao criar");
-            return "clientes/conta";
+            return "redirect:/clientes/conta/" + id;
         }
     }
 
