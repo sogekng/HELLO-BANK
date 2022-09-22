@@ -38,13 +38,4 @@ public class TransacaoController {
         return ResponseEntity.badRequest().build();
     }
 
-    @GetMapping("/transacao/busca")
-    public ResponseEntity<ArrayList<Transacao>> buscarPorTipo(@RequestParam(name = "palavraChave") String palavraChave){
-        var res = serviceTransacao.buscarPorTipo(palavraChave);
-        if (res != null){
-            return ResponseEntity.ok(res);
-        }
-        return ResponseEntity.badRequest().build();
-    }
-
 }
