@@ -49,7 +49,7 @@ public class ClientesController {
             model.addAttribute("erro", "Conta não existe");
             model.addAttribute("cliennt", cliente.get());
         }
-        return "clientes/conta";
+        return "clientes/home";
     }
 
     @PostMapping("/clientes/conta/{id}/create")

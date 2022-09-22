@@ -16,7 +16,7 @@ public class LoginController {
 
     @Autowired
     private IAdministradorService serviceAdmin;
-    
+
     @Autowired
     private IClienteService serviceCliente;
 
@@ -31,7 +31,7 @@ public class LoginController {
     }
 
     @PostMapping("/logon")
-    public String logon(Model model1, Model model2, Administrador administrador, Cliente cliente, String remember){
+    public String logon(Model model, Administrador administrador, Cliente cliente, String remember){
         Cliente clien = this.serviceCliente.toExistLogin(cliente.getCpf(), cliente.getSenha());
         Administrador admin = this.serviceAdmin.toExistLogin(administrador.getCpf(), administrador.getSenha());
         
@@ -42,7 +42,7 @@ public class LoginController {
             return "redirect:/clientes/conta/" + clien.getId_cliente();
         }
 
-        model1.addAttribute("error", "Usuario ou senha incorretas");
+        model.addAttribute("error", "Usuario ou senha incorretas");
         return "login/login";
     }
 
