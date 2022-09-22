@@ -9,16 +9,16 @@ import javax.transaction.Transactional;
 
 public interface ClienteDAO extends CrudRepository<Cliente, Integer> {
     @Query(value="select CASE WHEN count(1) > 0 THEN 'true' ELSE 'false' END  from cliente where cpf = :cpf", nativeQuery = true)
-    public boolean existByCpf(String cpf);
+    public boolean existByCpf(@Param("cpf") String cpf);
 
     @Query(value="select CASE WHEN count(1) > 0 THEN 'true' ELSE 'false' END  from cliente where id = :id", nativeQuery = true)
-    public boolean existById(int id);
+    public boolean existById(@Param("id") int id);
 
     @Query(value="select * from cliente where cpf = :cpf and senha = :senha", nativeQuery = true)
-    public Cliente existByLogin(String cpf, String senha);
+    public Cliente existByLogin(@Param("cpf, senha") String cpf, String senha);
 
     @Query(value = "select * from cliente where cpf = :cpf", nativeQuery = true)
-    public Optional<Cliente> findByCpf(String cpf);
+    public Optional<Cliente> findByCpf(@Param("cpf") String cpf);
 
     @Transactional
     @Modifying
