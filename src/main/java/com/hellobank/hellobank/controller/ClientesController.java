@@ -18,7 +18,6 @@ import com.hellobank.hellobank.services.CookieService;
 
 
 @Controller
-@RequestMapping(value = "clientes")
 public class ClientesController {
     
     @Autowired
@@ -28,18 +27,18 @@ public class ClientesController {
     @Autowired
     ITransacaoService serviceTransacao;
 
-    @RequestMapping(value = "clientes/home", method = RequestMethod.GET)
-    public String conta_create(Model model1, Model model2, Model model3, HttpServletRequest request) throws UnsupportedEncodingException{
-        String idCliente = CookieService.getCookie(request, "id_cliente");
-        Optional<Cliente> cliente = serviceCliente.toSearch(Integer.parseInt(idCliente));
-        Optional<Conta> conta = serviceConta.toSearchIdCliente(Integer.parseInt(idCliente));
-        
-        if(conta.isPresent()){
-            model1.addAttribute("consstt", conta.get());
-            model2.addAttribute("transf", serviceTransacao.extrato(conta.get().getId_conta()));
-        }
-
-        model3.addAttribute("cliennt", cliente.get());
+    @GetMapping("/clientes/home")
+    public String conta_create(Model model1, Model model2, Model model3){ // HttpServletRequest request) throws UnsupportedEncodingException{
+        //String idCliente = CookieService.getCookie(request, "id_cliente");
+        //Optional<Cliente> cliente = serviceCliente.toSearch(Integer.parseInt(idCliente));
+        //Optional<Conta> conta = serviceConta.toSearchIdCliente(Integer.parseInt(idCliente));
+        //
+        //if(conta.isPresent()){
+        //    model1.addAttribute("consstt", conta.get());
+        //    model2.addAttribute("transf", serviceTransacao.extrato(conta.get().getId_conta()));
+        //}
+//
+        //model3.addAttribute("cliennt", cliente.get());
         return "clientes/home";
     }
 
