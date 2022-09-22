@@ -3,23 +3,22 @@ package com.hellobank.hellobank.dao;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import com.hellobank.hellobank.model.Cliente;
 import java.util.Optional;
 import javax.transaction.Transactional;
 
 public interface ClienteDAO extends CrudRepository<Cliente, Integer> {
     @Query(value="select CASE WHEN count(1) > 0 THEN 'true' ELSE 'false' END  from cliente where cpf = :cpf", nativeQuery = true)
-    public boolean existByCpf(@Param("cpf") String cpf);
+    public boolean existByCpf(String cpf);
 
     @Query(value="select CASE WHEN count(1) > 0 THEN 'true' ELSE 'false' END  from cliente where id = :id", nativeQuery = true)
-    public boolean existById(@Param("id") int id);
+    public boolean existById(Integer id);
 
     @Query(value="select * from cliente where cpf = :cpf and senha = :senha", nativeQuery = true)
-    public Cliente existByLogin(@Param("cpf, senha") String cpf, String senha);
+    public Cliente existByLogin(String cpf, String senha);
 
     @Query(value = "select * from cliente where cpf = :cpf", nativeQuery = true)
-    public Optional<Cliente> findByCpf(@Param("cpf") String cpf);
+    public Optional<Cliente> findByCpf(String cpf);
 
     @Transactional
     @Modifying
