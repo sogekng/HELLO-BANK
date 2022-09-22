@@ -12,7 +12,7 @@ import com.hellobank.hellobank.model.Administrador;
 class AdministradorTest {
     @Test
     void validarPropAdministrador() {
-		var administrador = new Administrador();
+		Administrador administrador = new Administrador();
 		administrador.setNome("Pedro");
 		
 		administrador.setSenha("admin1234aNt@");
