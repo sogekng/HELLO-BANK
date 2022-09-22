@@ -18,26 +18,6 @@
             <div id="content" style="background: #23b287;">
                 <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow" style="display: flex;height: 4.375rem;justify-content: center;">
                     <div class="menu">
-                        <a href="/administradores" class="btn btn-primary btn-icon-split">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-home"></i>
-                            </span>
-                            <span class="text">Home</span>
-                        </a>
-
-                        <a href="/administradores/clientes" class="btn btn-primary btn-icon-split">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-users"></i>
-                            </span>
-                            <span class="text">Usuários</span>
-                        </a>
-
-                        <a href="/administradores/administradores" class="btn btn-primary btn-icon-split">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-user-tie"></i>
-                            </span>
-                            <span class="text">Funcionários</span>
-                        </a>
                     </div>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown no-arrow d-sm-none">
@@ -85,7 +65,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="border:none;">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -98,16 +78,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="clientes : ${cliente}">
+                                        <tr th:each="clientes : ${cliente}" style="border-top-color: white;">
                                             <td th:text="${clientes.id_cliente}"></td>
                                             <td th:text="${clientes.nome}"></td>
                                             <td th:text="${clientes.email}"></td>
                                             <td th:text="${clientes.cpf}"></td>
                                             <td th:text="${clientes.telefone}"></td>
                                             <td th:text="${clientes.senha}"></td>
-                                            <td>
-                                                <button class="btn btn-primary"><a style="color:#fff;text-decoration:none;" th:href="@{'/administradores/clientes/conta/' + ${clientes.id_cliente}}">Ver dados</button>
-                                                <button class="btn btn-primary"><a style="color:#fff;text-decoration:none;" th:onclick="'if(confirm(\'Confirma ?\')) { window.location.href = \'' + @{/administradores/clientes/{id}(id=${clientes.id_cliente})} + '/delete\' } '">Excluir</button>
+                                            <td style="display:flex;border:none;">
+                                                <button class="btn btn-primary"><a style="color:#fff;text-decoration:none;font-size: 0.8rem;" th:href="@{'/administradores/clientes/conta/' + ${clientes.id_cliente}}">Ver dados</button>
+                                                <button class="btn btn-primary"><a style="color:#fff;text-decoration:none;font-size: 0.8rem;" th:onclick="'if(confirm(\'Confirma ?\')) { window.location.href = \'' + @{/administradores/clientes/{id}(id=${clientes.id_cliente})} + '/delete\' } '">Excluir</button>
+                                                <br>
                                             </td>
                                         </tr>
                                     </tbody>
