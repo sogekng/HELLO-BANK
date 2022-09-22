@@ -53,17 +53,10 @@ public class AdministradoresController {
     }
 
     @PostMapping("/administradores/administradores/create")
-    public String create(Administrador administrador, Model model1, Model model2){
-        if(serviceAdministrador.toExistCpf(administrador.getCpf())){
-            model1.addAttribute("er", "Credenciais já cadastradas");
-            model2.addAttribute("administradores", serviceAdministrador.listarTodos());
-            return "administradores/administradores";
-        }else{
-            serviceAdministrador.toCreate(administrador);
-            model1.addAttribute("ac", "Credenciais cadastradas com sucesso!");
-            model2.addAttribute("administradores", serviceAdministrador.listarTodos());
-            return "administradores/administradores";
-        }
+    public String create(Administrador administrador, Model model){
+        serviceAdministrador.toCreate(administrador);
+        model.addAttribute("administradores", serviceAdministrador.listarTodos());
+        return "administradores/administradores";
     }
 
     @GetMapping("/administradores/administradores/{id}")
