@@ -1,4 +1,69 @@
 # Projeto
+
+<h2>🏆 DevTeam: </h2>
+
+<br>
+
+<table>
+  <tr>
+  <td align="center"><img style="width: 70%; border-radius: 50%" 
+  src="https://avatars.githubusercontent.com/u/102381119?v=4"
+   alt="Jéssica Caroline"/><br /><sub style="font-size: 14px"><b>Jéssica Caroline</b></sub><br /> 
+  <a href="https://www.linkedin.com/in/jessicaroline-developer/" alt="Linkedin">
+  <br>
+<img src="https://img.shields.io/badge/-Linkedin-1C1C1C?style=for-the-badge&logo=Linkedin&logoColor=00FFFF&link=https://https://www.linkedin.com/in/jessicaroline-developer/" style= "width:90px;"/>
+  </a>
+
+  <td align="center"><img style="width: 70%; border-radius: 50%"
+  src="https://avatars.githubusercontent.com/u/80930522?v=4" 
+  alt="Paulo Henrique"/><br /><sub><b>Paulo Henrique</b></sub></a><br /> 
+  <a href="https://www.linkedin.com/in/paulohenrique3140/" alt="Linkedin">
+  <br>
+<img src="https://img.shields.io/badge/-Linkedin-1C1C1C?style=for-the-badge&logo=Linkedin&logoColor=00FFFF&link=https://https://www.linkedin.com/in/paulohenrique3140/"  style= "width:90px;"/>
+  </a>
+  
+  <td align="center"><img style="width: 70%; border-radius: 50%"
+  src="https://avatars.githubusercontent.com/u/73142478?v=4" 
+  alt="Caio Negrão"/><br /><sub><b>Caio Negrão</b></sub></a><br />
+   <a href="https://www.linkedin.com/in/caionegraods/" alt="Linkedin">
+  <br>
+  <img src="https://img.shields.io/badge/-Linkedin-1C1C1C?style=for-the-badge&logo=Linkedin&logoColor=00FFFF&link=https://https://www.linkedin.com/in/caionegraods/"  style= "width:90px;"/>
+  </a>
+
+  <td align="center"><img style="width: 70%; border-radius: 50%" 
+  src="https://avatars.githubusercontent.com/u/84467697?v=4" 
+  alt="Paulo Brito"/><br /><sub><b>Paulo Brito</b></sub></a><br />
+  <a href="https://www.linkedin.com/in/paulo-henrique-557000183/" alt="Linkedin">
+  <br>
+  <img src="https://img.shields.io/badge/-Linkedin-1C1C1C?style=for-the-badge&logo=Linkedin&logoColor=00FFFF&link=https://https://www.linkedin.com/in/paulo-henrique-557000183/"  style= "width:90px;"/>
+  </a>
+  
+   <td align="center"><img style="width: 70%; border-radius: 50%" 
+  src="https://avatars.githubusercontent.com/u/78422252?v=4" 
+  alt="Antonio Alves"/><br /><sub><b>Antonio Alves</b></sub></a><br />
+  <a href="https://www.linkedin.com/in/antonio-alves-56b6b11a9/" alt="Linkedin">
+  <br>
+  <img src="https://img.shields.io/badge/-Linkedin-1C1C1C?style=for-the-badge&logo=Linkedin&logoColor=00FFFF&link=https://https://www.linkedin.com/in/antonio-alves-56b6b11a9/"  style= "width:90px;"/>
+  </a>
+
+ <td align="center"><img style="width: 70%; border-radius: 50%" 
+  src="https://avatars.githubusercontent.com/u/83151108?v=4" 
+  alt="Jean Evenx"/><br /><sub><b>Jean Evenx</b></sub></a><br />
+  <a href="https://www.linkedin.com/in/jeanevenx/">
+  <br>
+  <img src="https://img.shields.io/badge/-Linkedin-1C1C1C?style=for-the-badge&logo=Linkedin&logoColor=00FFFF&link=https://www.linkedin.com/in/jeanevenx/"  style= "width:90px;"/>
+  </a>
+
+ <td align="center"><img style="width: 70%; border-radius: 50%" 
+  src="https://avatars.githubusercontent.com/u/5192512?v=4" 
+  alt="Uallace Gomes"/><br /><sub><b>Uallace Gomes</b></sub></a><br />
+  <a href="https://www.linkedin.com/in/uallace-gomes-da-silva-98465b3b/" alt="Linkedin">
+  <br>
+  <img src="https://img.shields.io/badge/-Linkedin-1C1C1C?style=for-the-badge&logo=Linkedin&logoColor=00FFFF&link=https://www.linkedin.com/in/uallace-gomes-da-silva-98465b3b/"  style= "width:90px;"/>
+  </a>
+
+
+</table>
  </h2>
 <h3 align="center">
     Desafio Final - Programa If Black Then Code - Gama Academy & IBM
@@ -9,7 +74,7 @@
     HelloBank 
 </h2>
 
-![bancoinicio](https://user-images.githubusercontent.com/102381119/189783699-fb735cc5-53ba-47b3-905b-1276a774818b.jpg)
+![WhatsApp Image 2022-09-22 at 1 58 52 AM](https://user-images.githubusercontent.com/73142478/191665889-bb33ce57-947d-487d-bef9-289e08dee1d4.jpeg)
 <p align="center">
 </p>
 
@@ -100,74 +165,7 @@
 <img src="https://user-images.githubusercontent.com/73142478/191625704-d9284052-d71c-4cb9-952c-cc502de114c2.jpeg" width="750" height="400" />
 <br>
 <br>
-
-
-<h2>🏆 DevTeam: </h2>
-
-<br>
-
-<table>
-  <tr>
-  <td align="center"><img style="width: 70%; border-radius: 50%" 
-  src="https://avatars.githubusercontent.com/u/102381119?v=4"
-   alt="Jéssica Caroline"/><br /><sub style="font-size: 14px"><b>Jéssica Caroline</b></sub><br /> 
-  <a href="https://www.linkedin.com/in/jessicaroline-developer/" alt="Linkedin">
-  <br>
-<img src="https://img.shields.io/badge/-Linkedin-1C1C1C?style=for-the-badge&logo=Linkedin&logoColor=00FFFF&link=https://https://www.linkedin.com/in/jessicaroline-developer/" style= "width:90px;"/>
-  </a>
-
-  <td align="center"><img style="width: 70%; border-radius: 50%"
-  src="https://avatars.githubusercontent.com/u/80930522?v=4" 
-  alt="Paulo Henrique"/><br /><sub><b>Paulo Henrique</b></sub></a><br /> 
-  <a href="https://www.linkedin.com/in/paulohenrique3140/" alt="Linkedin">
-  <br>
-<img src="https://img.shields.io/badge/-Linkedin-1C1C1C?style=for-the-badge&logo=Linkedin&logoColor=00FFFF&link=https://https://www.linkedin.com/in/paulohenrique3140/"  style= "width:90px;"/>
-  </a>
-  
-  <td align="center"><img style="width: 70%; border-radius: 50%"
-  src="https://avatars.githubusercontent.com/u/73142478?v=4" 
-  alt="Caio Negrão"/><br /><sub><b>Caio Negrão</b></sub></a><br />
-   <a href="https://www.linkedin.com/in/caionegraods/" alt="Linkedin">
-  <br>
-  <img src="https://img.shields.io/badge/-Linkedin-1C1C1C?style=for-the-badge&logo=Linkedin&logoColor=00FFFF&link=https://https://www.linkedin.com/in/caionegraods/"  style= "width:90px;"/>
-  </a>
-
-  <td align="center"><img style="width: 70%; border-radius: 50%" 
-  src="https://avatars.githubusercontent.com/u/84467697?v=4" 
-  alt="Paulo Brito"/><br /><sub><b>Paulo Brito</b></sub></a><br />
-  <a href="https://www.linkedin.com/in/paulo-henrique-557000183/" alt="Linkedin">
-  <br>
-  <img src="https://img.shields.io/badge/-Linkedin-1C1C1C?style=for-the-badge&logo=Linkedin&logoColor=00FFFF&link=https://https://www.linkedin.com/in/paulo-henrique-557000183/"  style= "width:90px;"/>
-  </a>
-  
-   <td align="center"><img style="width: 70%; border-radius: 50%" 
-  src="https://avatars.githubusercontent.com/u/78422252?v=4" 
-  alt="Antonio Alves"/><br /><sub><b>Antonio Alves</b></sub></a><br />
-  <a href="https://www.linkedin.com/in/antonio-alves-56b6b11a9/" alt="Linkedin">
-  <br>
-  <img src="https://img.shields.io/badge/-Linkedin-1C1C1C?style=for-the-badge&logo=Linkedin&logoColor=00FFFF&link=https://https://www.linkedin.com/in/antonio-alves-56b6b11a9/"  style= "width:90px;"/>
-  </a>
-
- <td align="center"><img style="width: 70%; border-radius: 50%" 
-  src="https://avatars.githubusercontent.com/u/83151108?v=4" 
-  alt="Jean Evenx"/><br /><sub><b>Jean Evenx</b></sub></a><br />
-  <a href="https://www.linkedin.com/in/jeanevenx/">
-  <br>
-  <img src="https://img.shields.io/badge/-Linkedin-1C1C1C?style=for-the-badge&logo=Linkedin&logoColor=00FFFF&link=https://www.linkedin.com/in/jeanevenx/"  style= "width:90px;"/>
-  </a>
-
- <td align="center"><img style="width: 70%; border-radius: 50%" 
-  src="https://avatars.githubusercontent.com/u/5192512?v=4" 
-  alt="Uallace Gomes"/><br /><sub><b>Uallace Gomes</b></sub></a><br />
-  <a href="https://www.linkedin.com/in/uallace-gomes-da-silva-98465b3b/" alt="Linkedin">
-  <br>
-  <img src="https://img.shields.io/badge/-Linkedin-1C1C1C?style=for-the-badge&logo=Linkedin&logoColor=00FFFF&link=https://www.linkedin.com/in/uallace-gomes-da-silva-98465b3b/"  style= "width:90px;"/>
-  </a>
-
-
-</table>
-   
-  
+     
   <h2>🎁 Agradecimentos </h2>
   <h4>Agradecemos à IBM pela oportunidade de participarmos desta bela iniciativa que é o programa de treinamento If Black, Then Code, voltado para estudantes pretos(as) e pardos(as), que proporciona a ampliação de conhecimentos e de qualificação na área de desenvolvimento Back End e DevOps (Java).
       
