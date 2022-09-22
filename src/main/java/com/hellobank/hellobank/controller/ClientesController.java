@@ -24,7 +24,7 @@ public class ClientesController {
 
     @Autowired
     IClienteService serviceCliente;
-    
+
     @Autowired
     ITransacaoService serviceTransacao;
 
@@ -40,7 +40,7 @@ public class ClientesController {
        }
 
         model3.addAttribute("cliennt", cliente.get());
-        return null;
+        return "clientes/conta";
     }
 
     @GetMapping("/clientes/conta/{id}")
@@ -64,23 +64,16 @@ public class ClientesController {
     @PostMapping("/clientes/conta/{id}/create")
     public String create(@PathVariable Integer id, String tipo, Conta conta, Model model1, Model model2, Model model3){
         Optional<Conta> cont = serviceConta.toSearchIdCliente(id);
-        Optional<Cliente> cliente = serviceCliente.toSearch(id);
-
+        
         try{
             if(cont.isPresent()){
-                model1.addAttribute("erro", "Conta já existe");
-                model2.addAttribute("cliennt", cliente.get());
-                return "clientes/home";
+                return "redirect:/clientes/conta/" + id;
             }else{
                 serviceConta.toCreate(conta);
-                model2.addAttribute("cliennt", cliente.get());
-                return "clientes/home";
+                return "redirect:/clientes/conta/" + id;
             }
         }catch(Exception e){
-            model1.addAttribute("cont", conta);
-            model2.addAttribute("cliennt", cliente.get());
-            model3.addAttribute("erro", "Erro ao criar");
-            return "clientes/home";
+            return "redirect:/clientes/conta/" + id;
         }
     }
 
