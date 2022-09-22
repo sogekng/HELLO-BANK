@@ -24,6 +24,8 @@
  ✔️ Front-end: Interface realizada com as seguintes tecnologias: HTML5, CSS3, e JavaScript; <br>
  ✔️ Back-end: Cadastrar, listar, atualizar, deleter clientes e fornecer histórico de transação entre contas;  <br>
  ✔️ Banco de Dados: Tabelas bem estruturadas e populadas com valores para testes.  <br>
+ ✔️ Amazon AWS: Onde a API deve ser disponibilizada em ambiente AWS com EC2, a aplicação deve ter um pipeline em Jenkins ou no AWS Build.  <br>
+
 </h4>
 
 <h2>💻 Tecnologias necessárias para executar o projeto: <h2>
