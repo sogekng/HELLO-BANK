@@ -46,6 +46,7 @@ public class AdministradoresController {
 
     @GetMapping("/administradores/clientes")
     public String clientes(Model model){
+        model.addAttribute("admin", serviceAdministrador.listarTodos());
         model.addAttribute("cliente", serviceCliente.listarTodos());
 
         return "clientes/clientes";
