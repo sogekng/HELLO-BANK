@@ -68,11 +68,11 @@ public class ClientesController {
             if(cont.isPresent()){
                 model1.addAttribute("erro", "Conta já existe");
                 model2.addAttribute("cliennt", cliente.get());
-                return "clientes/conta/" + id;
+                return "clientes/home";
             }else{
                 serviceConta.toCreate(conta);
                 model2.addAttribute("cliennt", cliente.get());
-                return "clientes/conta/" + id;
+                return "clientes/home";
             }
         }catch(Exception e){
             model1.addAttribute("cont", conta);
