@@ -19,25 +19,25 @@
             <div id="content" style="background: #23b287;">
                 <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow" style="justify-content:space-around;padding-bottom: 0;">
                     <div class="navbar-brand text-white" style="display:flex;flex-direction:column;justify-content:start;align-items:center;">
-                        <h3 th:text="${cliennn.nome}" class="m-0 font-weight-bold text-primary"></h3>
+                        <h3 th:text="${cliennn.nome}" class="m-0 font-weight-bold text-primary" id="title"></h3>
                         <div class="dropdown no-arrow" style="display:flex;flex-direction:row;width:100%;">
                             <div style="margin: 10px;">
-                                <h6 class="m-0 font-weight-bold text-primary">Agencia </h6>
-                                <h5 class="m-0 font-weight-bold text-primary" th:text="${cons.agencia}"></h5>
+                                <h6 class="m-0 font-weight-bold text-primary" id="letras-cima">Agencia </h6>
+                                <h5 class="m-0 font-weight-bold text-primary" id="letras-baixo" th:text="${cons.agencia}"></h5>
                             </div>
                             <div style="margin: 10px;">
-                                <h6 class="m-0 font-weight-bold text-primary">Numero</h6>
-                                <h5 class="m-0 font-weight-bold text-primary" th:text="${cons.numero}"></h5>
+                                <h6 class="m-0 font-weight-bold text-primary" id="letras-cima">Numero</h6>
+                                <h5 class="m-0 font-weight-bold text-primary" id="letras-baixo" th:text="${cons.numero}"></h5>
                             </div>
                             <div style="margin: 10px;display:flex;align-items:center;justify-content:center;">
-                                <p class="text-primary" style="margin:auto;">-</p>
-                                <h5 class="m-0 font-weight-bold text-primary" th:text="${cons.tipo}"></h5>
+                                <p class="text-primary" style="margin:auto;" id="letras-baixo">-</p>
+                                <h5 class="m-0 font-weight-bold text-primary" id="letras-baixo" th:text="${cons.tipo}"></h5>
                             </div>
                         </div>
                     </div>
                     <div class="navbar-brand text-white" style="display:flex;flex-direction:row;justify-content:center;align-items:center;">
-                        <h1 class="m-0 font-weight-bold text-gray-dark">R$</h1>
-                        <h2 class="m-3 font-weight-bold text-white" th:text="${cons.saldo}" style="display:flex;align-items:center;font-size:70px" id="value"></h2>
+                        <h1 class="m-0 font-weight-bold text-gray-dark" id="cifrao">R$</h1>
+                        <h2 class="m-3 font-weight-bold text-white" th:text="${cons.saldo}" style="display:flex;align-items:center;" id="value"></h2>
                         <script>
                             function animateValue(obj, start, end, duration) {
                                 let startTimestamp = null;
@@ -94,8 +94,8 @@
                                     src="/img/undraw_profile.svg">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                aria-labelledby="userDropdown" style="background: #23b287;border-radius:10px">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" style="background: transparent;color: white;">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -103,13 +103,13 @@
                         </li>
                     </ul>
                 </nav>
-                <div class="container-fluid" style="width:100%;display:flex;flex-direction:row;justify-content:center;">
-                    <div class="card shadow mb-4" style="border:none;margin:10px;">
-                        <div class="card-header py-3" style="display:flex;flex-direction:row;align-items:center;justify-content:space-between;width: 60vw;">
-                            <h4 class="m-0 font-weight-bold text-primary">Histórico de transações</h4>
+                <div class="container-fluid" id="container-fluid" style="width:100%;display:flex;flex-direction:row;justify-content:center;">
+                    <div class="card shadow mb-4" id="card-conta" style="border:none;margin:10px;">
+                        <div class="card-header py-3" style="display:flex;flex-direction:row;align-items:center;justify-content:space-between;">
+                            <h4 class="m-0 font-weight-bold text-primary" id="title">Histórico de transações</h4>
                             <button class="btn btn-primary"><a th:href="@{'/clientes/conta/' + ${cliennn.id_cliente}}" style="color: #fff;text-decoration:none;">Voltar</a></button>
                         </div>
-                        <div class="card-body" style="display: flex;justify-content:center;">
+                        <div class="card-body"  style="display: flex;justify-content:center;">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTableCliente" width="100%" cellspacing="0">
                                     <thead>
@@ -134,7 +134,7 @@
                     </div>
                 </div>
             </div>
-            <footer class="sticky-footer bg-dark">
+            <footer class="sticky-footer bg-dark" id="footer">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Hellobank 2022</span>
