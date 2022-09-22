@@ -23,18 +23,16 @@ public class AdministradoresController {
 
     @Autowired
     private IAdministradorService serviceAdministrador;
+
     @Autowired
     private IClienteService serviceCliente;
+
     @Autowired
     private IContaService serviceConta;
 
     @GetMapping("/administradores/home")
-    public String conta_create(Model model1, Model model2, Model model3, HttpServletRequest request) throws UnsupportedEncodingException{
-        String nomeAdmin = CookieService.getCookie(request, "nome_admin");
-        model1.addAttribute("clien", serviceCliente.listarTodos());
-        model2.addAttribute("admin", serviceAdministrador.listarTodos());
-        model3.addAttribute("nome_administrador", nomeAdmin);
-        return "administradores/home";
+    public String contaCreate(Model model){
+        return null;
     }
 
     @GetMapping("/administradores/administradores")
@@ -73,18 +71,18 @@ public class AdministradoresController {
     }
 
     @GetMapping("/administradores/clientes/conta/{id}")
-    public String searchAdmin(@PathVariable Integer id, Model model1, Model model2){
+    public String searchAdmin(@PathVariable Integer id, Model model){
         Optional<Conta> conta = serviceConta.toSearchIdCliente(id);
         Optional<Cliente> cliente = serviceCliente.toSearch(id);
 
         try{
             if(conta != null){
-                model1.addAttribute("contss", conta.get());
-                model2.addAttribute("clienn", cliente.get());
+                model.addAttribute("contss", conta.get());
+                model.addAttribute("clienn", cliente.get());
                 return "administradores/conta";
             }
         }catch(Exception e){
-            model1.addAttribute("erroor", "Conta não exite");
+            model.addAttribute("erroor", "Conta não exite");
         }
 
         return "administradores/conta";

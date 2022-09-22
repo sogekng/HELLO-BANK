@@ -12,7 +12,6 @@ public interface IClienteService  {
     public boolean toExistCpf(String cpf);
     public Cliente toExistLogin(String cpf, String senha);
     public Cliente toCreate(Cliente cliente);
-    public Cliente atualizarDados(Cliente dados);
     public Cliente toUpdate(Cliente novoCliente);
     public void excluirCadastro(Integer id);
 }

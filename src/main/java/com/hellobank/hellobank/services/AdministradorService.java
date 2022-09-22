@@ -9,6 +9,7 @@ import com.hellobank.hellobank.model.Administrador;
 
 @Service
 public class AdministradorService implements IAdministradorService {
+    
     @Autowired
     private AdministradorDAO dao;
 

@@ -22,92 +22,84 @@ public class ClientesController {
     
     @Autowired
     IContaService serviceConta;
+    
     @Autowired
     IClienteService serviceCliente;
+
     @Autowired
     ITransacaoService serviceTransacao;
 
     @GetMapping("/clientes/home")
-    public String conta_create(Model model1, Model model2, Model model3, HttpServletRequest request) throws UnsupportedEncodingException{
-        String idCliente = CookieService.getCookie(request, "id_cliente");
-        Optional<Cliente> cliente = serviceCliente.toSearch(Integer.parseInt(idCliente));
-        Optional<Conta> conta = serviceConta.toSearchIdCliente(Integer.parseInt(idCliente));
-        
-        if(conta.isPresent()){
-            model1.addAttribute("consstt", conta.get());
-            model2.addAttribute("transf", serviceTransacao.extrato(conta.get().getId_conta()));
-       }
-
-        model3.addAttribute("cliennt", cliente.get());
+    public String conta_create(Model model){
         return null;
     }
 
     @GetMapping("/clientes/conta/{id}")
-    public String searchCliente(@PathVariable Integer id, Model model1, Model model2, Model model3){
+    public String searchCliente(@PathVariable Integer id, Model model){
         Optional<Conta> conta = serviceConta.toSearchIdCliente(id);
         Optional<Cliente> cliente = serviceCliente.toSearch(id);
 
         try{
             if(conta != null){
-                model1.addAttribute("cont", conta.get());
-                model2.addAttribute("cliennn", cliente.get());
+                model.addAttribute("cont", conta.get());
+                model.addAttribute("cliennn", cliente.get());
                 return "contas/conta";
             }
         }catch(Exception e){
-            model1.addAttribute("erro", "Conta não existe");
-            model2.addAttribute("cliennt", cliente.get());
+            model.addAttribute("erro", "Conta não existe");
+            model.addAttribute("cliennt", cliente.get());
         }
-        return "clientes/home";
+        return "clientes/conta";
     }
 
     @PostMapping("/clientes/conta/{id}/create")
-    public String create(@PathVariable Integer id, String tipo, Conta conta, Model model1, Model model2, Model model3){
+    public String create(@PathVariable Integer id, String tipo, Conta conta, Model model){
         Optional<Conta> cont = serviceConta.toSearchIdCliente(id);
         Optional<Cliente> cliente = serviceCliente.toSearch(id);
 
         try{
             if(cont.isPresent()){
-                model1.addAttribute("erro", "Conta já existe");
-                model2.addAttribute("cliennt", cliente.get());
-                return "clientes/home";
+                model.addAttribute("erro", "Conta já existe");
+                model.addAttribute("cliennt", cliente.get());
+                return "clientes/conta";
             }else{
                 serviceConta.toCreate(conta);
-                model2.addAttribute("cliennt", cliente.get());
-                return "clientes/home";
+                model.addAttribute("cliennt", cliente.get());
+                return "clientes/conta";
             }
         }catch(Exception e){
-            model1.addAttribute("cont", conta);
-            model2.addAttribute("cliennt", cliente.get());
-            model3.addAttribute("erro", "Erro ao criar");
-            return "clientes/home";
+            model.addAttribute("cont", conta);
+            model.addAttribute("cliennt", cliente.get());
+            model.addAttribute("erro", "Erro ao criar");
+            return "clientes/conta";
         }
     }
 
     @PostMapping("/clientes/conta/{id}/transferir")
-    public String transferir(@PathVariable Integer id, String cpf, Transacao nova, String valor, Model model1, Model model2, Model model3){
+    public String transferir(@PathVariable Integer id, String cpf, Transacao nova, String valor, Model model){
         Optional<Cliente> cliente = serviceCliente.toSearch(id);
         Optional<Cliente> clienteDestino = serviceCliente.toSearchCpf(cpf);
         Optional<Conta> conta = serviceConta.toSearchIdCliente(id);
 
         if(nova.getValor() < 0 || nova.getValor() == 0){
-            model1.addAttribute("cont", conta.get());
-            model2.addAttribute("cliennn", cliente.get());
-            model3.addAttribute("errooo", "Valor inválido");
+            model.addAttribute("cont", conta.get());
+            model.addAttribute("cliennn", cliente.get());
+            model.addAttribute("errooo", "Valor inválido");
             return "contas/conta";
         }
         if(nova.getValor() > 10000){
-            model1.addAttribute("cont", conta.get());
-            model2.addAttribute("cliennn", cliente.get());
-            model3.addAttribute("errooo", "Voce não pode transferir mais de R$10.000,00");
+            model.addAttribute("cont", conta.get());
+            model.addAttribute("cliennn", cliente.get());
+            model.addAttribute("errooo", "Voce não pode transferir mais de R$10.000,00");
             return "contas/conta";
         }
         if (nova != null){
             
             if(nova.getTipo().equals("transferencia")){
                 if(nova.getValor() > conta.get().getSaldo()){
-                    model1.addAttribute("cont", conta.get());
-                    model2.addAttribute("cliennn", cliente.get());
-                    model3.addAttribute("errooo", "Saldo insuficiente");
+                    model.addAttribute("cont", conta.get());
+                    model.addAttribute("cliennn", cliente.get());
+                    model.addAttribute("errooo", "Saldo insuficiente");
                     return "contas/conta";
                 }
                 if(cpf != null){
@@ -119,63 +111,63 @@ public class ClientesController {
                             try{
                                 if(contaDestino.get() != null){
                                     serviceTransacao.transferir(nova, contaDestino.get());
-                                    model1.addAttribute("accertt", "Transferência realizada com sucesso!");
-                                    model2.addAttribute("cont", conta.get());
-                                    model3.addAttribute("cliennn", cliente.get());
+                                    model.addAttribute("accertt", "Transferência realizada com sucesso!");
+                                    model.addAttribute("cont", conta.get());
+                                    model.addAttribute("cliennn", cliente.get());
                                     return "contas/conta";
                                 }else{
-                                    model1.addAttribute("cont", conta.get());
-                                    model2.addAttribute("cliennn", cliente.get());
-                                    model3.addAttribute("errooo", "Conta não existe");
+                                    model.addAttribute("cont", conta.get());
+                                    model.addAttribute("cliennn", cliente.get());
+                                    model.addAttribute("errooo", "Conta não existe");
                                     return "contas/conta";
                                 }
                             }catch(Exception e){
-                                model1.addAttribute("cont", conta.get());
-                                model2.addAttribute("cliennn", cliente.get());
-                                model3.addAttribute("errooo", "Erro ao transferir");
+                                model.addAttribute("cont", conta.get());
+                                model.addAttribute("cliennn", cliente.get());
+                                model.addAttribute("errooo", "Erro ao transferir");
                                 return "contas/conta";
                             }
                         }         
                     }else{
-                        model1.addAttribute("errooo", "Cliente não existe");
-                        model2.addAttribute("cont", conta.get());
-                        model3.addAttribute("cliennn", cliente.get());
+                        model.addAttribute("errooo", "Cliente não existe");
+                        model.addAttribute("cont", conta.get());
+                        model.addAttribute("cliennn", cliente.get());
                         return "contas/conta";
                     }
                 }
             }else{
                 if(nova.getTipo().equals("saque")){
                     if(nova.getValor() > conta.get().getSaldo()){
-                        model1.addAttribute("cont", conta.get());
-                        model2.addAttribute("cliennn", cliente.get());
-                        model3.addAttribute("errooo", "Saldo insuficiente");
+                        model.addAttribute("cont", conta.get());
+                        model.addAttribute("cliennn", cliente.get());
+                        model.addAttribute("errooo", "Saldo insuficiente");
                         return "contas/conta";
                     }
                     nova.setStatus("Negativo");
                     serviceTransacao.criarNovo(nova);
-                    model1.addAttribute("accertt", "Saque realizada com sucesso!");
+                    model.addAttribute("accertt", "Saque realizada com sucesso!");
                 }else if("deposito".equals("deposito")){
                     nova.setStatus("Positivo");
                     serviceTransacao.criarNovo(nova);
-                    model1.addAttribute("accertt", "Depósito realizado com sucesso!");
+                    model.addAttribute("accertt", "Depósito realizado com sucesso!");
                 }
             }
-            model2.addAttribute("cont", conta.get());
-            model3.addAttribute("cliennn", cliente.get());
+            model.addAttribute("cont", conta.get());
+            model.addAttribute("cliennn", cliente.get());
             
         }
         return "contas/conta";
     }
 
     @GetMapping("/clientes/conta/{id}/extrato")
-    public String extrato(@PathVariable Integer id, Model model1, Model model2, Model model3){
+    public String extrato(@PathVariable Integer id, Model model){
         if (id != null) {
             Integer cont = serviceConta.toSearchIdClienteForAccount(id);
             Optional<Conta> conta = serviceConta.toSearch(id);
             Optional<Cliente> cliente = serviceCliente.toSearch(cont);
-            model1.addAttribute("transferencias", serviceTransacao.extrato(id));
-            model2.addAttribute("cont", conta.get());
-            model3.addAttribute("cliennn", cliente.get());
+            model.addAttribute("transferencias", serviceTransacao.extrato(id));
+            model.addAttribute("cont", conta.get());
+            model.addAttribute("cliennn", cliente.get());
             return "transferencias/transferencia";
         }
         return "transferencias/transferencia";

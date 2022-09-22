@@ -17,8 +17,8 @@ public class ContasController {
     IContaService serviceConta;
 
     @GetMapping("/contas")
-    public String contas(Model model1, Model model2){
-        model1.addAttribute("contass", serviceConta.listarTodos());
+    public String contas(Model model){
+        model.addAttribute("contass", serviceConta.listarTodos());
         return "contas/contas";
     }
 
