@@ -203,22 +203,6 @@
                                 <div th:if="${accertt != null}" class="alert alert-success hidden" role="alert" th:text="${accertt}">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 </div>
-                                <script th:if="${accertt != null}" th:inline="javascript">
-                                    /*<![CDATA[*/
-                                        var id = /*[[${cliennn.id_cliente}]]*/ 'default';
-                                    /*]]>*/
-                                    setTimeout(function(){
-                                        window.location.href = "/clientes/conta/" + id;
-                                      }, 5000);
-                                </script>
-                                <script th:if="${errooo != null}" th:inline="javascript">
-                                    /*<![CDATA[*/
-                                        var id = /*[[${cliennn.id_cliente}]]*/ 'default';
-                                    /*]]>*/
-                                    setTimeout(function(){
-                                        window.location.href = "/clientes/conta/" + id;
-                                      }, 5000);
-                                </script>
                                 <div class="form-group" style="display: flex;justify-content:end;">
                                     <button type="submit" id="submit" class="btn btn-primary" disabled>Selecione uma opção</button>
                                 </div>
