@@ -210,12 +210,12 @@ public class ClientesController {
     public String update(@PathVariable Integer id, Model model, Cliente cliente){
         
         if(!serviceCliente.toExistId(id)){
-            return "redirect:/clientes/home";
+            return "redirect:/clientes/conta/" + id;
         }
 
         cliente.setId_cliente(id);
         serviceCliente.toUpdate(cliente);
-        return "redirect:/clientes/home";
+        return "redirect:/clientes/conta/" + id;
     }
     
 }
