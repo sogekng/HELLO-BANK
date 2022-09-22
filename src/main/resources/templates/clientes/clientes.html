@@ -85,7 +85,7 @@
                                             <td th:text="${clientes.cpf}"></td>
                                             <td th:text="${clientes.telefone}"></td>
                                             <td th:text="${clientes.senha}"></td>
-                                            <td>
+                                            <td style="display:flex;">
                                                 <button class="btn btn-primary"><a style="color:#fff;text-decoration:none;font-size: 0.8rem;" th:href="@{'/administradores/clientes/conta/' + ${clientes.id_cliente}}">Ver dados</button>
                                                 <button class="btn btn-primary"><a style="color:#fff;text-decoration:none;font-size: 0.8rem;" th:onclick="'if(confirm(\'Confirma ?\')) { window.location.href = \'' + @{/administradores/clientes/{id}(id=${clientes.id_cliente})} + '/delete\' } '">Excluir</button>
                                             </td>
