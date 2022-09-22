@@ -65,7 +65,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="border:none;">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -88,6 +88,7 @@
                                             <td style="display:flex;">
                                                 <button class="btn btn-primary"><a style="color:#fff;text-decoration:none;font-size: 0.8rem;" th:href="@{'/administradores/clientes/conta/' + ${clientes.id_cliente}}">Ver dados</button>
                                                 <button class="btn btn-primary"><a style="color:#fff;text-decoration:none;font-size: 0.8rem;" th:onclick="'if(confirm(\'Confirma ?\')) { window.location.href = \'' + @{/administradores/clientes/{id}(id=${clientes.id_cliente})} + '/delete\' } '">Excluir</button>
+                                                <br>
                                             </td>
                                         </tr>
                                     </tbody>
